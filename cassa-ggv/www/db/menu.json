@@ -1,0 +1,12 @@
+var menu = {
+	"bar": [
+		{"nome":"birra", "prezzo":3},
+	],
+	"cucina": [
+		{"nome":"patatine", "prezzo":2.5},
+	]
+};
+
+
+localStorage.setItem('menu', JSON.stringify(menu));
+
