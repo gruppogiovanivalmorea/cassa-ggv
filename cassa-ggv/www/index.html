@@ -45,7 +45,11 @@
             </header>
             <section data-role="content" class="ui-content" id="content1">
             <!-- Main Content -->
-                <div id="mainDiv">Prodotti a menu</div>
+                <div id="divConAngular">
+                    <div np-repeat="gruppo in GGVApp.menu">
+                        {{gruppo}}
+                    </div>
+                </div>
             </section>
         </section>
 
