@@ -1,6 +1,7 @@
 var menu = {
 	"bar": [
-		{"nome":"birra", "prezzo":3},
+		{"nome":"birra lati", "prezzo":3.5},
+    {"nome":"birra moretti", "prezzo":2.5},
 	],
 	"cucina": [
 		{"nome":"patatine", "prezzo":2.5},
