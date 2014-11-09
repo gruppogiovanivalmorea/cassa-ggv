@@ -7,17 +7,32 @@ angular.module('GGVApp-ordine',[])
     'GGVApp-gestioneOrdineCorrenteController',
     ['$scope','menu','ordine',function($scope,menu,ordine){ 
         $scope.ordine = ordine;
-        $scope.totale_ordine = 27;
+        $scope.totale_ordine;
         $scope.$watch('ordine.voci', function(nuove_voci, vecchie_voci,scope){
-          scope.totale_ordine = 0.0;
-          for(var voce_key in nuove_voci){
-            var voce =  nuove_voci[voce_key];
-            scope.totale_ordine += voce.qta * voce.prezzo;
-          }
+            // TODO mettere nel localstorage le voci filtrate (qta>0)
+            window.localStorage.setItem('vociOrdine',JSON.stringify(nuove_voci));
+            if (finestraOrdineAttuale != null && !finestraOrdineAttuale.closed)
+                finestraOrdineAttuale.location.reload();
         }, true);
+        
+        var finestraOrdineAttuale;
+        $scope.apriFinestraOrdine = function(){
+            if (finestraOrdineAttuale == null || finestraOrdineAttuale.closed) {
+                finestraOrdineAttuale = window.open(
+                    'ordineAttualeCliente_js.html',
+                    'Ordine',
+                    'fullscreen');
+            }
+        };
+       
     }])
 
 
+.controller(
+    "GGVAppControllerCliente", function($scope, menu){
+        $scope.menu = JSON.parse(localStorage.getItem('menu'));;
+        $scope.vociOrdine = JSON.parse(localStorage.getItem('vociOrdine'));;
+    })
 
 
 .directive('gestioneOrdineCorrente',function(){
@@ -27,10 +42,6 @@ angular.module('GGVApp-ordine',[])
     };
 })
 
-.directive('visualizzazioneOrdineCorrente',function(){
-    return {
-        restrict : 'E',
-        templateUrl : 'ordine/visualizzazioneOrdineCorrente.html'
-    };
-});
+
+;
 

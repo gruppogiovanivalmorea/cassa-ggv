@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Dashboard Template for Bootstrap</title>
+    <title>Cassa GGV</title>
 
     <!-- Bootstrap core CSS -->
     <link href="./css/lib/bootstrap.min.css" rel="stylesheet">
@@ -55,25 +55,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a id="visuale_cliente" href="#">Visuale Cliente</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a ng-controller="GGVApp-gestioneOrdineCorrenteController" 
+                   ng-click="apriFinestraOrdine" href="#">Visuale Cliente</a>
+              </li>
           </ul>
-         <!-- <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-          -->
         </div>
       </div>
     </nav>
 
-    <script type="text/javascript">
-    $('#visuale_cliente').click(function(){
-      window.open("http://google.it");
-    });
-    </script>
 
 
     <div class="container-fluid">
@@ -85,33 +74,25 @@
             <li><a href="#">Analytics</a></li>
             <li><a href="#">Export</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item</a></li>
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-            <li><a href="">More navigation</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Dashboard</h1>
 
-            Ciao
+            
+            
+            
            <!-- Gestione ordine -->
                 <gestione-ordine-corrente></gestione-ordine-corrente>
 
                 <!-- Azioni su ordine -->
                 <azioni-ordine></azioni-ordine>
 
-                <!-- Visualizza ordine  -->
-                <visualizzazione-ordine-corrente>
-                </visualizzazione-ordine-corrente>
-
+      
+      
+      
+      
+      
+      <!-- PALLA -->
           <div class="row placeholders">
           
           
@@ -122,6 +103,15 @@
             </div>
           </div>
 
+            
+            
+            
+            
+            
+            
+            
+            
+            <!--
           <h2 class="sub-header">Section title</h2>
           <div class="table-responsive">
             <table class="table table-striped">
@@ -149,14 +139,13 @@
         </div>
       </div>
     </div>
-
+-->
                
     
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    
     <script src="./lib/bootstrap.min.js"></script>
     <script src="../lib/docs.min.js"></script>
     

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it" ng-app="GGVApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Ordine</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+
+    <script src="./lib/jquery-1.11.1.min.js"></script>
+
+    <!-- in db/menu.json si metterà copia del menu da tenere in locale -->
+      <!--
+        <script type="text/javascript" src="db/menu.json" ></script>
+        <script type="text/javascript" src="db/opzioni.json" ></script>
+        <script type="text/javascript" src="lib/functions.js" ></script>
+
+        <script type="text/javascript" src="ordine/orders_obj.js" ></script>
+-->
+  </head>
+
+  <body ng-controller="GGVAppControllerCliente">
+
+  <!-- testo libreria angular -->
+        <script src="lib/angular.min.js"></script>
+        <script src="lib/angular-touch.js"></script>
+
+        <script src="lib/angular-locale_it-it.js"></script>
+
+       <script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
+        <!-- moduli angular e poi app principale -->
+        <script type="text/javascript" src="./js/app.js" ></script>
+        <script type="text/javascript" src="ordine/ordine.js" ></script>
+        <script type="text/javascript" src="ordine/azioni_ordine.js" ></script>
+
+        <script src="./js/debug.js"></script>
+
+        <h2 class="sub-header">Ordine corrente</h2>
+
+        <div>
+
+
+        <div ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
+            <h3>{{gruppo}}</h3>
+             <table class="table table-striped">
+                  <thead>
+                   <tr>
+                      <th>Qta</th>
+                      <th>Nome</th>
+                      <th>Prezzo unitario</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr ng-repeat="prodotto in elencoProdotti">
+                      <td>{{ordine.voci[prodotto.nome].qta}}</td>
+                      <td>{{prodotto.nome}}</td>
+                      <td>{{prodotto.prezzo|currency}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>    
+        <h1>Totale: {{totale_ordine|currency}}</h1>
+        </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="./lib/bootstrap.min.js"></script>
+    <script src="../lib/docs.min.js"></script>
+    
+  </body>
+</html>
+
+
+
+
+            

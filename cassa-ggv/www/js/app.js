@@ -11,16 +11,15 @@ angular.module('GGVApp',[
 })
 
 .service('ordine', ['menu',function(menu){
-    //console.log(menu);
     return new Ordine(menu);  
 }])
 
 .controller(
-  "GGVAppController",
-   function( $scope ) {
-       $scope.menu = _getMenu();
+  "GGVAppController", ['$scope','menu',function($scope, menu){
+       $scope.menu = menu;
+      console.log(menu);
 //       $scope.ordine = new Ordine($scope.menu);
-   })
+   }])
 
 ;
 
