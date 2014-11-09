@@ -1,5 +1,5 @@
 // Configurazioni
-var APP_ROOT = '../applicazione-html-js/cassa-ggv/';
+var APP_ROOT = '../www/';
 var SERVER_PORT = 3000;
 
 // Import miei
