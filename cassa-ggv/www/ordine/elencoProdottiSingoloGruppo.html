@@ -1,0 +1,10 @@
+{{gruppo}}
+
+<div ng-repeat='prodotto in elencoProdotti'>
+    <div align='left'>{{prodotto.nome}}</div>
+    <div align='right' style='display: inline'>
+        <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
+        <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
+        <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
+    </div>
+</div>

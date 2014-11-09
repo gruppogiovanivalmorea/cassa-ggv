@@ -1,0 +1,26 @@
+formato dei dati (oggetti js):
+NOTA: JSON.stringify perde le funzioni
+
+oggetto menu, attualmente definito in db/menu.json (da sistemare){
+  "nomeGruppo1" -> [
+    {nome, prezzo, invisibile?}, ... 
+  ], ...
+}
+
+oggetto VoceOrdine, gestito in ordine/order_obj.js{
+    gruppo,
+    qta,
+    prezzo,
+    note?,
+    inc(),
+    dec()
+}
+
+oggetto Ordine, gestito in ordine/order_obj.js{
+    timestamp
+    cassa
+    note?
+    voci: {
+        "nomeProdotto" -> VoceOrdine
+    }
+}

@@ -1,0 +1,7 @@
+var db_opzioni = {
+    "nodejsServerHost": "localhost", 
+    "nodejsServerPort": 1337 ,
+    "syncServerHost": "",
+    "syncServerPort": 0, 
+    "syncMode": false
+}

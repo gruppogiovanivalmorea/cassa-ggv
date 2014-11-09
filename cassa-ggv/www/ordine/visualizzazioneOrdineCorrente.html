@@ -1,0 +1,9 @@
+<div ng-controller="GGVApp-gestioneOrdineCorrenteController">
+    <br />
+    Visualizzazione ordine corrente:
+    <ul>
+        <li ng-repeat="(prodotto, contatore) in ordine.voci">
+            {{prodotto}}: {{contatore}}
+        </li>
+    </ul>
+</div>
