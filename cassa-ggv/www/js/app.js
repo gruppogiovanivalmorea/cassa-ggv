@@ -11,7 +11,7 @@ angular.module('GGVApp',[
 })
 
 .service('ordine', ['menu',function(menu){
-    console.log(menu);
+    //console.log(menu);
     return new Ordine(menu);  
 }])
 

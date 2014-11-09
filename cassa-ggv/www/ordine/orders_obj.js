@@ -14,18 +14,21 @@ function Ordine(menu) {
     for(var gruppo in menu){
         if(!menu.hasOwnProperty(gruppo)) continue;
         for(var i in menu[gruppo]){
-            this.voci[menu[gruppo][i].nome] = new voceOrdine(menu[gruppo][i].nome,gruppo);
+            this.voci[menu[gruppo][i].nome] = 
+              new voceOrdine(menu[gruppo][i].nome,gruppo,menu[gruppo][i].prezzo);
         }
     }
 };
 
-function voceOrdine(prodotto, gruppo){
-    console.log(prodotto, gruppo);
+function voceOrdine(prodotto, gruppo, prezzo){
+  console.log(prodotto, gruppo);
   this.qta = 0;
   this.nome = prodotto; 
   this.gruppo = gruppo;
+  this.prezzo = prezzo;
   this.inc = function() { this.qta++; }
   this.dec = function() { if(this.qta > 0) this.qta--; }
+
 }
   /*
 function voceOrdine(){

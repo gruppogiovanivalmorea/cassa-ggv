@@ -59,7 +59,7 @@ for(var requestName in POST_RequestTypes){
 
 // Richieste non trattate 
 app.get('*', function(req, res){
-  res.send(unknownRequestException(req));
+    res.status(404).send("Not Found!");
 });
 
 // Avvio server
