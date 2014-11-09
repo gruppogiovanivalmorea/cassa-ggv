@@ -17,13 +17,6 @@ angular.module('GGVApp-ordine',[])
     };
 })
 
-.directive('elencoProdottiSingoloGruppo',function(){
-    return {
-        restrict : 'E',
-        templateUrl : 'ordine/elencoProdottiSingoloGruppo.html'
-    };
-})
-
 .directive('visualizzazioneOrdineCorrente',function(){
     return {
         restrict : 'E',
