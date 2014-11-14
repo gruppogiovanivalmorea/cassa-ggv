@@ -1,12 +1,12 @@
 <script src="lib/holder.js"></script>
 
 <script>
-    /* TODO eliminare se funziona senza */
+    /* TODO eliminare se funziona senza 
 $('#selezioneGruppi a').click(function (e) {
   e.preventDefault()
   $(this).tab('show')
 })
-
+*/
 </script>
 
 <div role="tabpanel" ng-controller="GGVApp-gestioneOrdineCorrenteIconeController">
@@ -21,36 +21,31 @@ $('#selezioneGruppi a').click(function (e) {
         </li>
     </ul>
 
-    <!-- Tab panes
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">tutti</div>
-        <div role="tabpanel" class="tab-pane" id="bar">bar</div>
-        <div role="tabpanel" class="tab-pane" id="primi">primi</div>
-        <div role="tabpanel" class="tab-pane" id="secondi">secondi</div>
-    </div>    
-     -->
     <div class="tab-content">
         <!-- tuttiGruppi -->
         <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">
-            <div class="row placeholders" >
-                <div ng-repeat='prodotto in ordine.voci'>
-                    <div class="col-xs-6 col-sm-3 placeholder">
-                        <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"
-                             ng-click='ordine.voci[prodotto.nome].inc();'>
-                        <h4>{{prodotto.nome}}</h4>
-                        <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
-                        <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
-                        <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
-                    </div>
-                </div>
+            <div ng-repeat="(gruppo, elencoProdotti) in menu">
+                <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+                        ng-click="ordine.voci[prodotto.nome].inc();" >
+                    {{prodotto.nome}}
+                </button>
             </div>
         </div>          
 
         <!-- ripetizione gruppi -->
         <div role="tabpanel" class="tab-pane"
              ng-repeat="(gruppo, elencoProdotti) in menu" id="{{gruppo}}">
-            <div class="row placeholders" >
-                <div ng-repeat='prodotto in elencoProdotti'>
+                <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+                        ng-click="ordine.voci[prodotto.nome].inc();" >
+                    {{prodotto.nome}}
+                </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- PALLA -->
+<!--
                         <div class="col-xs-6 col-sm-3 placeholder">
                             <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"
                                  ng-click='ordine.voci[prodotto.nome].inc();'>
@@ -59,9 +54,4 @@ $('#selezioneGruppi a').click(function (e) {
                             <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
                             <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
                         </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+-->
