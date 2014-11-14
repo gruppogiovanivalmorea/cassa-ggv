@@ -28,6 +28,7 @@ angular.module('GGVApp-ordine',[])
         
         var finestraOrdineAttuale;
         $scope.apriFinestraOrdine = function(){
+            console.log("apro finestra");
             if (finestraOrdineAttuale == null || finestraOrdineAttuale.closed) {
                 finestraOrdineAttuale = window.open(
                     'ordineAttualeCliente_js.html',
