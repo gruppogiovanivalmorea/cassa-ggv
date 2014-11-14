@@ -37,7 +37,7 @@ angular.module('GGVApp-ordine',[])
             }
         };
         
-        
+        $scope.vistaGestioneOrdine
         $scope.viste = vistaGestioneOrdine.viste; 
         $scope.vista = vistaGestioneOrdine.vista;
         

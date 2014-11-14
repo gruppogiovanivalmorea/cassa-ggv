@@ -1,19 +1,22 @@
 <script src="lib/holder.js"></script>
-     
+
+
+
 <div ng-repeat="(gruppo, elencoProdotti) in menu">
     {{gruppo}}
-    
-    <div ng-repeat='prodotto in elencoProdotti'>
-        
-        <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-                <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"
-                     ng-click='ordine.voci[prodotto.nome].inc();'>
-                <h4>{{prodotto.nome}}</h4>
-                <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
-                <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
-                <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
-            </div>
-          </div>
+    <div class="row placeholders">
+        <div ng-repeat='prodotto in elencoProdotti'>
+
+
+                <div class="col-xs-6 col-sm-3 placeholder">
+                    <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"
+                         ng-click='ordine.voci[prodotto.nome].inc();'>
+                    <h4>{{prodotto.nome}}</h4>
+                    <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
+                    <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
+                    <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
+                </div>
+
+        </div>
     </div>
 </div>          
