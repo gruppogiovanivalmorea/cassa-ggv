@@ -6,13 +6,18 @@ angular.module('GGVApp-ordine',[])
 .service('vistaGestioneOrdine', function() { 
     this.viste = [{
         nome: 'Tabella',
-        url: 'ordine/gestioneOrdineCorrenteTabella.html'},
+        url: 'ordine/gestioneOrdineCorrenteTabella.html',
+        controller: "GGVApp-gestioneOrdineCorrenteTabellaController"},
         {
         nome: 'Icone',
-        url: 'ordine/gestioneOrdineCorrenteIcone.html'}];
+        url: 'ordine/gestioneOrdineCorrenteIcone.html',
+        controller: "GGVApp-gestioneOrdineCorrenteIconeController"
+        }];
     this.vista = this.viste[0];
     return this;
 })
+
+
 
 .controller(
     'GGVApp-gestioneOrdineCorrenteController',
@@ -37,14 +42,30 @@ angular.module('GGVApp-ordine',[])
             }
         };
         
-        $scope.vistaGestioneOrdine
-        $scope.viste = vistaGestioneOrdine.viste; 
-        $scope.vista = vistaGestioneOrdine.vista;
+        $scope.vistaGestioneOrdine = vistaGestioneOrdine;
+        //$scope.viste = vistaGestioneOrdine.viste; 
+        //$scope.vista = vistaGestioneOrdine.vista;
         
        
     }])
 
+.controller(
+    'GGVApp-gestioneOrdineCorrenteTabellaController',
+    ['$scope','menu','ordine',function($scope,menu,ordine,vistaGestioneOrdine){ 
+        $scope.ordine = ordine;
+        
+        
+        
+    }])
 
+.controller(
+    'GGVApp-gestioneOrdineCorrenteIconeController',
+    ['$scope','menu','ordine',function($scope,menu,ordine,vistaGestioneOrdine){ 
+        $scope.ordine = ordine;
+        
+        
+        
+    }])
 .controller(
     "GGVAppControllerCliente", function($scope, menu){
         $scope.menu = JSON.parse(localStorage.getItem('menu'));;

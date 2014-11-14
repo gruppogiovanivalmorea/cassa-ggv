@@ -62,7 +62,7 @@
                 </a>
              </li>
               <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                
+                <select ng-model="vistaGestioneOrdine.vista" ng-options="t.nome for t in vistaGestioneOrdine.viste"></select>               
              </li>
           </ul>
         </div>
@@ -73,18 +73,15 @@
       <div class="row">
            <!-- Gestione ordine 
                 <gestione-ordine-corrente></gestione-ordine-corrente>
--->
+            -->
             <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                <!-- TODO: il select lo vorrei nella barra in alto ma li non va (forse per il service) -->
-                <select ng-model="vista" ng-options="t.nome for t in viste"></select>
-                
-                <div ng-include src="vista.url" ></div>
+                <div ng-include src="vistaGestioneOrdine.vista.url"></div>
             </div>
-                <!-- Azioni su ordine -->
-                <azioni-ordine></azioni-ordine>
+            <!-- Azioni su ordine -->
+            <azioni-ordine></azioni-ordine>
 
      
-      </div>
+        </div>
       </div>   
 
     <!-- Bootstrap core JavaScript
