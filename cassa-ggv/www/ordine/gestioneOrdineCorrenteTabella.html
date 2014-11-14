@@ -16,27 +16,35 @@
 </ul>
 -->
 
-
         <div ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
+           <div style="float:left; margin-right:30px;">
             <h3>{{gruppo}}</h3>
-             <table class="table table-striped">
+             <table style=""class="table table-striped">
                   <thead>
                    <tr>
-                      <th>Qta</th>
                       <th>Nome</th>
+                      <th>Qta</th>
                       <th>Prezzo unitario</th>
+                      <th>Agg./Rim</th>
                     </tr>
                   </thead>
 
                   <tbody>
                     <tr ng-repeat="prodotto in elencoProdotti">
+                     <td>{{prodotto.nome}}</td>
+                    
                       <td>{{ordine.voci[prodotto.nome].qta}}</td>
-                      <td>{{prodotto.nome}}</td>
+                     
                       <td>{{prodotto.prezzo|currency}}</td>
+                      <td><button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
+                    <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
+                    </td>
                     </tr>
                   </tbody>
             </table>
-        </div>    
+            </div>
+        </div>  
+        <div style="float:none;">  
         <h1>Totale: {{totale_ordine|currency}}</h1>
         </div>
 
