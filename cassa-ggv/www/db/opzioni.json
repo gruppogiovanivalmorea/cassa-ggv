@@ -3,5 +3,5 @@ var db_opzioni = {
     "nodejsServerPort": 1337 ,
     "syncServerHost": "",
     "syncServerPort": 0, 
-    "syncMode": false
+    "syncMode": false,
 }

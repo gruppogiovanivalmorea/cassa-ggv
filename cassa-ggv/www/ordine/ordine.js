@@ -3,9 +3,20 @@
 angular.module('GGVApp-ordine',[])
 //angular.module('GGVApp')
 
+.service('vistaGestioneOrdine', function() { 
+    this.viste = [{
+        nome: 'Tabella',
+        url: 'ordine/gestioneOrdineCorrenteTabella.html'},
+        {
+        nome: 'Icone',
+        url: 'ordine/gestioneOrdineCorrenteIcone.html'}];
+    this.vista = this.viste[0];
+    return this;
+})
+
 .controller(
     'GGVApp-gestioneOrdineCorrenteController',
-    ['$scope','menu','ordine',function($scope,menu,ordine){ 
+    ['$scope','menu','ordine','vistaGestioneOrdine',function($scope,menu,ordine,vistaGestioneOrdine){ 
         $scope.ordine = ordine;
         $scope.totale_ordine;
         $scope.$watch('ordine.voci', function(nuove_voci, vecchie_voci,scope){
@@ -24,6 +35,11 @@ angular.module('GGVApp-ordine',[])
                     'fullscreen');
             }
         };
+        
+        
+        $scope.viste = vistaGestioneOrdine.viste; 
+        $scope.vista = vistaGestioneOrdine.vista;
+        
        
     }])
 
@@ -35,12 +51,13 @@ angular.module('GGVApp-ordine',[])
     })
 
 
-.directive('gestioneOrdineCorrente',function(){
+.directive('gestioneOrdineCorrente',['vistaGestioneOrdine',function(vistaGestioneOrdine){
     return {
         restrict : 'E',
-        templateUrl : 'ordine/gestioneOrdineCorrente.html'
+        controller: "GGVApp-gestioneOrdineCorrenteController",
+        templateUrl : vistaGestioneOrdine.vista.url
     };
-})
+}])
 
 
 ;

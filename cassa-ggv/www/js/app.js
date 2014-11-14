@@ -17,7 +17,7 @@ angular.module('GGVApp',[
 .controller(
   "GGVAppController", ['$scope','menu',function($scope, menu){
        $scope.menu = menu;
-      console.log(menu);
+     // console.log(menu);
 //       $scope.ordine = new Ordine($scope.menu);
    }])
 

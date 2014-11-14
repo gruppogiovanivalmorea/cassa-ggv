@@ -55,9 +55,15 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a ng-controller="GGVApp-gestioneOrdineCorrenteController" 
-                   ng-click="apriFinestraOrdine" href="#">Visuale Cliente</a>
-              </li>
+            <li>
+                <a ng-controller="GGVApp-gestioneOrdineCorrenteController" 
+                   ng-click="apriFinestraOrdine" href="#">
+                    Visuale Cliente
+                </a>
+             </li>
+              <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                
+             </li>
           </ul>
         </div>
       </div>
@@ -76,32 +82,36 @@
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
 
             
             
             
-           <!-- Gestione ordine -->
+           <!-- Gestione ordine 
                 <gestione-ordine-corrente></gestione-ordine-corrente>
-
+-->
+            <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                <!-- TODO: il select lo vorrei nella barra in alto ma li non va (forse per il service) -->
+                <select ng-model="vista" ng-options="t.nome for t in viste"></select>
+                
+                <div ng-include src="vista.url" ></div>
+            </div>
                 <!-- Azioni su ordine -->
                 <azioni-ordine></azioni-ordine>
 
       
+      <!-- template1.html
+<script type="text/ng-template" id="ordine/gestioneOrdineCorrenteTabella.html">
+  test tabella
+</script>
+ <script type="text/ng-template" id="ordine/gestioneOrdineCorrenteIcone.html">
+    <p ng-class="color">test icone</p>
+</script>
+ -->
+
       
       
       
-      
-      <!-- PALLA -->
-          <div class="row placeholders">
-          
-          
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
+ 
 
             
             

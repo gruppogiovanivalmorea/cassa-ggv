@@ -21,7 +21,7 @@ function Ordine(menu) {
 };
 
 function voceOrdine(prodotto, gruppo, prezzo){
-  console.log(prodotto, gruppo);
+  //console.log(prodotto, gruppo);
   this.qta = 0;
   this.nome = prodotto; 
   this.gruppo = gruppo;
