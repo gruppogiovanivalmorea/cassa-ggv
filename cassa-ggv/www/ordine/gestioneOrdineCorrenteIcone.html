@@ -1,32 +1,19 @@
-<!-- prova -->
-<!-- 
-<ul>
-    <li ng-repeat="(gruppo, elencoProdotti) in menu">
-        {{gruppo}}
-
-        <div ng-repeat='prodotto in elencoProdotti'>
-            <div>{{prodotto.nome}}</div>
-            <div>
+<script src="lib/holder.js"></script>
+     
+<div ng-repeat="(gruppo, elencoProdotti) in menu">
+    {{gruppo}}
+    
+    <div ng-repeat='prodotto in elencoProdotti'>
+        
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"
+                     ng-click='ordine.voci[prodotto.nome].inc();'>
+                <h4>{{prodotto.nome}}</h4>
                 <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
                 <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
                 <input type='number' ng-model='ordine.voci[prodotto.nome].qta' />
             </div>
-        </div>
-
-    </li>
-</ul>
-
--->
-
-vista a icone
-
-     <!-- PALLA -->
-          <div class="row placeholders">
-          
-          
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
           </div>
+    </div>
+</div>          

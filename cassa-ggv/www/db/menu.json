@@ -3,9 +3,12 @@ var _menu = {
 		{"nome":"birra lati", "prezzo":3.5},
         {"nome":"birra moretti", "prezzo":2.5},
 	],
-	"cucina": [
+	"primi": [
+		{"nome":"gnocchi", "prezzo":2.5},
+	],
+    "secondi": [
 		{"nome":"patatine", "prezzo":2.5},
-	]
+	],
 };
 
 
