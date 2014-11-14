@@ -1,3 +1,4 @@
+<!--
 <ul>
     <li ng-repeat="(gruppo, elencoProdotti) in menu">
         {{gruppo}}
@@ -13,4 +14,29 @@
 
     </li>
 </ul>
+-->
+
+
+        <div ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
+            <h3>{{gruppo}}</h3>
+             <table class="table table-striped">
+                  <thead>
+                   <tr>
+                      <th>Qta</th>
+                      <th>Nome</th>
+                      <th>Prezzo unitario</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr ng-repeat="prodotto in elencoProdotti">
+                      <td>{{ordine.voci[prodotto.nome].qta}}</td>
+                      <td>{{prodotto.nome}}</td>
+                      <td>{{prodotto.prezzo|currency}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>    
+        <h1>Totale: {{totale_ordine|currency}}</h1>
+        </div>
 
