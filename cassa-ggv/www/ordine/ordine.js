@@ -13,7 +13,16 @@ angular.module('GGVApp-ordine',[])
         url: 'ordine/gestioneOrdineCorrenteIcone.html',
         controller: "GGVApp-gestioneOrdineCorrenteIconeController"
         }];
-    this.vista = this.viste[0];
+    
+    var localVista = JSON.parse(window.localStorage.getItem("vistaOrdineCorrente"));
+    this.vista = localVista != null ? localVista : this.viste[0];
+    this.watch('vista',function(id,oldVal,newVal){ 
+      //  console.log(id);console.log(oldVal);console.log(newVal);
+        window.localStorage.setItem('vistaOrdineCorrente',JSON.stringify(newVal)); 
+        return newVal;
+    })
+    
+  //  console.log(this.vista);console.log(localVista);console.log(this.viste);
     return this;
 })
 
