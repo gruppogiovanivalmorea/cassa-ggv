@@ -1,7 +1,13 @@
-var db_opzioni = {
+var _opzioni = {
     "nodejsServerHost": "localhost", 
     "nodejsServerPort": 1337 ,
     "syncServerHost": "",
     "syncServerPort": 0, 
     "syncMode": false,
+    "stampanti": [
+        {"tipo": "rete", "nome":"192.168.1.201"},
+        {"tipo": "uab", "nome":"/dev/usb/lp3"},
+    ]
 }
+
+localStorage.setItem('opzioni', JSON.stringify(_opzioni));

@@ -22,6 +22,9 @@ angular.module('GGVApp-ordine',[])
         return newVal;
     })
     
+    this.vistaLista = function(){ this.vista = this.viste[0]; }
+    this.vistaIcone = function(){ this.vista = this.viste[1]; }
+    
   //  console.log(this.vista);console.log(localVista);console.log(this.viste);
     return this;
 })
@@ -30,15 +33,41 @@ angular.module('GGVApp-ordine',[])
 
 .controller(
     'GGVApp-gestioneOrdineCorrenteController',
-    ['$scope','menu','ordine','vistaGestioneOrdine',function($scope,menu,ordine,vistaGestioneOrdine){ 
+    ['$scope','menu','ordine','vistaGestioneOrdine',
+     function($scope,menu,ordine,vistaGestioneOrdine,ordineFiltratoMappatoPerGruppo){ 
         $scope.ordine = ordine;
         $scope.totale_ordine;
+        $scope.ordineFiltrato = new Object();
+        $scope.ordineFiltratoNonVuoto;
+         
+         
         $scope.$watch('ordine.voci', function(nuove_voci, vecchie_voci,scope){
             // TODO mettere nel localstorage le voci filtrate (qta>0)
+            $scope.filtraOrdine();
+            
             window.localStorage.setItem('vociOrdine',JSON.stringify(nuove_voci));
             if (finestraOrdineAttuale != null && !finestraOrdineAttuale.closed)
                 finestraOrdineAttuale.location.reload();
         }, true);
+         
+        $scope.filtraOrdine = function(){
+            var ordineFiltrato = new Object();
+            $scope.totale_ordine = 0;
+            for(gruppo in menu){
+                var vociGruppo = [];
+                for(prodotto in menu[gruppo]){
+                    var nome = menu[gruppo][prodotto].nome;
+                    if(ordine.voci[nome].qta > 0) {
+                        vociGruppo.push(ordine.voci[nome]);
+                        $scope.totale_ordine += ordine.voci[nome].prezzo * ordine.voci[nome].qta;   
+                    }
+                }
+                if(vociGruppo.length > 0) ordineFiltrato[gruppo] = vociGruppo;         
+            }
+            $scope.ordineFiltratoNonVuoto = !isEmpty(ordineFiltrato); 
+            $scope.ordineFiltrato = ordineFiltrato;
+            
+        }
         
         var finestraOrdineAttuale;
         $scope.apriFinestraOrdine = function(){
@@ -52,12 +81,17 @@ angular.module('GGVApp-ordine',[])
         };
         
         $scope.vistaGestioneOrdine = vistaGestioneOrdine;
-        //$scope.viste = vistaGestioneOrdine.viste; 
-        //$scope.vista = vistaGestioneOrdine.vista;
+         $scope.vistaGestioneOrdineLista = function() {
+            vistaGestioneOrdine.vistaLista()
+         };
+         $scope.vistaGestioneOrdineIcone = function() {
+            vistaGestioneOrdine.vistaIcone();
+         };
         
-       
     }])
 
+
+/*
 .controller(
     'GGVApp-gestioneOrdineCorrenteTabellaController',
     ['$scope','menu','ordine',function($scope,menu,ordine,vistaGestioneOrdine){ 
@@ -75,6 +109,9 @@ angular.module('GGVApp-ordine',[])
         
         
     }])
+
+*/
+
 .controller(
     "GGVAppControllerCliente", function($scope, menu){
         $scope.menu = JSON.parse(localStorage.getItem('menu'));;
@@ -93,3 +130,11 @@ angular.module('GGVApp-ordine',[])
 
 ;
 
+function isEmpty(map) {
+   for(var key in map) {
+      if (map.hasOwnProperty(key)) {
+         return false;
+      }
+   }
+   return true;
+}

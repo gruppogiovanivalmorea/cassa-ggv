@@ -1,7 +1,9 @@
 angular.module('GGVApp',[
     'GGVApp-ordine',
-    'ngTouch',
-    'ui.bootstrap'])
+    'GGVApp-opzioni',
+  //  'ngTouch',
+//    'ui.bootstrap'
+    ])
 
 .service('menu', function() {
     var m = localStorage.getItem('menu') === null
@@ -13,6 +15,7 @@ angular.module('GGVApp',[
 .service('ordine', ['menu',function(menu){
     return new Ordine(menu);  
 }])
+
 
 .controller(
   "GGVAppController", ['$scope','menu',function($scope, menu){

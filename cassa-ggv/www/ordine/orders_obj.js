@@ -18,16 +18,18 @@ function Ordine(menu) {
               new voceOrdine(menu[gruppo][i].nome,gruppo,menu[gruppo][i].prezzo);
         }
     }
+    
 };
 
 function voceOrdine(prodotto, gruppo, prezzo){
-  //console.log(prodotto, gruppo);
-  this.qta = 0;
-  this.nome = prodotto; 
-  this.gruppo = gruppo;
-  this.prezzo = prezzo;
-  this.inc = function() { this.qta++; }
-  this.dec = function() { if(this.qta > 0) this.qta--; }
+    //console.log(prodotto, gruppo);
+    this.qta = 0;
+    this.nome = prodotto; 
+    this.gruppo = gruppo;
+    this.prezzo = prezzo;
+    this.dividiStampa = false;
+    this.inc = function() { this.qta++; }
+    this.dec = function() { if(this.qta > 0) this.qta--; }
 
 }
   /*

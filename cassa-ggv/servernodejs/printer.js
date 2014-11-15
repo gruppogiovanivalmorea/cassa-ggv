@@ -53,7 +53,7 @@ function generatePosCodesFromOrder(ordine){
         var item = ordine.voci[productName];
         item.nome = productName;
         if(parseInt(item.qta) == 0) continue;
-        if(!item.hasOwnProperty('splitPrint') || !item.splitPrint) {
+        if(!item.hasOwnProperty('dividiStampa') || !item.dividiStampa) {
             posCodes.push(generateSinglePos(item));
         }
         else{

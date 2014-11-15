@@ -1,94 +1,154 @@
 <!DOCTYPE html>
 <html lang="it" ng-app="GGVApp">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
 
-    <title>Cassa GGV</title>
+        <title>Cassa GGV</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="./css/lib/bootstrap.min.css" rel="stylesheet">
+        <!-- JQuery -->
+        <script src="./lib/jquery-1.11.1.min.js"></script>
 
-    <!-- Custom styles for this template -->
-    <link href="./css/dashboard.css" rel="stylesheet">
+        <!-- Bootstrap core CSS 
+<link href="./css/lib/bootstrap.min.css" rel="stylesheet">
+-->
 
-    <script src="./lib/jquery-1.11.1.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-    <!-- in db/menu.json si metterà copia del menu da tenere in locale -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="./css/dashboard.css" rel="stylesheet">
+
+
+
+        <!-- in db/menu.json si metterà copia del menu da tenere in locale -->
         <script type="text/javascript" src="db/menu.json" ></script>
         <script type="text/javascript" src="db/opzioni.json" ></script>
         <script type="text/javascript" src="lib/functions.js" ></script>
         <script type="text/javascript" src="ordine/orders_obj.js" ></script>
-  </head>
+    </head>
 
-  <body ng-controller="GGVAppController">
+    <body ng-controller="GGVAppController">
 
-  <!-- testo libreria angular -->
+        <!-- AngularJS --> 
         <script src="lib/angular.min.js"></script>
         <script src="lib/angular-touch.js"></script>
-
         <script src="lib/angular-locale_it-it.js"></script>
+        <!--      <script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script> -->
 
-       <script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script>
-        <!-- moduli angular e poi app principale -->
-        <script type="text/javascript" src="./js/app.js" ></script>
+        <!-- Mie moduli angular -->
+        <script type="text/javascript" src="js/app.js" ></script>
         <script type="text/javascript" src="ordine/ordine.js" ></script>
         <script type="text/javascript" src="ordine/azioni_ordine.js" ></script>
+        <script type="text/javascript" src="opzioni/opzioni.js" ></script>
 
-        <script src="./js/debug.js"></script>
+        <!--<script src="./js/debug.js"></script>-->
 
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a ng-controller="GGVApp-gestioneOrdineCorrenteController" 
-                   ng-click="apriFinestraOrdine" href="#">
-                    Visuale Cliente
-                </a>
-             </li>
-              <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                <select ng-model="vistaGestioneOrdine.vista" ng-options="t.nome for t in vistaGestioneOrdine.viste"></select>               
-             </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!--<a href="#">GGV Keis</a>-->
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
 
-    <div class="container-fluid">
-      <div class="row">
-           <!-- Gestione ordine 
-                <gestione-ordine-corrente></gestione-ordine-corrente>
-            -->
-            <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                <div ng-include src="vistaGestioneOrdine.vista.url"></div>
+                        <li ng-controller="GGVApp-OpzioniController">
+                            <select ng-model="opzioni.stampante" 
+                                    ng-options="stampanti.nome for stampanti in opzioni.stampanti">
+                             
+                            </select>
+                            <!--
+                            <div class="dropdown">
+                                
+                                <button class="btn btn-default dropdown-toggle" type="button" 
+                                        id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                    Stampante
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation" ng-repeat="opzioni.stampanti">
+                                        <a role="menuitem" tabindex="-1" href="#">Action</a>
+                                    </li>
+                                </ul>
+                                
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                                </ul>
+                               
+                            </div>
+                            -->
+                        </li>
+
+                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                            <a ng-click="apriFinestraOrdine" href="#">
+                                Visuale Cliente
+                            </a>
+                        </li>
+                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                            <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#">
+                                <span class="glyphicon glyphicon-th-list" style="font-size: 24px;" aria-hidden="true"></span>  
+                            </a>
+                        </li>
+                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                            <a ng-click="vistaGestioneOrdine.vistaIcone()"  href="#">
+                                <span class="glyphicon glyphicon-th" style="font-size: 24px;" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li>                    
+                            <a id="confermaRefresh" href="/index.html">
+                                <span class="glyphicon glyphicon-refresh" style="font-size: 24px;" aria-hidden="true"></span>
+                            </a>
+                            <!-- Include jQuery - see http://jquery.com -->
+                            <script type="text/javascript">
+                                $('#confermaRefresh').on('click', function () {
+                                    if(confirm('Sicuro tan? Perdi l\'ordine!')) location.reload(); ;
+                                });
+                            </script>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <!-- Azioni su ordine -->
-            <azioni-ordine></azioni-ordine>
+        </nav>
 
-     
-        </div>
-      </div>   
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Gestione ordine 
+<gestione-ordine-corrente></gestione-ordine-corrente>
+-->
+                <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                    <div ng-include src="vistaGestioneOrdine.vista.url"></div>
+                </div>
+                <!-- Azioni su ordine -->
+                <azioni-ordine></azioni-ordine>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="./lib/bootstrap.min.js"></script>
-    <script src="./lib/docs.min.js"></script>
-    
-  </body>
+
+            </div>
+        </div>   
+
+        <!-- Bootstrap core JavaScript
+================================================== -->
+        <!-- Placed at the end of the document so the pages load faster
+<script src="./lib/bootstrap.min.js"></script>
+<script src="./lib/docs.min.js"></script>
+-->
+
+
+    </body>
 </html>
