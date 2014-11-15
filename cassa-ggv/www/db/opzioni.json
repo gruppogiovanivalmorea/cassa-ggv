@@ -6,7 +6,7 @@ var _opzioni = {
     "syncMode": false,
     "stampanti": [
         {"tipo": "rete", "nome":"192.168.1.201"},
-        {"tipo": "uab", "nome":"/dev/usb/lp3"},
+        {"tipo": "usb", "nome":"/dev/usb/lp3"},
     ]
 }
 
