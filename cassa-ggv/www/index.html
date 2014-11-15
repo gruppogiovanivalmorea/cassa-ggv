@@ -26,6 +26,8 @@
         <!-- Custom styles for this template -->
         <link href="./css/dashboard.css" rel="stylesheet">
 
+        <!-- CSS per toogle switch -->
+        <link href="css/toogle-switch.css" rel="stylesheet">
 
 
         <!-- in db/menu.json si metterà copia del menu da tenere in locale -->
@@ -69,59 +71,40 @@
                             <!-- ng-init="opzioni.testStampante=opzioni.stampanteLocal" -->
                             <select ng-model="opzioni.stampante" class="form-control" 
                                     ng-options="s.nome for s in opzioni.stampanti">
-                                <!--<option value="" ng-hide="opzioni.stampante != null" ng-if="opzioni.stampante">
-                                    Stampante
-                                </option>-->
-                                <!--  TODO: sistemare condizione
-                                <option ng-repeat="s in opzioni.stampanti"
-                                        ng-selected="{{s.id == opzioni.indiceStampanteSelezionata}}"
-                                        ng-value="s.id">
-                                    {{s.id + "--" +s.nome}}
-                                </option>  -->
                             </select>
-                            <!--
-<div class="dropdown">
-
-<button class="btn btn-default dropdown-toggle" type="button" 
-id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-Stampante
-<span class="caret"></span>
-</button>
-<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-<li role="presentation" ng-repeat="opzioni.stampanti">
-<a role="menuitem" tabindex="-1" href="#">Action</a>
-</li>
-</ul>
-
-<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-</ul>
-
-</div>
--->
                         </li>
 
-                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                            <a ng-click="apriFinestraOrdine" href="#">
-                                Visuale Cliente
-                            </a>
+                        
+                        
+                        <li ng-controller="GGVApp-ParentFinestraClienteController">
+                            Visuale Cliente
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="onoffswitch" 
+                                       class="onoffswitch-checkbox" id="myonoffswitch"
+                                       ng-model="finestraCliente.attiva">
+                                <label class="onoffswitch-label" for="myonoffswitch">
+                                <span class="onoffswitch-inner"></span>
+                                <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div> 
+                            
                         </li>
                         <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
                             <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#">
-                                <span class="glyphicon glyphicon-th-list" style="font-size: 24px;" aria-hidden="true"></span>  
+                                <span class="glyphicon glyphicon-th-list" style="font-size: 24px;" aria-hidden="true">
+                                </span>  
                             </a>
                         </li>
                         <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
                             <a ng-click="vistaGestioneOrdine.vistaIcone()"  href="#">
-                                <span class="glyphicon glyphicon-th" style="font-size: 24px;" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-th" style="font-size: 24px;" aria-hidden="true">
+                                </span>
                             </a>
                         </li>
                         <li>                    
                             <a id="confermaRefresh" href="/index.html">
-                                <span class="glyphicon glyphicon-refresh" style="font-size: 24px;" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-refresh" style="font-size: 24px;" aria-hidden="true">
+                                </span>
                             </a>
                             <script type="text/javascript"> // Confirm su refresh pagina
                                 $('#confermaRefresh').on('click', function () {

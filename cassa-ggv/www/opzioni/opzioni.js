@@ -24,27 +24,27 @@ angular.module('GGVApp-opzioni',[])
         ? JSON.parse(stampanteLocal)
         : null; // TODO valutare
     
-    console.log(stampanteTmp);
+ //   console.log(stampanteTmp);
     if(stampanteTmp != null) { 
         for(var s_idx in opzioni.stampanti){
             var s = opzioni.stampanti[s_idx];
-            console.log(s_idx);console.log(s);
+  //          console.log(s_idx);console.log(s);
             if(s.nome == stampanteTmp.nome && s.tipo == stampanteTmp.tipo){
                 opzioni.stampante = opzioni.stampanti[s_idx];
-                console.log("match: "+s_idx);   
+    //            console.log("match: "+s_idx);   
             }
         } 
     }
-    console.log(opzioni.stampante);
+ //   console.log(opzioni.stampante);
     //opzioni.stampante = opzioni.stampanti[1];
         
     //opzioni.indiceStampanteSelezionata;
     opzioni.watch('stampante',function(id,vecchio,nuovo){ 
         window.localStorage.setItem('stampante',JSON.stringify(nuovo));
-        console.log(nuovo); console.log(opzioni.stampante);
+   //     console.log(nuovo); console.log(opzioni.stampante);
         return nuovo;
     });
-    console.log(opzioni.stampanti);
+  //  console.log(opzioni.stampanti);
 /*
     opzioni.watch('stampante',function(id,vecchia,nuova){
         // TODO salvare se !null, e null non deve essere previsto!
@@ -59,7 +59,7 @@ angular.module('GGVApp-opzioni',[])
 .controller( 'GGVApp-OpzioniController',  ['$scope','opzioni',function ($scope, opzioni){
     $scope.opzioni = opzioni;
    // $scope.stampante = stampante.stampante; //window.localStorage.getItem('stampante');
-    console.log($scope.opzioni.stampante);
+   // console.log($scope.opzioni.stampante);
 }])
 /*
 .controller( 'GGVAppOpzioniController', 
