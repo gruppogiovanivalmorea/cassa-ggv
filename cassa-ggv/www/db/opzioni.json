@@ -8,6 +8,19 @@ var _opzioni = {
         {"tipo": "rete", "nome":"192.168.1.201"},
         {"tipo": "usb", "nome":"/dev/usb/lp3"},
     ]
-}
+};
+        
+var _opzioni_elenco = [
+        {nome:"nodejsServerHost", valore:"localhost", inMenu:true, type:'text'},
+        {nome:"nodejsServerPort", valore:1337, inMenu:true, type:'number'},
+        {nome:"syncServerHost", valore:"", inMenu:true, type:'text'},
+        {nome:"syncServerPort", valore:0, inMenu:true, type:'number'},
+        {nome:"syncMode", valore:false, inMenu:true, type:'checkbox'},
+        {nome:"stampanti", inMenu:false, type:'list', valore:[
+            {"tipo": "rete", "nome":"192.168.1.201"},
+            {"tipo": "usb", "nome":"/dev/usb/lp3"},
+        ]},
+        
+];
 
 localStorage.setItem('opzioni', JSON.stringify(_opzioni));

@@ -116,7 +116,7 @@ angular.module('GGVApp-ordine',[])
         $scope.finestraOrdineAttuale;
         $scope.interval;
         $scope.aggiornaIcona = function(){
-            console.log($scope.attiva);
+       //     console.log($scope.attiva);
             if($scope.finestraOrdineAttuale == null) $scope.attiva = false;
             else if($scope.attiva == $scope.finestraOrdineAttuale.closed) 
                 $scope.attiva = !$scope.finestraOrdineAttuale.closed;

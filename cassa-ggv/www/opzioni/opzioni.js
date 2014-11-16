@@ -1,12 +1,18 @@
 angular.module('GGVApp-opzioni',[])
 
-.service('opzioni', function(){
-    var opzioni = _opzioni;
+.service('opzioni',function(){
+    var opzioni = JSON.parse(
+        window.localStorage.getItem(
+            'opzioni',
+            JSON.stringify(_opzioni))
+    );
+    
     var stampanteLocal = window.localStorage.getItem('stampante');
     var stampanteTmp = stampanteLocal != null
         ? JSON.parse(stampanteLocal)
         : null; // TODO valutare
     
+    //console.log(stampanteTmp);
     if(stampanteTmp != null) { 
         for(var s_idx in opzioni.stampanti){
             var s = opzioni.stampanti[s_idx];
@@ -23,43 +29,30 @@ angular.module('GGVApp-opzioni',[])
     return opzioni;
 })
 
-.controller( 'GGVApp-OpzioniController',  ['$scope','opzioni',function ($scope, opzioni){
+
+.controller( 'GGVApp-OpzioniController',  
+            ['$scope','opzioni',function ($scope,opzioni){
     $scope.opzioni = opzioni;
 }])
 
-/*
-.controller( 'GGVAppOpzioniController', 
-            ['$scope','$modal','opzioniService',function ($scope, $modal, opzioniService){
-    $scope.opzioniService = opzioniService;
-    $scope.apriOpzioni = function(){
-        var modalInstance = $modal.open({
-            templateUrl: 'opzioni/opzioni.html',
-            controller: 'ModalOptionCtrl',
-            backdrop: false,
-            resolve: { "opzioni": function() { return $scope.opzioniService.opzioni } }
-        });
+.filter('filtraMenuOpzioni', function() {
+    return function(input) {
+        console.log(input);
+        return !$.inArray(input, ['stampante','stampanti']);
+    };
+})
 
-//        modalInstance.result.then(function () {
-//          //  $scope.opzioni = opzioni;
-//             console.log($scope.opzioni);
-//        }, function () {
-//            console.log("opzioni");
-//            console.log($scope.opzioniService.opzioni);
-//        });
+.controller('GGVApp-OpzioniModalController', 
+            ['$scope','opzioni',function ($scope, opzioni) {
 
-    }
-}])
-
-*/
-/*
-.controller('ModalOptionCtrl', 
-            ['$scope','$modalInstance','opzioniService',function ($scope, $modalInstance, opzioniService) {
-
-
-    $scope.opzioniService = opzioniService;
+    console.log(opzioni);
+    console.log($scope.opzioni);
+    $scope.opzioni_elenco = _opzioni_elenco;
+    
+                
     $scope.ok = function () {
-        $scope.opzioniService.salva();
-        console.log($scope.opzioniService);
+        
+        console.log($scope.opzioni);
         $modalInstance.close();
     };
 
@@ -67,5 +60,5 @@ angular.module('GGVApp-opzioni',[])
         $modalInstance.dismiss('cancel');
     };
 }])
-*/
+
 ;
