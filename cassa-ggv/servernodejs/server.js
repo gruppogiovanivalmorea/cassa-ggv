@@ -1,3 +1,10 @@
+/**
+    TODO 
+    il server si blocca ricevendo stampa
+    trovare il modo di rimandare indietro eccezioni 
+
+*/
+
 // Configurazioni
 var APP_ROOT = '../www/';
 var SERVER_PORT = 3000;

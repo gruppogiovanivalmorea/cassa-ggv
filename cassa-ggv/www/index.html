@@ -94,7 +94,9 @@
                         <!-- Bottone modal opzioni -->
                         <li ng-controller="GGVApp-OpzioniController">
                             <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#"
-                               data-toggle="modal" data-target="#modalOpzioni">
+                               data-toggle="modal" data-target="#modalOpzioni" 
+                               data-backdrop="static" 
+                               data-keyboard="false">
                                 <span class="glyphicon glyphicon-cog" style="font-size: 24px;" aria-hidden="true">
                                 </span>  
                             </a>
@@ -124,7 +126,7 @@
                             </a>
                             <script type="text/javascript"> // Confirm su refresh pagina
                                 $('#confermaRefresh').on('click', function () {
-                                    if(confirm('Sicuro tan? Perdi l\'ordine!')) location.reload(); ;
+                                    if(confirm('Sicuro tan? Perdi l\'ordine!')) location.reload();
                                 });
                             </script>
                         </li>
@@ -163,7 +165,7 @@
           <div class="modal-content">
            <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Titolo</h4>
+            <h4 class="modal-title">Opzioni</h4>
            </div>
            <div class="modal-body">
             <ul>
