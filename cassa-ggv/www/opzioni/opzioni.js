@@ -1,6 +1,8 @@
 angular.module('GGVApp-opzioni',[])
 
 .service('opzioni',function(){
+     // TODO attenzione: ora sembra non andare perchè nel modal stampo 
+    // l'oggetto _opzioni_elenco che è statico e non varia in base a ordine in localstorage!
     var opzioni = JSON.parse(
         window.localStorage.getItem(
             'opzioni',
@@ -45,19 +47,21 @@ angular.module('GGVApp-opzioni',[])
 .controller('GGVApp-OpzioniModalController', 
             ['$scope','opzioni',function ($scope, opzioni) {
 
-    console.log(opzioni);
-    console.log($scope.opzioni);
+    $scope.opzioni = opzioni
     $scope.opzioni_elenco = _opzioni_elenco;
-    
-                
+    $scope.opzioni_elenco_save = clone($scope.opzioni_elenco);
+   
     $scope.ok = function () {
-        
-        console.log($scope.opzioni);
-        $modalInstance.close();
+        for(var opzione_idx in $scope.opzioni_elenco){
+            $scope.opzioni[$scope.opzioni_elenco[opzione_idx].nome] = 
+                $scope.opzioni_elenco[opzione_idx].valore;
+        }
+        console.log($scope.opzioni_elenco);
+        window.localStorage.setItem('opzioni',JSON.stringify($scope.opzioni));
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $scope.opzioni_elenco = $scope.opzioni_elenco_save;
     };
 }])
 

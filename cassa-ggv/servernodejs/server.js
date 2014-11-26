@@ -20,13 +20,13 @@ function Response(code, type, data){
 }
 
 
-// Definizione delle POST richieste gestite: [ stampa, archivia ] 
+// Definizione delle POST richieste gestite: [ stampa, archivia ]
 // con associate le funzioni da usare per processarle
 var POST_RequestTypes = {
     "stampa"    : function(x) { return printer.print(x);    },
     "archivia"  : function(x) { return archiver.archive(x); }
         //    "print-archive" : function(x) { return print_archive(x);    } // forse poi
-} 
+}
 
 // Funzione in caso di eccezione
 function unknownRequestException(req){
@@ -37,18 +37,21 @@ function unknownRequestException(req){
 //app.use(express.logger('dev'));
 
 // Settaggio della directory con il sito
-app.use(express.static(path.join(__dirname, APP_ROOT))); 
+app.use(express.static(path.join(__dirname, APP_ROOT)));
 
 // Processazione delle richieste POST
 for(var requestName in POST_RequestTypes){
     var requestFunction = POST_RequestTypes[requestName];
     console.log("bind req: "+requestName+" to function "+requestFunction);
-    app.post(requestName,function(req, res){
+    app.post("/"+requestName,function(req, res){
         var response;
-        req.on('data', function(data){ 
-            response = requestFunction(JSON.parse(data)); 
+        req.on('data', function(data){
+            var parsed = JSON.parse(data);
+            console.log(parsed);
+            response = requestFunction(parsed);
+            console.log(response);
         });
-        req.on('end', function() { 
+        req.on('end', function() {
             res.writeHead(response.code, {'Content-Type': response.type});
             res.end(response.data);
         });
@@ -57,7 +60,7 @@ for(var requestName in POST_RequestTypes){
 
 
 
-// Richieste non trattate 
+// Richieste non trattate
 app.get('*', function(req, res){
     res.status(404).send("Not Found!");
 });

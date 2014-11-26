@@ -1,42 +1,22 @@
-<!--
-<ul>
-<li ng-repeat="(nomeOpzione, val) in opzioniService.opzioni">
-{{nomeOpzione}}
-{{val}}
-<input type="text" ng-module="val"></input>
-</li>
-</ul>
-
-<div>
-
-<input ng-module="opzioniService.opzioni.nodejsServerHost">
-{{opzioniService.opzioni.nodejsServerHost}}
-</input>
-<button ng-click="ok()">OK</button>
-<button ng-click="cancel()">Cancel</button>
-</div>
--->
-
-<!-- Modal  (copiato in index)
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+<div id="modalOpzioni" class="modal fade" ng-controller="GGVApp-OpzioniModalController">
+         <div class="modal-dialog">
+          <div class="modal-content">
+           <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Titolo</h4>
+           </div>
+           <div class="modal-body">
+            <ul>
+                <li ng-repeat="opzione in opzioni_elenco | filter:{inMenu:true}">
+                    {{opzione.nome}}
+                    <input type="{{opzione.type}}" ng-model="opzione.valore" />
+                </li>
+            </ul>
+           </div>
+           <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+            <button type="button" class="btn btn-primary">Invia</button>
+           </div>
+          </div>
+         </div>
         </div>
-    </div>
-</div>
-
--->
