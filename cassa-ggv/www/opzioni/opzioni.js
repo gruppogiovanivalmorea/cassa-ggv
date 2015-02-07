@@ -37,32 +37,56 @@ angular.module('GGVApp-opzioni',[])
     $scope.opzioni = opzioni;
 }])
 
+/*
 .filter('filtraMenuOpzioni', function() {
     return function(input) {
         console.log(input);
         return !$.inArray(input, ['stampante','stampanti']);
     };
 })
+*/
 
 .controller('GGVApp-OpzioniModalController', 
-            ['$scope','opzioni',function ($scope, opzioni) {
+            ['$http','$scope','opzioni',function ($http, $scope, opzioni) {
 
     $scope.opzioni = opzioni
-    $scope.opzioni_elenco = _opzioni_elenco;
-    $scope.opzioni_elenco_save = clone($scope.opzioni_elenco);
+    $scope.opzioni_modal = angular.copy($scope.opzioni);
    
     $scope.ok = function () {
+        /*
         for(var opzione_idx in $scope.opzioni_elenco){
             $scope.opzioni[$scope.opzioni_elenco[opzione_idx].nome] = 
                 $scope.opzioni_elenco[opzione_idx].valore;
         }
-        console.log($scope.opzioni_elenco);
+        */
+        $scope.opzioni = angular.copy($scope.opzioni_modal);
+        console.log($scope.opzioni);
         window.localStorage.setItem('opzioni',JSON.stringify($scope.opzioni));
     };
 
     $scope.cancel = function () {
-        $scope.opzioni_elenco = $scope.opzioni_elenco_save;
+        $scope.opzioni_modal = angular.copy($scope.opzioni);
+        console.log($scope.opzioni);
     };
+                
+    $scope.caricaStampanti = function(){
+        $http.get('./stampanti')
+             .success(function(data, status, headers, config){
+                 console.log('ok! '+[data, status, headers, config]);
+             })
+             .error(function(data, status, headers, config){
+                 console.log('err! '+[data, status, headers, config]);
+             });
+    }
 }])
+
+
+.directive('modalOpzioni',function(){
+    return {
+        restrict : 'E',
+        controller : 'GGVApp-OpzioniModalController',
+        templateUrl : 'opzioni/opzioni.html'
+    };    
+})
 
 ;

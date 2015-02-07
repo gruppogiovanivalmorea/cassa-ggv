@@ -1,6 +1,5 @@
-// order object
 
-angular.module('GGVApp-ordine',[])
+angular.module('GGVApp-ordine',['ngResource'])
 //angular.module('GGVApp')
 
 .service('vistaGestioneOrdine', function() { 
@@ -54,9 +53,10 @@ angular.module('GGVApp-ordine',[])
                 var vociGruppo = [];
                 for(prodotto in menu[gruppo]){
                     var nome = menu[gruppo][prodotto].nome;
-                    if(ordine.voci[nome].qta > 0) {
-                        vociGruppo.push(ordine.voci[nome]);
-                        $scope.totale_ordine += ordine.voci[nome].prezzo * ordine.voci[nome].qta;   
+                    var voce = ordine.vocePerNome(nome)
+                    if(voce.qta > 0) {
+                        vociGruppo.push(voce);
+                        $scope.totale_ordine += voce.prezzo * voce.qta;   
                     }
                 }
                 if(vociGruppo.length > 0) ordineFiltrato[gruppo] = vociGruppo;         

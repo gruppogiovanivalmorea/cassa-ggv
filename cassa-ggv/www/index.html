@@ -43,6 +43,7 @@
         <script src="lib/angular.min.js"></script>
         <script src="lib/angular-touch.js"></script>
         <script src="lib/angular-locale_it-it.js"></script>
+        <script src="lib/angular-resource.js"></script> 
         <!--      <script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script> -->
 
         <!-- Mie moduli angular -->
@@ -93,7 +94,7 @@
                         
                         <!-- Bottone modal opzioni -->
                         <li ng-controller="GGVApp-OpzioniController">
-                            <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#"
+                            <a href="#"
                                data-toggle="modal" data-target="#modalOpzioni" 
                                data-backdrop="static" 
                                data-keyboard="false">
@@ -135,11 +136,11 @@
             </div>
         </nav>
 
+       
         <div class="container-fluid">
             <div class="row">
-                <!-- Gestione ordine 
-<gestione-ordine-corrente></gestione-ordine-corrente>
--->
+                <!-- Gestione ordine -->
+                    <!-- <gestione-ordine-corrente></gestione-ordine-corrente> -->
                 <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
                     <div ng-include src="vistaGestioneOrdine.vista.url"></div>
                 </div>
@@ -159,7 +160,11 @@
         
         
         <!-- modal opzioni - test  -->
+        <modal-opzioni></modal-opzioni>
         
+        <!-- <div ng-include src="opzioni/opzioni.html"></div> -->
+        
+        <!--
         <div id="modalOpzioni" class="modal fade" ng-controller="GGVApp-OpzioniModalController">
          <div class="modal-dialog">
           <div class="modal-content">
@@ -182,7 +187,7 @@
           </div>
          </div>
         </div>
- 
+        -->
 
     </body>
 </html>

@@ -28,7 +28,7 @@ $('#selezioneGruppi a').click(function (e) {
             <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">
                 <div ng-repeat="(gruppo, elencoProdotti) in menu">
                     <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
-                            ng-click="ordine.voci[prodotto.nome].inc();" >
+                            ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
                         {{prodotto.nome}}<br />{{prodotto.prezzo | currency}}
                     </button>
                 </div>
@@ -38,7 +38,7 @@ $('#selezioneGruppi a').click(function (e) {
             <div role="tabpanel" class="tab-pane"
                  ng-repeat="(gruppo, elencoProdotti) in menu" id="{{gruppo}}">
                     <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
-                            ng-click="ordine.voci[prodotto.nome].inc();" >
+                            ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
                         {{prodotto.nome}}
                     </button>
             </div>
@@ -55,11 +55,11 @@ $('#selezioneGruppi a').click(function (e) {
                     <tr ng-repeat="prodotto in elencoProdotti">
                         <td style="width:100px">{{prodotto.nome}}</td>
                         <td style="width:140px">
-                            <button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
-                            <input type="number" style="width:50px;" ng-model="ordine.voci[prodotto.nome].qta" />
-                            <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
+                            <button ng-click='ordine.vocePerNome(prodotto.nome).inc();'> +  </button>
+                            <input type="number" style="width:50px;" ng-model="ordine.vocePerNome(prodotto.nome).qta" />
+                            <button ng-click='ordine.vocePerNome(prodotto.nome).dec();'> -  </button>
                         </td>
-                        <td><input type="checkbox" ng-model='ordine.voci[prodotto.nome].dividiStampa' /></td>
+                        <td><input type="checkbox" ng-model='ordine.vocePerNome(prodotto.nome).dividiStampa' /></td>
                     </tr>
                 </tbody>
             </table>

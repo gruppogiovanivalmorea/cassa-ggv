@@ -8,9 +8,10 @@ oggetto menu, attualmente definito in db/menu.json (da sistemare){
 }
 
 oggetto VoceOrdine, gestito in ordine/order_obj.js{
+    nome,
     gruppo,
-    qta,
     prezzo,
+    qta,
     note?,
     inc(),
     dec()
@@ -23,4 +24,11 @@ oggetto Ordine, gestito in ordine/order_obj.js{
     voci: {
         "nomeProdotto" -> VoceOrdine
     }
+}
+
+
+richiesta (a miniserver nodejs){
+    dipende da tipo:
+        stampa, stampaarchivia -> {stampante={nome, tipo}, ordine}
+        archivia -> ordine
 }

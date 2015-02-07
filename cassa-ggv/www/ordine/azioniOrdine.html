@@ -3,6 +3,8 @@
     <button ng-click="stampa_archivia()">
         Stampa
     </button>
+    
+    <!--
     <div class="btn-group" dropdown is-open="status.isopen">
         <button type="button" class="btn btn-primary dropdown-toggle">
             Altre azioni
@@ -12,5 +14,17 @@
             <li><a href="#">Archivia senza stampare</a>
         </ul>
     </div>
-
+    -->
+    
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Altre azioni
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="#" ng-click="stampa()">Stampa senza archiviare</a></li>
+            <li><a href="#" ng-click="archivia()">Archivia senza stampare</a></li>
+            <li><a href="#" ng-click="cancella()">Cancella ordine corrente</a></li>
+        </ul>
+    </div>
 </div>

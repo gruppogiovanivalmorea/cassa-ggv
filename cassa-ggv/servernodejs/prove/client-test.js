@@ -50,7 +50,7 @@ var headers = {
 
 var options = {
   host: '127.0.0.1',
-  port: 1337,
+  port: 3000,
   path: '/',
   method: 'POST',
   headers: headers

@@ -24,6 +24,7 @@ function _print(req){
     }
     
     // TODO: try catch
+    
     try {
         posCodes.map(f);
         return new Response(200,"text/html","ok"); 
@@ -86,22 +87,53 @@ function generateSinglePos(voce){
     str += new Array( parseInt( (23-group.length) / 2) ).join( ' ' );
     
     str += '\n\n\x1d\x21\x11';
-    str += '  '+qta+'  '+name;
-    str += '\n\n\n\n\n\x1b\x6d';
+    str += '  '+qta+'x '+name;
+    str += '\n\n\n\n\n\n\n\x1b\x6d';
     return str;
 }
 
 function printFile(fd,str){
+    //var sync = require('synchronize');
+    
+    console.log('printing..');
     var fs = require('fs'); 
     var lp = fs.openSync(fd, 'w');
     fs.writeSync(lp, str);
     fs.close(lp);   
+    /*
+    sync(fs, 'writeFile')
+    sync.fiber(function(){
+    //    fs.writeFileSync(fd, str, function(err, data){console.log(data)});
+        //var lp = fs.openSync(fd, 'w');
+        fs.writeFile(fd, str);
+    
+        fs.close(fd);
+    })
+*/
+    /*
+    var lp = fs.openSync(fd, 'w');
+    fs.writeSync(lp, str);
+    
+    fs.close(lp);
+    console.log('printed');
+    */
 }
 
 function printSocket(host,str){
+    
     var net = require('net'); 
     var client = new net.Socket();
     client.connect(9100,host);
     client.write(str);
     client.end();
+}
+
+function Response(code, type, data){
+    this.code = code;
+    this.type = type;
+    this.data = data;
+}
+
+function unknownRequestException(req){
+    return new Response(400,"text/html","Invalid request:\n"+req)
 }

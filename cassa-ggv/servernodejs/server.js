@@ -56,6 +56,7 @@ for(var requestName in POST_RequestTypes){
             var parsed = JSON.parse(data);
             console.log(parsed);
             response = requestFunction(parsed);
+            console.log('request: '+requestName);
             console.log(response);
         });
         req.on('end', function() {

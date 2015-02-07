@@ -1,26 +1,18 @@
 var _opzioni = {
-    "nodejsServerHost": "localhost", 
-    "nodejsServerPort": 1337 ,
-    "syncServerHost": "",
-    "syncServerPort": 0, 
-    "syncMode": false,
-    "stampanti": [
-        {"tipo": "rete", "nome":"192.168.1.201"},
-        {"tipo": "usb", "nome":"/dev/usb/lp3"},
-    ]
-};
-        
-var _opzioni_elenco = [
+    "server": [
         {nome:"nodejsServerHost", valore:"localhost", inMenu:true, type:'text'},
         {nome:"nodejsServerPort", valore:1337, inMenu:true, type:'number'},
         {nome:"syncServerHost", valore:"", inMenu:true, type:'text'},
         {nome:"syncServerPort", valore:0, inMenu:true, type:'number'},
-        {nome:"syncMode", valore:false, inMenu:true, type:'checkbox'},
-        {nome:"stampanti", inMenu:false, type:'list', valore:[
-            {"tipo": "rete", "nome":"192.168.1.201"},
-            {"tipo": "usb", "nome":"/dev/usb/lp3"},
-        ]},
-        
-];
+    ],
+    "stampanti": [
+        {"nomeMenu" : "usb-2", "tipo": "usb", "nome":"/dev/usb/lp2"},
+        {"nomeMenu" : "usb-3", "tipo": "usb", "nome":"/dev/usb/lp3"},
+        {"nomeMenu" : "usb-4", "tipo": "usb", "nome":"/dev/usb/lp4"},
+        {"nomeMenu" : "rete-202", "tipo": "rete", "nome":"192.168.1.202"},
+        {"nomeMenu" : "rete-203", "tipo": "rete", "nome":"192.168.1.203"},
+    ]
+};
+
 
 localStorage.setItem('opzioni', JSON.stringify(_opzioni));
