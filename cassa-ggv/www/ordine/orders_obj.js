@@ -62,6 +62,17 @@ function Ordine(menu) {
         nuova.prezzototale = voce.prezzo * voce.qta;
         return nuova;
     }
+    
+    this.reset = function(){
+        this.timestamp = Date.now();
+        this.cassa = "Test"; // TODO ragionare su id cassa
+        this.note = ""; // TODO nota che le note le hanno le voci!!!
+        this.progressivo = 0; // TODO valutare se serve
+        for(v in this.voci){
+            this.voci[v].qta = 0;
+            this.voci[v].note = "";
+        }
+    }
 };
 
 function voceOrdine(prodotto, gruppo, prezzo){
@@ -71,6 +82,7 @@ function voceOrdine(prodotto, gruppo, prezzo){
     this.gruppo = gruppo;
     this.prezzo = prezzo;
     this.dividiStampa = false;
+    this.note = "";
     this.inc = function() { this.qta++; }
     this.dec = function() { if(this.qta > 0) this.qta--; }
 

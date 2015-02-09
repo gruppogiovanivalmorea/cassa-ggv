@@ -29,11 +29,51 @@ angular.module('GGVApp-ordine',['ngResource'])
 })
 
 
+.service('finestraCliente',['ordine','$interval',function(ordine,$interval){
+    this.attiva = false; // TODO prendere valore da opzioni o localstorage
+    this.finestraOrdineAttuale;
+//    this.apriFinestraOrdine = function(){
+//        if(this.isAttiva()) return;
+//        console.log("apro finestra");
+//        this.finestraOrdineAttuale = window.open(
+//                'index2.html',
+//                'Ordine',
+//                'fullscreen'
+//        );
+//    };
+    this.isAttiva = function() {
+        return this.finestraOrdineAttuale != null && !this.finestraOrdineAttuale.closed;    
+    };
+    
+    this.aggiorna = function() {
+        if(!this.isAttiva())
+            return;
+        if(window.ordine == null)
+            window.ordine = ordine.datiArchivio();
+        else{
+            while(window.ordine.voci.length != 0){
+                window.ordine.voci.pop();
+            }
+            var dati = ordine.datiArchivio().dati;
+            for(v in dati){
+                window.ordine.voci.push(dati[v]);
+            }
+        }
+        
+        
+        //this.finestraOrdineAttuale.location.reload();
+    }
+
+    return this;
+}])
+
+
+
 
 .controller(
     'GGVApp-gestioneOrdineCorrenteController',
-    ['$scope','menu','ordine','vistaGestioneOrdine',//'finestraCliente',
-     function($scope,menu,ordine,vistaGestioneOrdine,ordineFiltratoMappatoPerGruppo){//,finestraCliente){ 
+    ['$scope','menu','ordine','vistaGestioneOrdine','finestraCliente',
+     function($scope,menu,ordine,vistaGestioneOrdine,finestraCliente){
         $scope.ordine = ordine;
         $scope.totale_ordine;
         $scope.ordineFiltrato = new Object();
@@ -42,11 +82,12 @@ angular.module('GGVApp-ordine',['ngResource'])
          
         $scope.$watch('ordine.voci', function(nuove_voci, vecchie_voci,scope){
             $scope.filtraOrdine();
-            window.localStorage.setItem('vociOrdine',JSON.stringify($scope.ordineFiltrato));
-            //$scope.finestraCliente.aggiorna();
+           // window.localStorage.setItem('vociOrdine',JSON.stringify($scope.ordineFiltrato));
+            finestraCliente.aggiorna();
         }, true);
          
         $scope.filtraOrdine = function(){
+            
             var ordineFiltrato = new Object();
             $scope.totale_ordine = 0;
             for(gruppo in menu){
@@ -64,9 +105,9 @@ angular.module('GGVApp-ordine',['ngResource'])
             $scope.ordineFiltratoNonVuoto = !isEmpty(ordineFiltrato); 
             $scope.ordineFiltrato = ordineFiltrato;
             
+           // console.log(finestraCliente);
         }
         
-        var finestraOrdineAttuale;
         
         $scope.vistaGestioneOrdine = vistaGestioneOrdine;
  
@@ -82,61 +123,39 @@ angular.module('GGVApp-ordine',['ngResource'])
 
 
 
-
-.service('finestraCliente',['ordine','$interval',function(ordine,$interval){
-    this.attiva = false; // TODO prendere valore da opzioni o localstorage
-    this.finestraOrdineAttuale;
-//    this.apriFinestraOrdine = function(){
-//        if(this.isAttiva()) return;
-//        console.log("apro finestra");
-//        this.finestraOrdineAttuale = window.open(
-//                'index2.html',
-//                'Ordine',
-//                'fullscreen'
-//        );
-//    };
-    this.isAttiva = function() {
-        return this.finestraOrdineAttuale != null && !this.finestraOrdineAttuale.closed;    
-    };
-    
-    
-
-    
-    return this;
-}])
-
-
 .controller(
     "GGVApp-ParentFinestraClienteController", 
-    ['$scope','$interval','ordine','finestraCliente', function($scope,$interval,ordine,finestraCliente){
+    ['$scope','$interval','ordine','menu','finestraCliente', function($scope,$interval,ordine,menu,finestraCliente){
         //$scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
         $scope.ordine = ordine;
+        $scope.menu = menu;
         $scope.attiva = false;
         
-        $scope.finestraOrdineAttuale;
         $scope.interval;
         $scope.aggiornaIcona = function(){
        //     console.log($scope.attiva);
-            if($scope.finestraOrdineAttuale == null) $scope.attiva = false;
-            else if($scope.attiva == $scope.finestraOrdineAttuale.closed) 
-                $scope.attiva = !$scope.finestraOrdineAttuale.closed;
+            if(finestraCliente.finestraOrdineAttuale == null) $scope.attiva = false;
+            else if($scope.attiva == finestraCliente.finestraOrdineAttuale.closed) 
+                $scope.attiva = !finestraCliente.finestraOrdineAttuale.closed;
         };
         $scope.aggiornaIcona();
     
         
+        
         $scope.$watch('attiva',function(newV,oldV,scope){
             if(newV){
-                if($scope.finestraOrdineAttuale != null && !$scope.finestraOrdineAttuale.closed) return;
-                $scope.finestraOrdineAttuale = window.open(
-                    'index2.html',
-                    'Ordine',
-                    'fullscreen,dialog'
+                if(finestraCliente.isAttiva()) return;
+                window.ordine = $scope.ordine.datiArchivio();
+                finestraCliente.finestraOrdineAttuale = window.open(
+                    'cliente/cliente.html',
+                    'Ordine' /*,
+                    'fullscreen,dialog' */
                 );
                 $scope.interval = $interval($scope.aggiornaIcona, 1000);
             }
             else{
-                if($scope.finestraOrdineAttuale == null) return;
-                $scope.finestraOrdineAttuale.close();
+                if(finestraCliente.finestraOrdineAttuale == null) return;
+                finestraCliente.finestraOrdineAttuale.close();
                 $interval.cancel($scope.interval);
             }
             return newV;
@@ -149,7 +168,7 @@ angular.module('GGVApp-ordine',['ngResource'])
     ['$scope', 'ordine','finestraCliente', function($scope,ordine,finestraCliente){
         $scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
         $scope.ordine = ordine;
-  
+        
         
     }])
 

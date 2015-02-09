@@ -7,8 +7,8 @@ class PrintError(Exception):
         self.errore = errore
         
     def __str__(self):
-        return 'Impossibile stampare sulla stampante ' +  \
-            self.stampante + ': ' + self.errore
+        return 'Impossibile stampare su ' + self.stampante + \
+            '\n(dovresti provare a cambiare stampante tan):\n' + self.errore
 
 def printPos(richiesta):
     tipostampante = richiesta['stampante']['tipo']

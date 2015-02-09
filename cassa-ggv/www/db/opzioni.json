@@ -14,5 +14,6 @@ var _opzioni = {
     ]
 };
 
-
-localStorage.setItem('opzioni', JSON.stringify(_opzioni));
+if(localStorage.getItem('opzioni') == null){
+    localStorage.setItem('opzioni', JSON.stringify(_opzioni));
+}

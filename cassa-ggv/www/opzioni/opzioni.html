@@ -30,19 +30,33 @@
 
                         <div role="tabpanel" class="tab-pane" id="opzioniStampanti">
                             <ul>
-                                <li ng-repeat="opzione in opzioni_modal.stampanti">
-                                    <input type="text" ng-model="opzione.nomeMenu" />
-
-                                    <select ng-model="opzione.tipo">
-                                        <option value="usb">USB</option>
-                                        <option value="rete">Rete</option>
-                                    </select>
-
-                                    <input type="text" ng-model="opzione.nome" />
+                                <li ng-repeat="stampante in opzioni_modal.stampanti">
+                                    ({{stampante.tipo}}): 
+                                    {{stampante.nomeMenu}} 
+                                    {{stampante.nome}}
+                                    
+                                    <a class="btn" ng-click="rimuoviStampante($index)">Elimina</a>
                                 </li>
                             </ul>
-                            <button type="button" class="btn btn-default" ng-click="caricaStampanti()">
-                                Carica Stampanti
+                            
+                            <hr />
+                            
+                            Nuova:
+                            <input type="text" ng-model="nuovaStampante.nomeMenu" />
+                            <select ng-model="nuovaStampante.tipo">
+                                        <option value="usb">USB</option>
+                                        <option value="rete">Rete</option>
+                            </select>
+
+                            <input type="text" ng-model="nuovaStampante.nome" />
+                            <button type="button" class="btn btn-default" ng-click="inserisciNuovaStampante()">
+                                Aggiungi
+                            </button>
+                            
+                            <hr />
+                                    
+                            <button type="button" class="btn btn-default" ng-click="aggiornaStampanti()">
+                                Aggiorna Stampanti
                             </button>
                         </div>
                     </div>
@@ -51,9 +65,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"
-                        ng-click="cancel()">Chiudi</button>
+                        ng-click="cancel()">Annulla</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal"
-                        ng-click="ok()">Invia</button>
+                        ng-click="ok()">Salva</button>
             </div>
         </div>
     </div>

@@ -73,7 +73,7 @@
                         <li ng-controller="GGVApp-OpzioniController">
                             <!-- ng-init="opzioni.testStampante=opzioni.stampanteLocal" -->
                             <select ng-model="opzioni.stampante" class="form-control" 
-                                    ng-options="s.nome for s in opzioni.stampanti">
+                                    ng-options="s.nomeMenu for s in opzioni.stampanti">
                             </select>
                         </li>
 
@@ -150,6 +150,8 @@
 
             </div>
         </div>   
+        
+        <modal-opzioni></modal-opzioni>
 
         <!-- Bootstrap core JavaScript
 ================================================== -->
@@ -158,36 +160,6 @@
 <script src="./lib/docs.min.js"></script>
 -->
         
-        
-        <!-- modal opzioni - test  -->
-        <modal-opzioni></modal-opzioni>
-        
-        <!-- <div ng-include src="opzioni/opzioni.html"></div> -->
-        
-        <!--
-        <div id="modalOpzioni" class="modal fade" ng-controller="GGVApp-OpzioniModalController">
-         <div class="modal-dialog">
-          <div class="modal-content">
-           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Opzioni</h4>
-           </div>
-           <div class="modal-body">
-            <ul>
-                <li ng-repeat="opzione in opzioni_elenco | filter:{inMenu:true}">
-                    {{opzione.nome}}
-                    <input type="{{opzione.type}}" ng-model="opzione.valore" />
-                </li>
-            </ul>
-           </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="cancel()">Chiudi</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="ok()">Invia</button>
-           </div>
-          </div>
-         </div>
-        </div>
-        -->
-
+       
     </body>
 </html>

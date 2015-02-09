@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="GGVAppCliente">
+    <head>
+        <!--
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+
+        <meta name="viewport" content="user-scalable=no, initial-scale=1,
+                                       maximum-scale=1, minimum-scale=1, width=device-width,
+                                       height=device-height, target-densitydpi=device-dpi" />
+
+        <meta name="msapplication-tap-highlight" content="no" />
+        -->
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+
+        <title>Cassa GGV</title>
+
+
+        <script src="../lib/jquery-1.11.1.min.js"></script>
+        <!--
+                <script src="./js/jquery.mobile-1.4.4.min.js"></script>
+        -->
+
+
+        <!-- BOOTSTRAP -->
+        <link rel="stylesheet" href="../css/lib/bootstrap.min.css">
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script> -->
+
+
+        <!--
+            <link href="./css/normalize.css" rel="stylesheet" type="text/css">
+                <link rel="stylesheet" href="./css/jquery.mobile-1.4.4.css">
+                    <link href="./css/main.css" rel="stylesheet" type="text/css">
+        -->
+
+        <!-- in db/menu.json si metterà copia del menu da tenere in locale 
+        <script type="text/javascript" src="db/menu.json" ></script>
+        <script type="text/javascript" src="db/opzioni.json" ></script>
+        
+        -->
+        <script type="text/javascript" src="../js/functions.js" ></script>
+        <script type="text/javascript" src="../ordine/orders_obj.js" ></script>
+
+    </head>
+    <body ng-controller="GGVAppClienteController">
+        <!-- testo libreria angular -->
+
+        <script src="../lib/angular.min.js"></script>
+        <script src="../lib/angular-locale_it-it.js"></script>
+        <!--
+        <script src="lib/angular-touch.js"></script>
+        
+        <script src="lib/angular-resource.js"></script> 
+
+        <!-- Mie moduli angular -->
+        <script type="text/javascript" src="./cliente.js" ></script>
+        <!--
+         <script type="text/javascript" src="ordine/ordine.js" ></script>
+         
+         <script type="text/javascript" src="ordine/azioni_ordine.js" ></script>
+         <script type="text/javascript" src="opzioni/opzioni.js" ></script>
+        -->
+        <!--
+        <script src="debug.js"></script>
+        -->
+{{test}}
+        <h2 class="sub-header">Ordine corrente, totale: {{totale_ordine|currency}}</h2>
+        <div>
+            <div ng-repeat="(gruppo, voci) in ordine" class="table-responsive">
+                <h3>{{gruppo}}</h3>
+                <table class="table table-striped">
+                    <thead> 
+                        <tr>
+                            <th>Qta</th>
+                            <th>Nome</th>
+                            <th>Prezzo unitario</th>
+                            <th>Prezzo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="voce in voci"> 
+                            <td>{{voce.qta}}</td>
+                            <td>{{voce.nome}}</td>
+                            <td>{{voce.prezzounitario|currency}}</td>
+                            <td>{{voce.prezzototale|currency}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>    
+            <h1></h1>
+        </div>
+
+
+    </body>
+</html>

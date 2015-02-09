@@ -6,7 +6,7 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path[1:] in Handler.gets.keys():
             return Handler.gets[self.path[1:]](self)
         
-        self.path = '../www' + self.path
+      #  self.path = '../www' + self.path
         self.path = self.path.split('?')[0] # trick malevolo per togliere i parametri
         return SimpleHTTPRequestHandler.do_GET(self)
 
@@ -50,6 +50,7 @@ Handler.posts = { f.__name__:f for f in [Handler.stampa] }
             
 
 if __name__ == '__main__':
+    os.chdir('../www')
     httpd = HTTPServer(('', 8000), Handler)
     print('Avvio server...')
     httpd.serve_forever()
