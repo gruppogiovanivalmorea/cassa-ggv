@@ -1,97 +1,94 @@
-<script src="lib/holder.js"></script>
+<div role="tabpanel">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist" id="selezioneGruppi">
+        <li role="presentation" class="active">
+            <a href="#tuttiGruppi" role="tab" data-toggle="tab">Tutti</a>
+        </li>
+        <li ng-repeat="(gruppo,elenco) in menu" role="presentation">
+            <a aria-controls="{{gruppo}}" role="tab" data-toggle="tab"
+               href="#{{gruppo}}" style="text-transform: capitalize">
+                {{gruppo}}
+            </a>
+        </li>
+    </ul>
 
-<script>
-    /* TODO eliminare se funziona senza 
-$('#selezioneGruppi a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
-*/
-</script>
-<div ng-controller="GGVApp-gestioneOrdineCorrenteController">
-    <div role="tabpanel">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist" id="selezioneGruppi">
-            <li role="presentation" class="active">
-                <a href="#tuttiGruppi" aria-controls="home" role="tab" data-toggle="tab">Tutti</a>
-            </li>
-            <li ng-repeat="(gruppo,elenco) in menu" role="presentation">
-                <a aria-controls="{{gruppo}}" role="tab" data-toggle="tab"
-                   href="#{{gruppo}}" style="text-transform: capitalize">
-                    {{gruppo}}
-                </a>
-            </li>
-        </ul>
-
-        <div class="tab-content">
-            <!-- tuttiGruppi -->
-            <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">
-                <div ng-repeat="(gruppo, elencoProdotti) in menu">
-                    <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
-                            ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
-                        {{prodotto.nome}}<br />{{prodotto.prezzo | currency}}
-                    </button>
-                </div>
-            </div>          
-
-            <!-- ripetizione gruppi -->
-            <div role="tabpanel" class="tab-pane"
-                 ng-repeat="(gruppo, elencoProdotti) in menu" id="{{gruppo}}">
-                    <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
-                            ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
-                        {{prodotto.nome}}
-                    </button>
+    <div class="tab-content" style="padding: 10px;">
+        <!-- tuttiGruppi -->
+        <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">
+            <div style="display: inline" ng-repeat="(gruppo, elencoProdotti) in menu">
+                <button ng-class="gruppo" 
+                        style="margin: 5px; width: 120px; height: 120px; white-space: normal;"
+                        ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+                        ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
+                    {{prodotto.nome}}<br />{{prodotto.prezzo| currency}}
+                </button>
             </div>
+        </div>          
+
+        <!-- ripetizione gruppi -->
+        <div role="tabpanel" class="tab-pane"
+             ng-repeat="(gruppo, elencoProdotti) in menu" id="{{gruppo}}">
+            <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+                    ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
+                {{prodotto.nome}}
+            </button>
         </div>
     </div>
+</div>
 
-    
-    <div style="float:right"> <!-- TODO torgliere float -->
-        <div style="min-width:200px; margin-right:30px;"
-             ng-repeat="(gruppo, elencoProdotti) in ordineFiltrato" >
-            <h3>{{gruppo}}</h3>
-            <table style="" class="table table-striped">
-                <tbody>
-                    <tr ng-repeat="prodotto in elencoProdotti">
-                        <td style="width:100px">{{prodotto.nome}}</td>
-                        <td style="width:140px">
-                            <button ng-click='ordine.vocePerNome(prodotto.nome).inc();'> +  </button>
-                            <input type="number" style="width:50px;" ng-model="ordine.vocePerNome(prodotto.nome).qta" />
-                            <button ng-click='ordine.vocePerNome(prodotto.nome).dec();'> -  </button>
-                        </td>
-                        <td><input type="checkbox" ng-model='ordine.vocePerNome(prodotto.nome).dividiStampa' /></td>
-                    </tr>
-                </tbody>
-            </table>
+<hr />
+
+<div style="padding: 10px;"> 
+    <div>
+        <div style="float: left; margin-right: 40px;">
+            <h2>Totale ultimo ordine: {{ultimoTotale| currency}}</h2>
+            <h2>Totale: {{totaleOrdine| currency}}</h2>
+            <h3>Asporto: <input type="checkbox" /></h3>
         </div>
-        <!--
-        <div ng-repeat="(gruppo, elencoProdotti) in ordineFiltrato" class="table-responsive">
-            <h3>{{gruppo}}</h3>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Qta</th>
-                        <th>Nome</th>
-                        <th>Prezzo unitario</th>
-                    </tr>
-                </thead>
+        <div>
+            <azioni-ordine></azioni-ordine>
+        </div>        
+        <div style="clear: both;"></div>
+    </div>
 
-                <tbody>
-                    <tr ng-repeat="prodotto in elencoProdotti">
-                        <td>{{ordine.voci[prodotto.nome].qta}}</td>
-                        <td>{{prodotto.nome}}</td>
-                        <td>{{prodotto.prezzo|currency}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>    
-        <h1 ng-if="ordineFiltratoNonVuoto">Totale: {{totale_ordine|currency}}</h1>
-        -->
-        
+
+    <div style="float: left; margin-right: 20px;" ng-repeat="(gruppo, elencoProdotti) in ordineFiltrato" >
+        <h3>{{gruppo}}</h3>
+        <table style="" class="table table-striped">
+            <thead>
+            <td>Nome</td>
+            <td>Qta</td>
+            <td>Div.</td>
+            <td>Asp.</td>
+            <td>Note</td>
+            </thead>
+            <tbody>
+                <tr ng-repeat="prodotto in elencoProdotti">
+                    <td style="width:100px">{{prodotto.nome}}</td>
+                    <td style="width:140px">
+                        <button ng-click='ordine.vocePerNome(prodotto.nome).inc();'> +  </button>
+                        <input type="number" style="width:50px;" ng-model="ordine.vocePerNome(prodotto.nome).qta" />
+                        <button ng-click='ordine.vocePerNome(prodotto.nome).dec();'> -  </button>
+                    </td>
+                    <td style="width:20px">
+                        <input type="checkbox" ng-model='ordine.vocePerNome(prodotto.nome).dividiStampa' />
+                    </td>
+                    <td style="width:20px">
+                        <input type="checkbox" ng-model='ordine.vocePerNome(prodotto.nome).asporto' />
+                    </td>
+                    <td style="width:20px">
+                        <input size="10" type="text" ng-model="ordine.vocePerNome(prodotto.nome).note">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
+
 <!-- PALLA -->
+<!-- <script src="lib/holder.js"></script> -->
+
 <!--
                         <div class="col-xs-6 col-sm-3 placeholder">
                             <img data-src="holder.js/50x50/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail"

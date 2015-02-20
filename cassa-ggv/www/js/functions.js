@@ -2,6 +2,16 @@ Object.values = function(obj) { return Object.keys(obj).map(function(key) { retu
 
 oneLevelFlatten = function(list) { return [].concat.apply([],list); } ;
 
+
+function isEmpty(map) {
+    for (var key in map) {
+        if (map.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+}
+
 if (!Object.prototype.watch) {
     Object.defineProperty(Object.prototype, "watch", {
         enumerable: false, 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
+
+        <title>Cassa GGV</title>
+
+        <!-- JQuery -->
+        <script src="./lib/jquery-2.1.3.min.js"></script>
+
+        <!-- Bootstrap core CSS -->
+        <link href="./lib/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="./lib/bootstrap.min.js"></script>
+
+        <!-- Custom styles for this template -->
+        <link href="./css/dashboard.css" rel="stylesheet">
+
+        <!-- CSS per toogle switch -->
+        <link href="css/toogle-switch.css" rel="stylesheet">
+
+        <!-- Pouch DB -->
+        <script src="./lib/pouchdb-3.3.0.min.js"></script>
+
+        <!-- AngularJS --> 
+        <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+        <script src="lib/angular-locale_it-it.js"></script>
+
+        <script type="text/javascript">
+                        function report($scope, $http) {
+                                var db = new PouchDB('http://localhost:5984/ordini');
+
+                                $scope.report;
+                                $scope.totale;
+                                $scope.vista = 'tutti';
+                                $scope.query = function(){
+                                    var v, totale, report;
+                                    db.query('report/'+$scope.vista, {group_level: 2}, function (err, risp) {
+                                        totale = 0;
+                                        report = {};
+                                        for (v in risp.rows) {
+                                                totale += risp.rows[v].value[1];
+                                                if (!report.hasOwnProperty(risp.rows[v].key[0])) {
+                                                        report[risp.rows[v].key[0]] = [];
+                                                }
+                                                report[risp.rows[v].key[0]].push({
+                                                        nome: risp.rows[v].key[1],
+                                                        incasso: risp.rows[v].value[1],
+                                                        qta: risp.rows[v].value[0]
+                                                });
+                                        }
+                                        $scope.$apply(function () {
+                                                $scope.totale = totale;
+                                                $scope.report = report;
+                                        });    
+                                    });
+                                };
+                                
+                                $scope.query();
+                        }
+        </script>
+
+    </head>
+
+    <body class="ng-scope" ng-app="" ng-controller="report">
+        Filtra per giorno:
+        <select ng-model="vista" ng-change="query()">
+            <option value="tutti">Tutti</option>
+            <option value="venerdi">Venerdi</option>
+            <option value="sabato">Sabato</option>
+            <option value="domenica">Domenica</option>
+        </select>
+        
+        <h2>Totale: {{totale| currency}}</h2>
+        
+        <div ng-repeat="(gruppo, voci) in report" class="table-responsive">
+            <h3>{{gruppo}}</h3>
+            <table class="table table-striped">
+                <thead> 
+                    <tr>
+                        <th>Quantità</th>
+                        <th>Nome</th>
+                        <th>Ricavo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="voce in voci"> 
+                        <td>{{voce.qta}}</td>
+                        <td>{{voce.nome}}</td>
+                        <td>{{voce.incasso|currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>  
+    </body>
+</html>

@@ -1,30 +1,26 @@
-<div ng-controller="GGVApp-azioniOrdineController">
 
-    <button ng-click="stampa_archivia()">
+<div>
+  
+    <button style="height: 100px; width: 200px; background: #13de43; border-radius: 15px;" 
+            ng-click="stampa_archivia()">
         Stampa
     </button>
+     
+    <button style="height: 100px; width: 200px; background: red; margin-right: 100px; border-radius: 15px;" 
+            ng-click="cancella()">
+        Cancella
+    </button>
     
-    <!--
-    <div class="btn-group" dropdown is-open="status.isopen">
-        <button type="button" class="btn btn-primary dropdown-toggle">
-            Altre azioni
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Stampa senza archiviare</a></li>
-            <li><a href="#">Archivia senza stampare</a>
-        </ul>
-    </div>
-    -->
+    <button style="height: 100px; width: 200px; border-radius: 15px;" 
+            ng-click="stampa()">
+        Stampa (senza archiviare)
+    </button>
     
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            Altre azioni
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="#" ng-click="stampa()">Stampa senza archiviare</a></li>
-            <li><a href="#" ng-click="archivia()">Archivia senza stampare</a></li>
-            <li><a href="#" ng-click="cancella()">Cancella ordine corrente</a></li>
-        </ul>
-    </div>
+    <button style="height: 100px; width: 200px; border-radius: 15px;"
+            ng-click="archivia()">
+        Archivia (senza stampare)
+    </button>
+    
+    
+
 </div>

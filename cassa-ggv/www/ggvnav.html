@@ -1,0 +1,125 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!--<a href="#">GGV Keis</a>-->
+        </div>
+        <div id="navbar" style="position:relative;" class="navbar-collapse collapse">
+                <!-- Indicatore stato sincronizzazione -->
+                <img style="float: left; height:40px; margin-right: 20px; position: absolute; top:50%; margin-top: -20px;" 
+                     ng-if="syncAttivo"  src="img/sync-ok-white.png" />
+                <img style="float: left; height:40px; margin-right: 20px; position: absolute; top:50%; margin-top: -20px;" 
+                     ng-if="!syncAttivo" src="img/sync-err-white.png" />
+
+                <!-- Selezione stampante --> 
+                <select ng-controller="GGVApp-OpzioniController"
+                        ng-model="opzioni.stampante" class="form-control" 
+                        ng-options="s.nomeMenu for s in opzioni.stampanti"
+                        style="width: 100px; float: left; position: absolute; 
+                        top: 50%; height: 30px; margin-top: -15px; left: 50px;">
+                </select>
+
+
+                <!-- Toogle Switch apertura/chisura finestra cliente -->
+                <a ng-controller="GGVApp-ParentFinestraClienteController"
+                   href="#" ng-click="switch()"
+                   style="float: left; position: absolute; top:50%; margin-top: -15px; left: 160px;">
+                    <img style="height:30px;" ng-src="{{imgsrc}}" />
+                </a> 
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Bottone modal opzioni -->
+                <li ng-controller="GGVApp-OpzioniController">
+                    <a href="#"
+                       data-toggle="modal" data-target="#modalOpzioni" 
+                       data-backdrop="static" 
+                       data-keyboard="false">
+                        <!--
+                        <span class="glyphicon glyphicon-cog" 
+                              style="font-size: 24px;" aria-hidden="true">
+                        </span>  
+                        -->
+                        Opzioni
+                    </a>
+                </li>
+
+                <!-- Prenotazioni -->
+                <li>
+                    <a href="#"
+                       data-toggle="modal" data-target="#modalPrenotazioni" 
+                       data-backdrop="static" 
+                       data-keyboard="false">
+                        <!--
+                        <span class="glyphicon glyphicon-cog" 
+                              style="font-size: 24px;" aria-hidden="true">
+                        </span>  
+                        -->
+                        Prenotazioni
+                    </a>
+                </li>
+
+                <!-- Scorte -->
+                <li>
+                    <a href="#"
+                       data-toggle="modal" data-target="#modalScorte" 
+                       data-backdrop="static" 
+                       data-keyboard="false">
+                        <!--
+                        <span class="glyphicon glyphicon-cog" 
+                              style="font-size: 24px;" aria-hidden="true">
+                        </span>  
+                        -->
+                        Scorte
+                    </a>
+                </li>
+
+                <!-- Bottone visualizzazione lista -->
+                <li ng-controller="GGVApp-vistaGestioneOrdineController">
+                    <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#">
+                        <!--
+                        <span class="glyphicon glyphicon-th-list" 
+                              style="font-size: 24px;" aria-hidden="true">
+                        </span>  
+                        -->
+                        Lista
+                    </a>
+                </li>
+
+                <!-- Bottone visualizzazione icone -->
+                <li ng-controller="GGVApp-vistaGestioneOrdineController">
+                    <a ng-click="vistaGestioneOrdine.vistaIcone()"  href="#">
+                        <!--
+                        <span class="glyphicon glyphicon-th" 
+                        style="font-size: 24px;" aria-hidden="true">
+                        </span>
+                        -->
+                        Icone
+                    </a>
+                </li>
+
+                <!-- Bottone ricarica pagina -->
+                <li>                    
+                    <a id="confermaRefresh" href="/index.html">
+                        <!--
+                        <span class="glyphicon glyphicon-refresh" 
+                              style="font-size: 24px;" aria-hidden="true">
+                        </span>
+                        -->
+                        Ricarica
+                    </a>
+                    <script type="text/javascript"> // Confirm su refresh pagina
+                                                $('#confermaRefresh').on('click', function () {
+                                                        if (confirm('Sicuro tan? Perdi l\'ordine!'))
+                                                                location.reload();
+                                                });
+                    </script>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

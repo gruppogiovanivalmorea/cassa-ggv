@@ -24,7 +24,7 @@ function Ordine(menu) {
     
     this.vocePerNome = function(nome){
         for(var voce in this.voci){
-            if(this.voci[voce].nome == nome)
+            if(this.voci[voce].nome === nome)
                 return this.voci[voce];
         }
         return null;
@@ -33,7 +33,7 @@ function Ordine(menu) {
     this.ordinePerStampa = function(){
         // TODO valutare note sul singolo scontrino
         var nuovo = new Object();
-        nuovo.timestamp = this.timestamp;
+        nuovo.timestamp = Date.now();
         nuovo.voci = [];
         for(v in this.voci){
             if(this.voci[v].qta > 0){
@@ -66,13 +66,15 @@ function Ordine(menu) {
     this.reset = function(){
         this.timestamp = Date.now();
         this.cassa = "Test"; // TODO ragionare su id cassa
-        this.note = ""; // TODO nota che le note le hanno le voci!!!
+        this.note = ""; // TODO nota che le voci le hanno le note!!!
         this.progressivo = 0; // TODO valutare se serve
         for(v in this.voci){
             this.voci[v].qta = 0;
             this.voci[v].note = "";
         }
     }
+    
+    
 };
 
 function voceOrdine(prodotto, gruppo, prezzo){
@@ -83,10 +85,16 @@ function voceOrdine(prodotto, gruppo, prezzo){
     this.prezzo = prezzo;
     this.dividiStampa = false;
     this.note = "";
-    this.inc = function() { this.qta++; }
-    this.dec = function() { if(this.qta > 0) this.qta--; }
+    this.inc = function() { this.qta++; };
+    this.dec = function() { if(this.qta > 0) this.qta--; };
 
-    
+    this.readNote = function () {
+        this.note = window.prompt("Note per "+this.nome,this.note);
+    };
+
+    this.toString = function(){
+        return this.qta+'x'+' '+this.nome;
+    };
 }
   /*
 function voceOrdine(){

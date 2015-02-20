@@ -2,8 +2,8 @@ var _opzioni = {
     "server": [
         {nome:"nodejsServerHost", valore:"localhost", inMenu:true, type:'text'},
         {nome:"nodejsServerPort", valore:1337, inMenu:true, type:'number'},
-        {nome:"syncServerHost", valore:"", inMenu:true, type:'text'},
-        {nome:"syncServerPort", valore:0, inMenu:true, type:'number'},
+        {nome:"couchDBHost", valore:"localhost", inMenu:true, type:'text'},
+        {nome:"couchDBPort", valore:5984, inMenu:true, type:'number'},
     ],
     "stampanti": [
         {"nomeMenu" : "usb-2", "tipo": "usb", "nome":"/dev/usb/lp2"},

@@ -20,8 +20,17 @@ class Handler(SimpleHTTPRequestHandler):
             printer.printPos(self.parseRequest())
             self.exit()
         except printer.PrintError as pe:
-            self.exit(500, str(pe))
-    
+            self.exit(500, str(pe)) 
+   
+    def stampaPrenotazioni(self):
+        try:
+            printer.printPosPrenotazioni(self.parseRequest())
+            self.exit()
+        except printer.PrintError as pe:
+            self.exit(500, str(pe)) 
+   
+
+
     def stampanti(self):
         def _help(usb):
             return {'nome':usb, 'tipo':'usb', 'nomeMenu':'usb-'+usb[2]}
@@ -46,7 +55,7 @@ class Handler(SimpleHTTPRequestHandler):
 
 
 Handler.gets = { f.__name__:f for f in [Handler.stampanti] }
-Handler.posts = { f.__name__:f for f in [Handler.stampa] }
+Handler.posts = { f.__name__:f for f in [Handler.stampa, Handler.stampaPrenotazioni] }
             
 
 if __name__ == '__main__':

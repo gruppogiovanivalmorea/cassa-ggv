@@ -11,17 +11,13 @@
         <title>Cassa GGV</title>
 
         <!-- JQuery -->
-        <script src="./lib/jquery-1.11.1.min.js"></script>
+        <script src="./lib/jquery-2.1.3.min.js"></script>
 
-        <!-- Bootstrap core CSS 
-<link href="./css/lib/bootstrap.min.css" rel="stylesheet">
--->
-
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <!-- Bootstrap core CSS -->
+        <link href="./lib/bootstrap.min.css" rel="stylesheet">
 
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="./lib/bootstrap.min.js"></script>
 
         <!-- Custom styles for this template -->
         <link href="./css/dashboard.css" rel="stylesheet">
@@ -29,21 +25,42 @@
         <!-- CSS per toogle switch -->
         <link href="css/toogle-switch.css" rel="stylesheet">
 
+        <!-- Pouch DB -->
+        <script src="./lib/pouchdb-3.3.0.min.js"></script>
 
         <!-- in db/menu.json si metterà copia del menu da tenere in locale -->
-        <script type="text/javascript" src="db/menu.json" ></script>
+        <script type="text/javascript" src="db/menu.js" ></script>
         <script type="text/javascript" src="db/opzioni.json" ></script>
         <script type="text/javascript" src="js/functions.js" ></script>
         <script type="text/javascript" src="ordine/orders_obj.js" ></script>
+        
+        
     </head>
 
+    <style>
+        .bar{
+            background: #05f1d7;
+        }
+        .primi{
+            background: #dbf938;
+        }
+        .secondi{
+            background: #f1a005;
+        }
+        
+    </style>
+    
     <body ng-controller="GGVAppController">
 
+        
+        
         <!-- AngularJS --> 
         <script src="lib/angular.min.js"></script>
-        <script src="lib/angular-touch.js"></script>
         <script src="lib/angular-locale_it-it.js"></script>
+        <!--
+        <script src="lib/angular-touch.js"></script>
         <script src="lib/angular-resource.js"></script> 
+        -->
         <!--      <script src="lib/ui-bootstrap-tpls-0.11.2.min.js"></script> -->
 
         <!-- Mie moduli angular -->
@@ -51,115 +68,31 @@
         <script type="text/javascript" src="ordine/ordine.js" ></script>
         <script type="text/javascript" src="ordine/azioni_ordine.js" ></script>
         <script type="text/javascript" src="opzioni/opzioni.js" ></script>
+        <script type="text/javascript" src="prenotazioni/prenotazioni.js" ></script>
+        <script type="text/javascript" src="scorte/scorte.js" ></script>
 
-        <!--<script src="./js/debug.js"></script>-->
+    <ggv-nav></ggv-nav>
 
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!--<a href="#">GGV Keis</a>-->
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        
-                        <!-- Selezione stampante --> 
-                        <li ng-controller="GGVApp-OpzioniController">
-                            <!-- ng-init="opzioni.testStampante=opzioni.stampanteLocal" -->
-                            <select ng-model="opzioni.stampante" class="form-control" 
-                                    ng-options="s.nomeMenu for s in opzioni.stampanti">
-                            </select>
-                        </li>
-
-                        
-                        <!-- Toogle Switch - apertura/chisura finestra cliente -->
-                        <li ng-controller="GGVApp-ParentFinestraClienteController">
-                            <div class="onoffswitch">
-                                <input type="checkbox" name="onoffswitch" 
-                                       class="onoffswitch-checkbox" id="myonoffswitch"
-                                       ng-model="attiva">
-                                <label class="onoffswitch-label" for="myonoffswitch">
-                                <span class="onoffswitch-inner"></span>
-                                <span class="onoffswitch-switch"></span>
-                                </label>
-                            </div> 
-                            
-                        </li>
-                        
-                        <!-- Bottone modal opzioni -->
-                        <li ng-controller="GGVApp-OpzioniController">
-                            <a href="#"
-                               data-toggle="modal" data-target="#modalOpzioni" 
-                               data-backdrop="static" 
-                               data-keyboard="false">
-                                <span class="glyphicon glyphicon-cog" style="font-size: 24px;" aria-hidden="true">
-                                </span>  
-                            </a>
-                        </li>
-                        
-                        <!-- Bottone visualizzazione lista -->
-                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                            <a ng-click="vistaGestioneOrdine.vistaLista()"  href="#">
-                                <span class="glyphicon glyphicon-th-list" style="font-size: 24px;" aria-hidden="true">
-                                </span>  
-                            </a>
-                        </li>
-                        
-                        <!-- Bottone visualizzazione icone -->
-                        <li ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                            <a ng-click="vistaGestioneOrdine.vistaIcone()"  href="#">
-                                <span class="glyphicon glyphicon-th" style="font-size: 24px;" aria-hidden="true">
-                                </span>
-                            </a>
-                        </li>
-                        
-                        <!-- Bottone ricarica pagina -->
-                        <li>                    
-                            <a id="confermaRefresh" href="/index.html">
-                                <span class="glyphicon glyphicon-refresh" style="font-size: 24px;" aria-hidden="true">
-                                </span>
-                            </a>
-                            <script type="text/javascript"> // Confirm su refresh pagina
-                                $('#confermaRefresh').on('click', function () {
-                                    if(confirm('Sicuro tan? Perdi l\'ordine!')) location.reload();
-                                });
-                            </script>
-                        </li>
-                    </ul>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Gestione ordine -->
+            <!-- <gestione-ordine-corrente></gestione-ordine-corrente> -->
+            <div ng-controller="GGVApp-gestioneOrdineCorrenteController">
+                <div ng-include src="vistaGestioneOrdine.vista.url"></div>
+                <!-- Azioni su ordine (bottoni condivisi dalle due viste) -->
+                
             </div>
-        </nav>
-
-       
-        <div class="container-fluid">
-            <div class="row">
-                <!-- Gestione ordine -->
-                    <!-- <gestione-ordine-corrente></gestione-ordine-corrente> -->
-                <div  ng-controller="GGVApp-gestioneOrdineCorrenteController">
-                    <div ng-include src="vistaGestioneOrdine.vista.url"></div>
-                </div>
-                <!-- Azioni su ordine -->
-                <azioni-ordine></azioni-ordine>
+            
+            
 
 
-            </div>
-        </div>   
-        
-        <modal-opzioni></modal-opzioni>
+        </div>
+    </div>   
 
-        <!-- Bootstrap core JavaScript
-================================================== -->
-        <!-- Placed at the end of the document so the pages load faster
-<script src="./lib/bootstrap.min.js"></script>
-<script src="./lib/docs.min.js"></script>
--->
-        
-       
-    </body>
+    <modal-opzioni></modal-opzioni>
+    <modal-prenotazioni></modal-prenotazioni>
+    <modal-scorte></modal-scorte>
+    
+</body>
 </html>

@@ -15,10 +15,10 @@ angular.module('GGVApp-opzioni',[])
     : null; // TODO valutare
 
     //console.log(stampanteTmp);
-    if(stampanteTmp != null) { 
+    if(stampanteTmp !== null) { 
         for(var s_idx in opzioni.stampanti){
             var s = opzioni.stampanti[s_idx];
-            if(s.nome == stampanteTmp.nome && s.tipo == stampanteTmp.tipo){
+            if(s.nome === stampanteTmp.nome && s.tipo === stampanteTmp.tipo){
                 opzioni.stampante = opzioni.stampanti[s_idx];
             }
         } 

@@ -1,0 +1,54 @@
+<div id="modalPrenotazioni" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Prenotazioni</h4>
+            </div>
+            <div class="modal-body">
+
+                Nuova prenotazione:
+                <!--
+                <select ng-model="nuova.pasto">
+                    <option value="pranzo domenica">Pranzo Domenica</option>
+                    <option value="cena domenica">Cena Domenica</option>
+                    <option value="cena sabato">Cena Sabato</option>
+                </select>
+                -->
+                <br/>
+                <input type="number" placeholder="numero" style="width:100px;" ng-model="nuova.qta" />
+                <input placeholder="nome" type="text" ng-model="nuova.nome" />
+                <input placeholder="note" type="text" ng-model="nuova.note" />
+
+
+
+                <button type="button" class="btn btn-default" ng-click="aggiungi()">
+                    Aggiungi
+                </button>
+
+                <hr />
+
+                <ul>
+                    <li ng-repeat="prenotazione in prenotazioni">
+                        <!-- {{prenotazione.doc.pasto}}  -->
+                        {{prenotazione.doc.qta}} 
+                        {{prenotazione.doc.nome}}
+                        {{prenotazione.doc.note}}
+                        <a href="#" ng-click="elimina(prenotazione.doc)">
+                            elimina
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="stampa()">
+                    Stampa
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Chiudi
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

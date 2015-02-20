@@ -32,9 +32,13 @@ finestra cliente:
 possibili mancanze:
     azioni su ultimo scontrino (copia, elimina, riapri per modifica)
     visualizzare totale ultimo scontrino 
+    prenotazioni
 
 fare stampa su socket
 
 
 
 test su replicazione, server couchdb
+
+
+valutare se ordine.datiArchivio() esporta (come usato in cliente.js) ordine.voci = gruppo1 -> [], gruppo2 ->...

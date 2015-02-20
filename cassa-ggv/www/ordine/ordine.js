@@ -1,192 +1,258 @@
 
-angular.module('GGVApp-ordine',['ngResource'])
-//angular.module('GGVApp')
+angular.module('GGVApp-ordine', [])
 
-.service('vistaGestioneOrdine', function() { 
-    this.viste = [{
-        nome: 'Tabella',
-        url: 'ordine/gestioneOrdineCorrenteTabella.html',
-        controller: "GGVApp-gestioneOrdineCorrenteTabellaController"},
-        {
-        nome: 'Icone',
-        url: 'ordine/gestioneOrdineCorrenteIcone.html',
-        controller: "GGVApp-gestioneOrdineCorrenteIconeController"
-        }];
-    
-    var localVista = JSON.parse(window.localStorage.getItem("vistaOrdineCorrente"));
-    this.vista = localVista != null ? localVista : this.viste[0];
-    this.watch('vista',function(id,oldVal,newVal){ 
-      //  console.log(id);console.log(oldVal);console.log(newVal);
-        window.localStorage.setItem('vistaOrdineCorrente',JSON.stringify(newVal)); 
-        return newVal;
-    })
-    
-    this.vistaLista = function(){ this.vista = this.viste[0]; }
-    this.vistaIcone = function(){ this.vista = this.viste[1]; }
-    
-  //  console.log(this.vista);console.log(localVista);console.log(this.viste);
-    return this;
-})
+	.service('vistaGestioneOrdine', function () {
+		this.viste = [{
+				nome: 'Tabella',
+				url: 'ordine/gestioneOrdineCorrenteTabella.html'
+					//			controller: "GGVApp-gestioneOrdineCorrenteTabellaController"
+			},
+			{
+				nome: 'Icone',
+				url: 'ordine/gestioneOrdineCorrenteIcone.html' //,
+					//			controller: "GGVApp-gestioneOrdineCorrenteIconeController"
+			}];
 
+		var idx = JSON.parse(window.localStorage.getItem("vistaOrdineCorrente"));
+		this.vista = idx !== null ? this.viste[idx] : this.viste[1];
 
-.service('finestraCliente',['ordine','$interval',function(ordine,$interval){
-    this.attiva = false; // TODO prendere valore da opzioni o localstorage
-    this.finestraOrdineAttuale;
-//    this.apriFinestraOrdine = function(){
-//        if(this.isAttiva()) return;
-//        console.log("apro finestra");
-//        this.finestraOrdineAttuale = window.open(
-//                'index2.html',
-//                'Ordine',
-//                'fullscreen'
-//        );
-//    };
-    this.isAttiva = function() {
-        return this.finestraOrdineAttuale != null && !this.finestraOrdineAttuale.closed;    
-    };
-    
-    this.aggiorna = function() {
-        if(!this.isAttiva())
-            return;
-        if(window.ordine == null)
-            window.ordine = ordine.datiArchivio();
-        else{
-            while(window.ordine.voci.length != 0){
-                window.ordine.voci.pop();
-            }
-            var dati = ordine.datiArchivio().dati;
-            for(v in dati){
-                window.ordine.voci.push(dati[v]);
-            }
-        }
-        
-        
-        //this.finestraOrdineAttuale.location.reload();
-    }
+		this.vistaLista = function () {
+			this.vista = this.viste[0];
+			window.localStorage.setItem('vistaOrdineCorrente', 0);
+		};
+		this.vistaIcone = function () {
+			this.vista = this.viste[1];
+			window.localStorage.setItem('vistaOrdineCorrente', 1);
+		};
 
-    return this;
-}])
+		return this;
+	})
 
 
+	.service('finestraCliente', ['ordine', function () {
+			this.attiva = false; // TODO prendere valore da opzioni o localstorage
+			this.finestraOrdineAttuale = null;
+			this.childRootScope = null;
 
+			this.ordineFiltrato = null;
 
-.controller(
-    'GGVApp-gestioneOrdineCorrenteController',
-    ['$scope','menu','ordine','vistaGestioneOrdine','finestraCliente',
-     function($scope,menu,ordine,vistaGestioneOrdine,finestraCliente){
-        $scope.ordine = ordine;
-        $scope.totale_ordine;
-        $scope.ordineFiltrato = new Object();
-        $scope.ordineFiltratoNonVuoto;
-        //$scope.finestraCliente = finestraCliente;
-         
-        $scope.$watch('ordine.voci', function(nuove_voci, vecchie_voci,scope){
-            $scope.filtraOrdine();
-           // window.localStorage.setItem('vociOrdine',JSON.stringify($scope.ordineFiltrato));
-            finestraCliente.aggiorna();
-        }, true);
-         
-        $scope.filtraOrdine = function(){
-            
-            var ordineFiltrato = new Object();
-            $scope.totale_ordine = 0;
-            for(gruppo in menu){
-                var vociGruppo = [];
-                for(prodotto in menu[gruppo]){
-                    var nome = menu[gruppo][prodotto].nome;
-                    var voce = ordine.vocePerNome(nome)
-                    if(voce.qta > 0) {
-                        vociGruppo.push(voce);
-                        $scope.totale_ordine += voce.prezzo * voce.qta;   
-                    }
-                }
-                if(vociGruppo.length > 0) ordineFiltrato[gruppo] = vociGruppo;         
-            }
-            $scope.ordineFiltratoNonVuoto = !isEmpty(ordineFiltrato); 
-            $scope.ordineFiltrato = ordineFiltrato;
-            
-           // console.log(finestraCliente);
-        }
-        
-        
-        $scope.vistaGestioneOrdine = vistaGestioneOrdine;
- 
-    }])
+			this.apriFinestraCliente = function () {
+				if (this.isAttiva())
+					return;
+				window.ordine = this.ordineFiltrato;
+				this.finestraOrdineAttuale = window.open(
+					'cliente/cliente.html',
+					'Ordine',
+					'fullscreen,dialog'
+					);
+			};
 
-.directive('gestioneOrdineCorrente',['vistaGestioneOrdine',function(vistaGestioneOrdine){
-    return {
-        restrict : 'E',
-        controller: "GGVApp-gestioneOrdineCorrenteController",
-        templateUrl : vistaGestioneOrdine.vista.url
-    };
-}])
+			this.chiudiFinestraCliente = function () {
+				if (this.finestraOrdineAttuale === null)
+					return;
+				console.log('chiudo');
+				this.finestraOrdineAttuale.close();
+			}
+
+			this.isAttiva = function () {
+				return this.finestraOrdineAttuale !== null && !this.finestraOrdineAttuale.closed;
+			};
+
+			this.aggiorna = function () {
+				if (!this.isAttiva())
+					return;
+
+				window.ordine = this.ordineFiltrato;
+				this.finestraOrdineAttuale.location.reload();
+
+				/*
+				 if (window.ordine === null)
+				 window.ordine = ordine.datiArchivio();
+				 else {
+				 while (window.ordine.voci.length !== 0) {
+				 window.ordine.voci.pop();
+				 }
+				 var dati = ordine.datiArchivio().dati;
+				 for (v in dati) {
+				 window.ordine.voci.push(dati[v]);
+				 }
+				 }
+				 */
+
+				//console.log(this.finestraOrdineAttuale.angular);
+				//this.finestraOrdineAttuale.aggiorna();
+//				this.finestraOrdineAttuale.angular.element('#app-container').scope().$apply();
+				//this.finestraOrdineAttuale.location.reload();
+				//	console.log(this.finestraOrdineAttuale.aggiorna()); // TODO sistemare aggiornamento
+			};
 
 
 
-.controller(
-    "GGVApp-ParentFinestraClienteController", 
-    ['$scope','$interval','ordine','menu','finestraCliente', function($scope,$interval,ordine,menu,finestraCliente){
-        //$scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
-        $scope.ordine = ordine;
-        $scope.menu = menu;
-        $scope.attiva = false;
-        
-        $scope.interval;
-        $scope.aggiornaIcona = function(){
-       //     console.log($scope.attiva);
-            if(finestraCliente.finestraOrdineAttuale == null) $scope.attiva = false;
-            else if($scope.attiva == finestraCliente.finestraOrdineAttuale.closed) 
-                $scope.attiva = !finestraCliente.finestraOrdineAttuale.closed;
-        };
-        $scope.aggiornaIcona();
-    
-        
-        
-        $scope.$watch('attiva',function(newV,oldV,scope){
-            if(newV){
-                if(finestraCliente.isAttiva()) return;
-                window.ordine = $scope.ordine.datiArchivio();
-                finestraCliente.finestraOrdineAttuale = window.open(
-                    'cliente/cliente.html',
-                    'Ordine' /*,
-                    'fullscreen,dialog' */
-                );
-                $scope.interval = $interval($scope.aggiornaIcona, 1000);
-            }
-            else{
-                if(finestraCliente.finestraOrdineAttuale == null) return;
-                finestraCliente.finestraOrdineAttuale.close();
-                $interval.cancel($scope.interval);
-            }
-            return newV;
-        });
-        
-    }])
-
-.controller(
-    "GGVApp-ChildFinestraClienteController", 
-    ['$scope', 'ordine','finestraCliente', function($scope,ordine,finestraCliente){
-        $scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
-        $scope.ordine = ordine;
-        
-        
-    }])
+			return this;
+		}])
 
 
-/*
-.controller(
-    "GGVAppControllerCliente", function($scope, menu){
-        $scope.menu = JSON.parse(localStorage.getItem('menu'));;
-        $scope.vociOrdine = JSON.parse(localStorage.getItem('vociOrdine'));;
-    })
-    */
-;
+	.controller('GGVApp-vistaGestioneOrdineController', function ($scope, vistaGestioneOrdine) {
+		$scope.vistaGestioneOrdine = vistaGestioneOrdine;
+	})
 
-function isEmpty(map) {
-   for(var key in map) {
-      if (map.hasOwnProperty(key)) {
-         return false;
-      }
-   }
-   return true;
-}
+
+	.controller(
+		'GGVApp-gestioneOrdineCorrenteController',
+		['$http', '$scope', 'ordine', 'vistaGestioneOrdine', 'finestraCliente', 'azioniOrdine',
+			function ($http, $scope, ordine, vistaGestioneOrdine, finestraCliente, azioniOrdine) {
+				$scope.ordine = ordine;
+				$scope.totaleOrdine = 0;
+				$scope.ultimoTotale = 0;
+				$scope.ordineFiltrato = new Object();
+				//    $scope.ordineFiltratoNonVuoto;
+				//$scope.finestraCliente = finestraCliente;
+
+				// osservo cambiamenti di quantita
+				for (v in ordine.voci) {
+					$scope.$watch('ordine.voci[' + v + '].qta', function (n, o) {
+						$scope.filtraOrdine();
+						finestraCliente.ordineFiltrato = $scope.ordineFiltrato;
+						finestraCliente.aggiorna();
+					}, true);
+				}
+
+				// TODO assurdo trick, attenzione a ste variabili
+				finestraCliente.ordineFiltrato = $scope.ordineFiltrato;
+
+
+				$scope.filtraOrdine = function () {
+					$scope.totaleOrdine = 0;
+					$scope.ordineFiltrato = {};
+
+					var voci = ordine.datiArchivio().voci;
+					var voce;
+					for (v in voci) {
+						voce = voci[v];
+						$scope.totaleOrdine += voce.prezzototale;
+						if (!$scope.ordineFiltrato.hasOwnProperty(voce.gruppo)) {
+							$scope.ordineFiltrato[voce.gruppo] = [];
+						}
+						$scope.ordineFiltrato[voce.gruppo].push(voce);
+					}
+				};
+
+
+				$scope.vistaGestioneOrdine = vistaGestioneOrdine;
+
+
+
+				// AZIONI SULL'ORDINE
+				/*
+				 $scope.azioneConSuccesso = function (azione) {
+				 return function () {
+				 azione(function () {
+				 console.log("ut " + $scope.ultimoTotale);
+				 console.log($scope.totaleOrdine);
+				 $scope.ultimoTotale = $scope.totaleOrdine;
+				 $scope.totaleOrdine = 0;
+				 
+				 //  $scope.cancella();
+				 console.log("ut " + $scope.ultimoTotale);
+				 console.log("t " + $scope.totaleOrdine);
+				 //    $scope.$apply();
+				 });
+				 
+				 };
+				 };
+				 */
+
+				function terminaOrdine() {
+					$scope.ultimoTotale = $scope.totaleOrdine;
+					$scope.totaleOrdine = 0;
+					$scope.cancella();
+				}
+
+
+				$scope.stampa = function () {
+					azioniOrdine.stampa(terminaOrdine);
+				};
+
+
+				$scope.archivia = function () {
+					azioniOrdine.archivia(terminaOrdine);
+				};
+
+				$scope.stampa_archivia = function () {
+					azioniOrdine.stampa(function () {
+						$scope.archivia(terminaOrdine);
+					});
+				};
+
+				$scope.cancella = function () {
+					ordine.reset();
+				};
+
+				$scope.$on('$destroy', function () {
+					window.onbeforeunload = undefined;
+				});
+
+				$scope.$on('$locationChangeStart', function (event, next, current) {
+					finestraCliente.chiudiFinestraCliente();
+				});
+				
+				
+				
+			}])
+
+
+
+
+	.controller(
+		"GGVApp-ParentFinestraClienteController",
+		['$scope', '$interval', 'ordine', 'finestraCliente', function ($scope, $interval, ordine, finestraCliente) {
+				//$scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
+				$scope.ordine = ordine;
+
+				$scope.attiva = false;
+
+				$scope.interval;
+				
+				$scope.aggiornaIcona = function () {
+					$scope.attiva = finestraCliente.isAttiva();
+					$scope.imgsrc = $scope.attiva 
+						? "img/finestra-cliente-attiva.png"
+						: "img/finestra-cliente-inattiva.png";
+				};
+				$scope.aggiornaIcona();
+
+				$scope.switch = function () {
+					$scope.attiva = !$scope.attiva;
+					$scope.imgsrc = $scope.attiva 
+						? "img/finestra-cliente-attiva.png"
+						: "img/finestra-cliente-inattiva.png";
+					if ($scope.attiva) {
+						finestraCliente.apriFinestraCliente();
+						$scope.interval = $interval($scope.aggiornaIcona, 1000);
+					}
+					else {
+						finestraCliente.chiudiFinestraCliente();
+						$interval.cancel($scope.interval);
+					}
+				}
+
+			}])
+
+
+
+
+
+	/*
+	 .directive('gestioneOrdineCorrente', ['vistaGestioneOrdine', function (vistaGestioneOrdine) {
+	 return {
+	 restrict: 'E',
+	 controller: "GGVApp-gestioneOrdineCorrenteController",
+	 templateUrl: vistaGestioneOrdine.vista.url
+	 };
+	 }])
+	 */
+
+	;
+
+
+

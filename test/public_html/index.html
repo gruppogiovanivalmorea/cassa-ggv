@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <script>
+            var x = 1;
+            var y = 1;
+            setInterval(function(){console.log('x: '+x+' y: '+y)}, 3000);
+            
+            
+            function theBigOne(){
+                
+                this.x = 1;
+                this.f = function(){ return this.x+1; }
+                this.inc = function(){ this.x+=1; }
+                
+            }
+            
+        </script>
+        
+    </head>
+    <body>
+        <div id='aaa'>TODO write content</div>
+        
+        
+        <script>
+            var b1 = new theBigOne();
+            var b2 = new theBigOne();
+            b1.inc();
+            console.log(b1.f());
+            console.log(b2.f());
+            
+            (function(){var x = 100;}());
+            
+        </script>
+        
+    </body>
+</html>
