@@ -14,7 +14,10 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path.startswith('/'):
             self.path = self.path[1:]
         Handler.posts.get(self.path,Handler.richiestasconosciuta)(self)
-        
+   
+    def do_OPTIONS(self):
+        self.exit()
+       
     def stampa(self):
         try:
             printer.printPos(self.parseRequest())

@@ -3,8 +3,10 @@
         "modal-opzioni": {},
         "modal-scorte": {},
         "ggv-nav": {},
+        "pannello-scorte": {},
         "modal-prenotazioni": {},
-        "azioni-ordine": {}
+        "azioni-ordine": {},
+        "pannello-scorte<": {}
     },
     "attributes": {}
 }

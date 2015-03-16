@@ -1,11 +1,18 @@
 angular.module('GGVApp-scorte', [])
 
-	// TODO remote server via opzioni
-	.service('scorte', function () {
+// TODO query: http://localhost:5984/ordini/_design/scorte/_view/nome_timestamp?startkey=[%22patatine%22,0]&endkey=[%22patatine%22,9999999999999999999999999999999]&group_level=1
 
-		var db = new PouchDB('http://localhost:5984/scorte');
+	// TODO remote server via opzioni
+	.service('scorte', function (opzioni) {
+
+		var db = new PouchDB(opzioni.getCouchDbSyncString()+'scorte');
 		//db.replicate.to('http://localhost:5984/scorte', {live: true});
 
+		this.changes = db.changes({
+			since: 20,
+			live: true
+		});
+		
 		this.scorte = function () {
 			return db.allDocs({include_docs: true});
 		};
@@ -20,6 +27,10 @@ angular.module('GGVApp-scorte', [])
 
 		return this;
 
+	})
+	
+	.service('scorteEffettive', function (scorte) {
+		
 	})
 
 	.controller('GGVApp-ScorteModalController',
@@ -67,6 +78,17 @@ angular.module('GGVApp-scorte', [])
 				};
 				
 				
+				scorte.changes.on('change', aggiornaScorte );
+				scorte.changes.on('create', aggiornaScorte );
+				scorte.changes.on('delete', aggiornaScorte );
+				
+				function aggiornaScorteEffetive(){
+					for(s in $scope.scorte){
+						
+					}
+				}
+
+				
 			}])
 
 
@@ -74,7 +96,15 @@ angular.module('GGVApp-scorte', [])
 		return {
 			restrict: 'E',
 			controller: 'GGVApp-ScorteModalController',
-			templateUrl: 'scorte/scorte.html'
+			templateUrl: 'scorte/modal_scorte.html'
+		};
+	})
+	
+	.directive('pannelloScorte', function () {
+		return {
+			restrict: 'E',
+			controller: 'GGVApp-ScorteModalController',
+			templateUrl: 'scorte/pannello_scorte.html'
 		};
 	})
 	;

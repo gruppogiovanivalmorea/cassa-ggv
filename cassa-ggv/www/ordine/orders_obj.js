@@ -7,6 +7,7 @@ function Ordine(menu) {
     this.note = ""; // TODO nota che le note le hanno le voci!!!
     this.progressivo = 0; // TODO valutare se serve
     this.voci = [];
+	this.asporto = false;
     
 //    this.voci = {}; // old
     
@@ -31,12 +32,19 @@ function Ordine(menu) {
     };
     
     this.ordinePerStampa = function(){
-        // TODO valutare note sul singolo scontrino
         var nuovo = new Object();
         nuovo.timestamp = Date.now();
         nuovo.voci = [];
         for(v in this.voci){
             if(this.voci[v].qta > 0){
+				if(this.voci[v].asporto || (this.asporto && this.voci[v].gruppo !== 'bar')){
+					if(this.voci[v].note === ''){
+						this.voci[v].note = 'Asporto';
+					}
+					else{
+						this.voci[v].note = 'Asporto\n' + '  ' + this.voci[v].note;
+					}
+				}
                 nuovo.voci.push(this.voci[v]);
             }   
         }
@@ -44,11 +52,13 @@ function Ordine(menu) {
     }
     
     this.datiArchivio = function(){ 
-        // TODO valutare bene formato dati
-        //  per ora: come stampa ma tolgo info dividi stampa + prezzo(unitario|totale)
-        var nuovo = this.ordinePerStampa();
-        for(v in nuovo.voci){
-            nuovo.voci[v] = this.datiArchivioSingolaVoce(nuovo.voci[v]);
+        var nuovo = new Object();
+        nuovo.timestamp = Date.now();
+        nuovo.voci = [];
+        for(v in this.voci){
+            if(this.voci[v].qta > 0){
+				nuovo.voci.push(this.datiArchivioSingolaVoce(this.voci[v]));
+            }   
         }
         return nuovo;
     }
@@ -63,16 +73,19 @@ function Ordine(menu) {
         return nuova;
     }
     
+	
     this.reset = function(){
         this.timestamp = Date.now();
         this.cassa = "Test"; // TODO ragionare su id cassa
         this.note = ""; // TODO nota che le voci le hanno le note!!!
+		this.asporto = false;
         this.progressivo = 0; // TODO valutare se serve
         for(v in this.voci){
             this.voci[v].qta = 0;
             this.voci[v].note = "";
+			this.voci[v].dividiStampa = false;
         }
-    }
+    };
     
     
 };

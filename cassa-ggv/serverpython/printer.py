@@ -67,7 +67,13 @@ def generateSinglePos(voce):
     
     pos += '\n\n\x1d\x21\x11'
     qta = voce['qta'] if isinstance(voce['qta'],str) else str(voce['qta'])
-    pos += '  '+ qta +'x '+ voce['nome']
+    pos += ' '+ qta +'x '+ voce['nome']
+    if 'note' in voce.keys() and voce['note'] != '':
+        pos += '\n\n'
+        pos += '------------------------'
+        pos += '\n        '+voce['note']+'\n'
+        pos += '------------------------'
+
     pos += '\n\n\n\n\n\n\n\x1b\x6d'
     return pos
 

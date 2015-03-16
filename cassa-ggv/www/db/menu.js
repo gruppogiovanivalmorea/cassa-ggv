@@ -16,9 +16,14 @@ var _menu = {
 			prezzo: 1
 		},
 		{
-			nome: "Vino litro sfuso",
+			nome: "Vino 1 litro sfuso",
 			gruppo: "bar",
 			prezzo: 6
+		},
+		{
+			nome: "Vino 1/2 litro sfuso",
+			gruppo: "bar",
+			prezzo: 3
 		},
 		{
 			nome: "Caffè",

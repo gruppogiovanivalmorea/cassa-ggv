@@ -28,6 +28,16 @@ angular.module('GGVApp-opzioni',[])
         window.localStorage.setItem('stampante',JSON.stringify(nuovo));
         return nuovo;
     });
+	
+	
+	opzioni.getCouchDbSyncString = function(){
+		return 'http://' + opzioni.server[2].valore + ':' + opzioni.server[3].valore;
+ 	};
+	
+	opzioni.getPythonPrinterString = function(){
+		return 'http://' + opzioni.server[0].valore + ':' + opzioni.server[1].valore;
+ 	};
+	
     return opzioni;
 })
 

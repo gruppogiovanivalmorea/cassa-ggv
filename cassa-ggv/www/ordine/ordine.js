@@ -1,6 +1,10 @@
 
 angular.module('GGVApp-ordine', [])
 
+    .service('ordine', ['menu', function (menu) {
+			return new Ordine(menu);
+    }])
+	
 	.service('vistaGestioneOrdine', function () {
 		this.viste = [{
 				nome: 'Tabella',
@@ -99,8 +103,8 @@ angular.module('GGVApp-ordine', [])
 
 	.controller(
 		'GGVApp-gestioneOrdineCorrenteController',
-		['$http', '$scope', 'ordine', 'vistaGestioneOrdine', 'finestraCliente', 'azioniOrdine',
-			function ($http, $scope, ordine, vistaGestioneOrdine, finestraCliente, azioniOrdine) {
+		['$scope', 'ordine', 'vistaGestioneOrdine', 'finestraCliente', 'azioniOrdine',
+			function ($scope, ordine, vistaGestioneOrdine, finestraCliente, azioniOrdine) {
 				$scope.ordine = ordine;
 				$scope.totaleOrdine = 0;
 				$scope.ultimoTotale = 0;
@@ -170,22 +174,24 @@ angular.module('GGVApp-ordine', [])
 
 
 				$scope.stampa = function () {
-					azioniOrdine.stampa(terminaOrdine);
+					if(confirm('Tan! Sicuro di stampare senza archiviare?'))
+						azioniOrdine.stampa(terminaOrdine);
 				};
 
 
 				$scope.archivia = function () {
-					azioniOrdine.archivia(terminaOrdine);
+					if(confirm('Tan! Sicuro di archiviare senza stampare?'))
+						azioniOrdine.archivia(terminaOrdine);
 				};
 
 				$scope.stampa_archivia = function () {
 					azioniOrdine.stampa(function () {
-						$scope.archivia(terminaOrdine);
+						azioniOrdine.archivia(terminaOrdine);
 					});
 				};
 
 				$scope.cancella = function () {
-					ordine.reset();
+					$scope.ordine.reset();
 				};
 
 				$scope.$on('$destroy', function () {

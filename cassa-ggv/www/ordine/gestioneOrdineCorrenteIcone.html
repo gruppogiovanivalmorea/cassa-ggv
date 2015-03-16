@@ -16,19 +16,21 @@
         <!-- tuttiGruppi -->
         <div role="tabpanel" class="tab-pane active" id="tuttiGruppi">
             <div style="display: inline" ng-repeat="(gruppo, elencoProdotti) in menu">
-                <button ng-class="gruppo" 
+                <button ng-class="gruppo"
                         style="margin: 5px; width: 120px; height: 120px; white-space: normal;"
-                        ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+                        ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default"
                         ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
                     {{prodotto.nome}}<br />{{prodotto.prezzo| currency}}
                 </button>
             </div>
-        </div>          
+        </div>
 
         <!-- ripetizione gruppi -->
         <div role="tabpanel" class="tab-pane"
              ng-repeat="(gruppo, elencoProdotti) in menu" id="{{gruppo}}">
-            <button ng-repeat='prodotto in elencoProdotti' class="btn btn-lg btn-default" 
+            <button ng-class="gruppo" class="btn btn-lg btn-default"
+                    style="margin: 5px; width: 120px; height: 120px; white-space: normal;"
+                    ng-repeat='prodotto in elencoProdotti'
                     ng-click="ordine.vocePerNome(prodotto.nome).inc();" >
                 {{prodotto.nome}}
             </button>
@@ -38,16 +40,16 @@
 
 <hr />
 
-<div style="padding: 10px;"> 
+<div style="padding: 10px;">
     <div>
         <div style="float: left; margin-right: 40px;">
             <h2>Totale ultimo ordine: {{ultimoTotale| currency}}</h2>
             <h2>Totale: {{totaleOrdine| currency}}</h2>
-            <h3>Asporto: <input type="checkbox" /></h3>
+            <h3>Asporto: <input ng-model="ordine.asporto" type="checkbox" /></h3>
         </div>
         <div>
             <azioni-ordine></azioni-ordine>
-        </div>        
+        </div>
         <div style="clear: both;"></div>
     </div>
 

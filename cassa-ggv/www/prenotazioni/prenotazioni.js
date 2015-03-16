@@ -1,10 +1,11 @@
 angular.module('GGVApp-prenotazioni', [])
 
 	// TODO remote server via opzioni
-	.service('prenotazioni', function () {
+	.service('prenotazioni', ['opzioni', function (opzioni) {
 
 		var db = new PouchDB('prenotazioni');
-		db.replicate.to('http://localhost:5984/prenotazioni', {live: true});
+	console.log(opzioni.getCouchDbSyncString());
+		db.replicate.to(opzioni.getCouchDbSyncString()+'prenotazioni', {live: true});
 
 		this.prenotazioni = function () {
 			return db.allDocs({include_docs: true});
@@ -20,7 +21,7 @@ angular.module('GGVApp-prenotazioni', [])
 
 		return this;
 
-	})
+	}])
 
 	.controller('GGVApp-PrenotazioniModalController',
 		['$scope', '$http', 'prenotazioni', 'opzioni', 
@@ -70,7 +71,7 @@ angular.module('GGVApp-prenotazioni', [])
 						prenotazioni: dati
 					};
 					// TODO sistemare indirizzi
-					$http.post('/stampaPrenotazioni',r).then(
+					$http.post(opzioni.getPythonPrinterString()+'/stampaPrenotazioni',r).then(
 						function(risp){
 							console.log(risp);
 						},

@@ -14,10 +14,6 @@ angular.module('GGVApp', [
             return JSON.parse(m);
         })
 
-        .service('ordine', ['menu', function (menu) {
-                return new Ordine(menu);
-            }])
-
 
         .controller(
             "GGVAppController", 

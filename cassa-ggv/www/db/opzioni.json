@@ -1,7 +1,7 @@
 var _opzioni = {
     "server": [
-        {nome:"nodejsServerHost", valore:"localhost", inMenu:true, type:'text'},
-        {nome:"nodejsServerPort", valore:1337, inMenu:true, type:'number'},
+        {nome:"pythonPrinterHost", valore:"localhost", inMenu:true, type:'text'},
+        {nome:"pythonPrinterPort", valore:8000, inMenu:true, type:'number'},
         {nome:"couchDBHost", valore:"localhost", inMenu:true, type:'text'},
         {nome:"couchDBPort", valore:5984, inMenu:true, type:'number'},
     ],

@@ -19,7 +19,7 @@ angular.module('GGVApp-ordine')
 				//var db = new PouchDB('http://localhost:5984/ordini');
 				var db = new PouchDB('ordini');
 				
-				db.replicate.to('http://localhost:5984/ordini', {live: true})
+				db.replicate.to(opzioni.getCouchDbSyncString() + '/ordini', {live: true})
 					.on('change', function (info) {
 						onC();
 						errori = false;
@@ -54,14 +54,15 @@ angular.module('GGVApp-ordine')
 						'stampante': opzioni.stampante,
 						"ordine": ordinePerStampa
 					};
-					$http.post('./stampa', r)
+					alert(opzioni.getPythonPrinterString());
+					$http.post(opzioni.getPythonPrinterString()+'/stampa', r)
 						.success(onSuccess)
 						.error(function (data, status, headers, config) {
 							if (status === 0) {
 								alert('Impossibile comunicare con il server di stampa');
 							}
 							else {
-								alert(data);
+								alert([data, status, headers, config]);
 							}
 							console.log([data, status, headers, config]);
 						});
@@ -76,6 +77,7 @@ angular.module('GGVApp-ordine')
 
 					var onError = function (data, status, headers, config) {
 						console.log([data, status, headers, config]);
+						alert([data, status, headers, config]);
 						localStorage.setItem('ggv-log', [data, status, headers, config]);
 						alert("C'è stato un problema nell'archiviazione dei dati.\n" +
 							"Meglio se chiami il tan (ciups) e intanto cambi pc!");
@@ -94,7 +96,7 @@ angular.module('GGVApp-ordine')
 						console.log(err);
 						localStorage.setItem('ggv-log', err);
 						alert("C'è stato un problema nell'archiviazione dei dati.\n" +
-							"Meglio se chiami il tan (ciups) e intanto cambi pc!");
+							"Meglio se chiami il tan (ciups) e intanto cambi pc!\n"+err);
 					});
 
 					/*$http.post('http://localhost:5984/ordini', dati)
