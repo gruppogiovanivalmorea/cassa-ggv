@@ -37,13 +37,16 @@ angular.module('GGVApp-ordine', [])
 			this.attiva = false; // TODO prendere valore da opzioni o localstorage
 			this.finestraOrdineAttuale = null;
 			this.childRootScope = null;
-
+            this.totaleOrdine = 0;
 			this.ordineFiltrato = null;
 
 			this.apriFinestraCliente = function () {
 				if (this.isAttiva())
 					return;
 				window.ordine = this.ordineFiltrato;
+                window.totale_ordine = this.totaleOrdine;
+                console.log(this.totaleOrdine);
+                console.log(window);
 				this.finestraOrdineAttuale = window.open(
 					'cliente/cliente.html',
 					'Ordine',
@@ -67,6 +70,7 @@ angular.module('GGVApp-ordine', [])
 					return;
 
 				window.ordine = this.ordineFiltrato;
+                window.totale_ordine = this.totaleOrdine;
 				this.finestraOrdineAttuale.location.reload();
 
 				/*
@@ -117,6 +121,7 @@ angular.module('GGVApp-ordine', [])
 					$scope.$watch('ordine.voci[' + v + '].qta', function (n, o) {
 						$scope.filtraOrdine();
 						finestraCliente.ordineFiltrato = $scope.ordineFiltrato;
+                        finestraCliente.totaleOrdine = $scope.totaleOrdine; 
 						finestraCliente.aggiorna();
 					}, true);
 				}

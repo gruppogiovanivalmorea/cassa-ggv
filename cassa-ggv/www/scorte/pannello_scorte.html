@@ -1,5 +1,24 @@
-<ul>
-    <li ng-repeat="scorta in scorte">
-        {{scorta.doc.prodotto}}
-    </li>
-</ul>
+<div class="panel-group" id="accordionScorte">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a href="javascript:;" data-toggle="collapse" data-parent="#accordionScorte" 
+                   data-target="#collapseScorte">
+                    Scorte
+                </a>
+            </h4>
+        </div>
+        <div id="collapseScorte" class="panel-collapse collapse out">
+            <div class="panel-body">
+                <div ng-controller="GGVApp-ScorteModalController">
+                    <ul>
+                        <li ng-repeat="scorta in scorte">
+                            {{scorta.doc.prodotto}} {{scorta.doc.qta}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

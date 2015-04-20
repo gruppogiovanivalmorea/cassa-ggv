@@ -30,14 +30,14 @@
 
         <script type="text/javascript" src="./cliente.js" ></script>
 
-        <h1 class="sub-header" align="center">Totale: {{totale|currency}}</h1>
+        <h2 class="sub-header">Ordine corrente, totale: {{totale_ordine|currency}}</h2>
         <div>
             <div ng-repeat="(gruppo, voci) in ordine" class="table-responsive">
-                <h3 align="center">{{gruppo}}</h3>
+                <h3>{{gruppo}}</h3>
                 <table class="table table-striped">
                     <thead> 
                         <tr>
-                            <th>Quantitá</th>
+                            <th>Qta</th>
                             <th>Nome</th>
                             <th>Prezzo unitario</th>
                             <th>Prezzo</th>
@@ -46,10 +46,10 @@
 
                     <tbody>
                         <tr ng-repeat="voce in voci"> 
-                            <td style="width:10%">{{voce.qta}}</td>
-                            <td style="width:60%">{{voce.nome}}</td>
-                            <td style="width:15%">{{voce.prezzounitario|currency}}</td>
-                            <td style="width:15%">{{voce.prezzototale|currency}}</td>
+                            <td>{{voce.qta}}</td>
+                            <td>{{voce.nome}}</td>
+                            <td>{{voce.prezzounitario|currency}}</td>
+                            <td>{{voce.prezzototale|currency}}</td>
                         </tr>
                     </tbody>
                 </table>

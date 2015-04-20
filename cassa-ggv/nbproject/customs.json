@@ -2,11 +2,13 @@
     "elements": {
         "modal-opzioni": {},
         "modal-scorte": {},
+        "modal-messaggi": {},
         "ggv-nav": {},
         "pannello-scorte": {},
         "modal-prenotazioni": {},
         "azioni-ordine": {},
-        "pannello-scorte<": {}
+        "pannello-scorte<": {},
+        "pannello-messaggi": {}
     },
     "attributes": {}
 }

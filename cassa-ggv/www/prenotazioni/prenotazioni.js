@@ -4,7 +4,6 @@ angular.module('GGVApp-prenotazioni', [])
 	.service('prenotazioni', ['opzioni', function (opzioni) {
 
 		var db = new PouchDB('prenotazioni');
-	console.log(opzioni.getCouchDbSyncString());
 		db.replicate.to(opzioni.getCouchDbSyncString()+'prenotazioni', {live: true});
 
 		this.prenotazioni = function () {

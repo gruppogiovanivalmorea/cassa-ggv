@@ -5,14 +5,11 @@ angular.module('GGVApp-scorte', [])
 	// TODO remote server via opzioni
 	.service('scorte', function (opzioni) {
 
-		var db = new PouchDB(opzioni.getCouchDbSyncString()+'scorte');
+		var db = new PouchDB(opzioni.getCouchDbSyncString() + 'scorte');
 		//db.replicate.to('http://localhost:5984/scorte', {live: true});
 
-		this.changes = db.changes({
-			since: 20,
-			live: true
-		});
-		
+		this.changes = db.changes({live: true});
+
 		this.scorte = function () {
 			return db.allDocs({include_docs: true});
 		};
@@ -28,65 +25,107 @@ angular.module('GGVApp-scorte', [])
 		return this;
 
 	})
-	
-	.service('scorteEffettive', function (scorte) {
+
+	.service('scorteEffettive', function (opzioni, scorte) {
+		var db = new PouchDB(opzioni.getCouchDbSyncString() + 'ordini/_design/scorte/_view/nome_timestamp');
 		
+		this.get = function (scorta) {
+			console.log(scorta);
+			
+			return db.allDocs({
+				key:scorta.prodotto,
+				include_docs: true,
+				startkey: [scorta.prodotto, scorta.timestap],
+				endkey: [scorta.nome, 9999999999999999999999999999999],
+				group_level: 1});
+		};
+		
+		return this;
 	})
 
 	.controller('GGVApp-ScorteModalController',
-		['$scope', 'scorte', 'menu',
-			function ($scope, scorte, menu) {
+		['$scope', 'scorte', 'scorteEffettive', 'menu',
+			function ($scope, scorte, scorteEffettive, menu) {
 				$scope.prodotti = [''];
-				for(g in menu){
-					for(p in menu[g]){
+				for (g in menu) {
+					for (p in menu[g]) {
+						console.log(menu[g][p].nome);
 						$scope.prodotti.push(menu[g][p].nome);
 					}
 				}
-				
-				$scope.nuova = {prodotto: '', qta: '', timestamp: ''};
+
+				$scope.nuovaScorta = {prodotto: '', qta: '', timestamp: ''};
 
 				$scope.scorte;
-				
+				$scope.scorteEffettive;
+
 				function aggiornaScorte() {
 					scorte.scorte().then(function (p) {
-						$scope.$apply(function(){
+						$scope.$apply(function () {
 							$scope.scorte = p.rows;
 						});
 					});
-				};
-				
+				}
+				;
+
 				aggiornaScorte();
 
-				$scope.aggiungi = function () {
-					if ($scope.nuova.prodotto === '' || $scope.nuova.qta === '') {
-						alert('Tan metti almeno il nome e il numero!');
+				$scope.aggiungiScorta = function () {
+					if ($scope.nuovaScorta.prodotto === '' || $scope.nuovaScorta.qta === '') {
+						alert('Tan metti almeno il nome e il numero!!');
 						return;
 					}
-					for(s in $scope.scorte){
-						if($scope.scorte[s].doc.prodotto === $scope.nuova.prodotto){
+					for (s in $scope.scorte) {
+						if ($scope.scorte[s].doc.prodotto === $scope.nuovaScorta.prodotto) {
 							alert('Tan c\'è già una scorta per questo prodotto! (Toglila...)');
 							return;
 						}
 					}
-					$scope.nuova.timestamp = Date.now();
-					scorte.aggiungi($scope.nuova).then(aggiornaScorte);
-					$scope.nuova = {prodotto: '', qta: '', timestamp: ''};
+					$scope.nuovaScorta.timestamp = Date.now();
+					scorte.aggiungi($scope.nuovaScorta).then(aggiornaScorte);
+					$scope.nuovaScorta = {prodotto: '', qta: '', timestamp: ''};
 				};
 
 				$scope.elimina = function (scorta) {
 					scorte.elimina(scorta).then(aggiornaScorte);
 				};
-				
-				
-				scorte.changes.on('change', aggiornaScorte );
-				scorte.changes.on('create', aggiornaScorte );
-				scorte.changes.on('delete', aggiornaScorte );
-				
-				function aggiornaScorteEffetive(){
-					for(s in $scope.scorte){
-						
+
+
+				function aggiornaScorteTutto(){
+					aggiornaScorte();
+					aggiornaScorteEffetive();
+				}
+
+				function aggiornaScortaEffetiva(scorta){
+					scorteEffettive.get(scorta).then(function(scortaEffettiva){
+						console.log(scortaEffettiva);
+						return;
+						$scope.scorteEffettive[s] = {
+							'nome':$scope.scorte[s].prodotto,
+							'effettive':scortaEffettiva.value
+						};
+						$scope.$apply(function () {
+							$scope.scorte = p.rows;
+						});
+					});
+				}
+
+				function aggiornaScorteEffetive() {
+					$scope.scorteEffettive = [];
+					for (var s in $scope.scorte) {
+						aggiornaScortaEffetiva($scope.scorte[s].doc);
 					}
 				}
+				
+				function aggiungiScorta(scorta){
+					console.log("aggiungo");
+					console.log(scorta);
+					$scope.scorte.push(scorta);
+				};
+				
+				//scorte.changes.on('change', aggiornaScorte);
+				scorte.changes.on('create', aggiungiScorta);
+				scorte.changes.on('delete', aggiornaScorte);
 
 				
 			}])
@@ -99,7 +138,7 @@ angular.module('GGVApp-scorte', [])
 			templateUrl: 'scorte/modal_scorte.html'
 		};
 	})
-	
+
 	.directive('pannelloScorte', function () {
 		return {
 			restrict: 'E',

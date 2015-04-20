@@ -1,13 +1,13 @@
-<div id="modalScorte" class="modal fade">
+<div id="modalMessaggi" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Scorte</h4>
+                <h4 class="modal-title">Messaggi</h4>
             </div>
             <div class="modal-body">
 
-                Nuova scorta
+                Nuovo messaggio
                 <!--
                 <select ng-model="nuova.pasto">
                     <option value="pranzo domenica">Pranzo Domenica</option>
@@ -16,13 +16,13 @@
                 </select>
                 -->
                 <br/>
-                <select ng-model="nuovaScorta.prodotto"
+                <select ng-model="nuova.prodotto"
                         ng-options="prodotto for prodotto in prodotti">
                 </select>
                 <input type="number" placeholder="numero" style="width:100px;" 
-                       ng-model="nuovaScorta.qta" />
+                       ng-model="nuova.qta" />
 
-                <button type="button" class="btn btn-default" ng-click="aggiungiScorta()">
+                <button type="button" class="btn btn-default" ng-click="aggiungi()">
                     Aggiungi
                 </button>
 

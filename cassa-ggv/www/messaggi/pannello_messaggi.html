@@ -1,0 +1,28 @@
+<div class="panel-group" id="accordionMessaggi">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a href="javascript:;" data-toggle="collapse" 
+                   data-parent="#accordionMessaggi" data-target="#collapseMessaggi">
+                    Messaggi
+                </a>
+            </h4>
+        </div>
+        <div id="collapseMessaggi" class="panel-collapse collapse out">
+            <div class="panel-body">
+                <div ng-controller="GGVApp-MessaggiController">
+                    <label>Mittente:</label><input type="text" ng-model="nuovoMessaggio.mittente" />
+                    <label>Testo:</label><input type="text" ng-model="nuovoMessaggio.mes" />
+                    <button ng-click="aggiungiMessaggio()">Crea</button>
+                    <!--<button type="button" ng-click="svuotaMessaggi()">Svuota</button>-->
+                    <br/>
+                    <div ng-repeat="messaggio in messaggi">
+                        <a href="#" ng-click="elimina(messaggio.doc)"> Elimina </a>
+                        {{messaggio.doc.timestamp| date:'HH:mm' }} <b>{{messaggio.doc.mittente}}</b> {{messaggio.doc.mes}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

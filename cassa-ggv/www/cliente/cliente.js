@@ -9,7 +9,7 @@ angular.module('GGVAppCliente', [])
 				//    nomeGruppo -> [ {ordine di gruppo}, ... ] ]
 				
 				$scope.ordine = ordine;
-
+                $scope.totale = window.opener.totale_ordine;
 /*
 
 				$scope.$watch('parentOrdine', function (n,o){
