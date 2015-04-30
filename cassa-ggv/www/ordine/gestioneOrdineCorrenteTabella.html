@@ -16,60 +16,86 @@
 </ul>
 -->
 
-        <div style="float:left;" ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
-           <div style="min-width:200px;min-height:300px;float:left; margin-right:30px;">
-            <h3>{{gruppo}}</h3>
-             <table style="" class="table table-striped">
-                  <thead>
-                   <tr>
-                      <th>Nome</th>
-                      <th>Qta</th>
-                      <th>Prezzo unitario</th>
-                      <th>Agg./Rim</th>
-                    </tr>
-                  </thead>
 
-                  <tbody>
-                    <tr ng-repeat="prodotto in elencoProdotti">
-                     <td>{{prodotto.nome}}</td>
-                     <td>{{ordine.voci[prodotto.nome].qta}}</td>
-                     <td>{{prodotto.prezzo|currency}}</td>
-                    <td><button ng-click='ordine.voci[prodotto.nome].inc();'> +  </button>
-                    <button ng-click='ordine.voci[prodotto.nome].dec();'> -  </button>
+<!--  -->
+
+<style>
+    .selezionato{
+        color: red;
+    }
+</style>
+ 
+<div style="display: inline" ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
+    <div style="width: 30%; min-width:200px;min-height:300px;float:left; margin-right:30px;">
+        <h4 style="text-align: center; text-transform: uppercase"> {{gruppo}}</h4>
+        <table style="" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Qta</th>
+                    <th>Prezzo</th>
+                    <th>Agg./Rim</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="prodotto in elencoProdotti" 
+                    ng-class="{'selezionato': ordine.vocePerNome(prodotto.nome).qta>0}">
+                    <td>{{prodotto.nome}}</td>
+                    <td>{{ordine.vocePerNome(prodotto.nome).qta}}</td>
+                    <td>{{prodotto.prezzo|currency}}</td>
+                    <td><button ng-click='ordine.vocePerNome(prodotto.nome).inc();'> +  </button>
+                        <button ng-click='ordine.vocePerNome(prodotto.nome).dec();'> -  </button>
                     </td>
-                    </tr>
-                  </tbody>
-            </table>
-            </div>
-        </div>  
-
-    <div id="ordine_corrente">
-    
-    <h2 class="sub-header">Ordine corrente</h2>
-    <div ng-controller="GGVApp-gestioneOrdineCorrenteController">
-      <div ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
-        <h3>{{gruppo}}</h3>
-          <table class="table table-striped">
-              <thead>
-               <tr>
-                  <th>Qta</th>
-                  <th>Nome</th>
-                  <th>Prezzo unitario</th>
                 </tr>
-              </thead>
-
-              <tbody>
-                <tr ng-repeat="prodotto in elencoProdotti">
-                  <td>{{ordine.voci[prodotto.nome].qta}}</td>
-                  <td>{{prodotto.nome}}</td>
-                  <td>{{prodotto.prezzo|currency}}</td>
-                </tr>
-              </tbody>
-          </table>
-      </div>    
-      <h1>Totale: {{totale_ordine|currency}}</h1>
+            </tbody>
+        </table>
     </div>
-  </div>
-               
-        
+</div>  
+
+
+
+
+<!--
+ <div id="ordine_corrente">
+<h2 class="sub-header">Ordine corrente</h2>
+<div ng-controller="GGVApp-gestioneOrdineCorrenteController">
+  <div ng-repeat="(gruppo, elencoProdotti) in menu" class="table-responsive">
+    <h3>{{gruppo}}</h3>
+      <table class="table table-striped">
+          <thead>
+           <tr>
+              <th>Qta</th>
+              <th>Nome</th>
+              <th>Prezzo unitario</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr ng-repeat="prodotto in elencoProdotti">
+              <td>{{ordine.voci[prodotto.nome].qta}}</td>
+              <td>{{prodotto.nome}}</td>
+              <td>{{prodotto.prezzo|currency}}</td>
+            </tr>
+          </tbody>
+      </table>
+  </div>    
+  <h1>Totale: {{totale_ordine|currency}}</h1>
+</div>
+</div>
+-->       
+
+<br style="clear:both;"/>
+
+<div>
+    <div>
+        <h2>Totale ultimo ordine: {{ultimoTotale| currency}}</h2>
+        <h2>Totale: {{totaleOrdine| currency}}</h2>
+        <h3>Asporto: <input ng-model="ordine.asporto" type="checkbox" /></h3>
+    </div>
+    <div>
+        <azioni-ordine></azioni-ordine>
+    </div>
+    <div style="clear: both;"></div>
+</div>
 

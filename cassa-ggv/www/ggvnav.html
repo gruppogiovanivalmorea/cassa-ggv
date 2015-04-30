@@ -10,27 +10,35 @@
             <!--<a href="#">GGV Keis</a>-->
         </div>
         <div id="navbar" style="position:relative;" class="navbar-collapse collapse">
-                <!-- Indicatore stato sincronizzazione -->
-                <img style="float: left; height:40px; margin-right: 20px; position: absolute; top:50%; margin-top: -20px;" 
-                     ng-if="syncAttivo"  src="img/sync-ok-white.png" />
-                <img style="float: left; height:40px; margin-right: 20px; position: absolute; top:50%; margin-top: -20px;" 
-                     ng-if="!syncAttivo" src="img/sync-err-white.png" />
-
-                <!-- Selezione stampante --> 
-                <select ng-controller="GGVApp-OpzioniController"
-                        ng-model="opzioni.stampante" class="form-control" 
-                        ng-options="s.nomeMenu for s in opzioni.stampanti"
-                        style="width: 100px; float: left; position: absolute; 
-                        top: 50%; height: 30px; margin-top: -15px; left: 50px;">
-                </select>
-
+            <ul class="nav navbar-nav navbar-left">
+                 <!-- Indicatore stato sincronizzazione -->
+                <li>
+                    <!-- style="float: left; height:40px; margin-right: 20px; position: absolute; top:50%; margin-top: -20px;" -->
+                    <img height="40px" ng-if="syncAttivo"  src="img/sync-ok-white.png" />
+                    <img height="40px" ng-if="!syncAttivo" src="img/sync-err-white.png" />
+                </li>
+                <!-- Selezione stampante -->
+                <li>
+                    <select ng-controller="GGVApp-OpzioniController"
+                            ng-model="opzioni.stampante" class="form-control" 
+                            ng-options="s.nomeMenu for s in opzioni.stampanti"
+                            style="margin-left: 10px">
+                     <!-- style="width: 100px; float: left; position: absolute
+                            top: 50%; height: 30px; margin-top: -15px; left: 50px;" -->   
+                    </select>
+                </li>
 
                 <!-- Toogle Switch apertura/chisura finestra cliente -->
-                <a ng-controller="GGVApp-ParentFinestraClienteController"
-                   href="#" ng-click="switch()"
-                   style="float: left; position: absolute; top:50%; margin-top: -15px; left: 160px;">
-                    <img style="height:30px;" ng-src="{{imgsrc}}" />
-                </a> 
+                <li>
+                    <a ng-controller="GGVApp-ParentFinestraClienteController"
+                       href="#" ng-click="switch()"
+                       >
+                        <!-- style="float: left; position: absolute; top:50%; margin-top: -15px; left: 160px;" -->
+                        <img style="height:30px;" ng-src="{{imgsrc}}" />
+                    </a>
+                </li>
+            </ul>
+
 
             <ul class="nav navbar-nav navbar-right">
                 <!-- Bottone modal opzioni -->
