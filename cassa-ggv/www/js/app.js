@@ -2,7 +2,7 @@ angular.module('GGVApp', [
     'GGVApp-ordine',
     'GGVApp-opzioni',
 	'GGVApp-prenotazioni',
-	'GGVApp-scorte',
+	//'GGVApp-scorte',
 	'GGVApp-messaggi'
             //  'ngTouch',
 //    'ui.bootstrap'

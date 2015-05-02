@@ -38,6 +38,14 @@ angular.module('GGVApp-opzioni',[])
 		return 'http://' + opzioni.server[0].valore + ':' + opzioni.server[1].valore;
  	};
 	
+	opzioni.getServer = function(nome){
+		for(voce in opzioni.server){
+			if(opzioni.server[voce].nome === nome) 
+				return opzioni.server[voce];
+		}
+		return null;
+	};
+	
     return opzioni;
 })
 
@@ -50,7 +58,7 @@ angular.module('GGVApp-opzioni',[])
 .controller('GGVApp-OpzioniModalController', 
             ['$http','$scope','opzioni',function ($http, $scope, opzioni) {
 
-                $scope.opzioni = opzioni
+                $scope.opzioni = opzioni;
                 $scope.opzioni_modal = angular.copy($scope.opzioni);
 
                 $scope.ok = function () {
@@ -108,6 +116,10 @@ angular.module('GGVApp-opzioni',[])
                 $scope.rimuoviStampante = function(index)  {
                     $scope.opzioni_modal.stampanti.splice(index , 1);
                 }
+
+				$scope.resetOpzioni = function(){
+					$scope.opzioni_modal = angular.copy(_opzioni);
+				}
 
             }])
 

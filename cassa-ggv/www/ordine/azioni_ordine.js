@@ -54,7 +54,7 @@ angular.module('GGVApp-ordine')
 						'stampante': opzioni.stampante,
 						"ordine": ordinePerStampa
 					};
-					alert(opzioni.getPythonPrinterString());
+					//alert(opzioni.getPythonPrinterString());
 					$http.post(opzioni.getPythonPrinterString()+'/stampa', r)
 						.success(onSuccess)
 						.error(function (data, status, headers, config) {

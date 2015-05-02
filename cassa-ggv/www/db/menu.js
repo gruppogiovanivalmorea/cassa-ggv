@@ -141,7 +141,7 @@ var _menu = {
 		},
 		{
 			nome: "Panino salamella",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 3
 		},
 		{

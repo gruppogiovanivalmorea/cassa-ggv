@@ -4,6 +4,8 @@ var _opzioni = {
         {nome:"pythonPrinterPort", valore:8000, inMenu:true, type:'number'},
         {nome:"couchDBHost", valore:"localhost", inMenu:true, type:'text'},
         {nome:"couchDBPort", valore:5984, inMenu:true, type:'number'},
+        {nome:"default-doppio-schermo", valore:false, type:'checkbox'},
+        
     ],
     "stampanti": [
         {"nomeMenu" : "usb-2", "tipo": "usb", "nome":"/dev/usb/lp2"},

@@ -33,8 +33,7 @@ angular.module('GGVApp-ordine', [])
 	})
 
 
-	.service('finestraCliente', ['ordine', function () {
-			this.attiva = false; // TODO prendere valore da opzioni o localstorage
+	.service('finestraCliente', ['ordine','opzioni', function (ordine, opzioni) {
 			this.finestraOrdineAttuale = null;
 			this.childRootScope = null;
             this.totaleOrdine = 0;
@@ -45,13 +44,14 @@ angular.module('GGVApp-ordine', [])
 					return;
 				window.ordine = this.ordineFiltrato;
                 window.totale_ordine = this.totaleOrdine;
-                console.log(this.totaleOrdine);
-                console.log(window);
+                //console.log(this.totaleOrdine);
+                //console.log(window);
 				this.finestraOrdineAttuale = window.open(
 					'cliente/cliente.html',
 					'Ordine',
 					'fullscreen,dialog'
-					);
+				);
+				
 			};
 
 			this.chiudiFinestraCliente = function () {
@@ -62,6 +62,7 @@ angular.module('GGVApp-ordine', [])
 			}
 
 			this.isAttiva = function () {
+				console.log(this.finestraOrdineAttuale !== null && !this.finestraOrdineAttuale.closed);
 				return this.finestraOrdineAttuale !== null && !this.finestraOrdineAttuale.closed;
 			};
 
@@ -93,8 +94,6 @@ angular.module('GGVApp-ordine', [])
 				//this.finestraOrdineAttuale.location.reload();
 				//	console.log(this.finestraOrdineAttuale.aggiorna()); // TODO sistemare aggiornamento
 			};
-
-
 
 			return this;
 		}])
@@ -216,12 +215,15 @@ angular.module('GGVApp-ordine', [])
 
 	.controller(
 		"GGVApp-ParentFinestraClienteController",
-		['$scope', '$interval', 'ordine', 'finestraCliente', function ($scope, $interval, ordine, finestraCliente) {
-				//$scope.finestraCliente = finestraCliente; // TODO prendere da opzioni o localstorage
+		['$scope', '$interval', 'ordine', 'finestraCliente','opzioni'
+			, function ($scope, $interval, ordine, finestraCliente, opzioni) {
 				$scope.ordine = ordine;
 
-				$scope.attiva = false;
-
+				$scope.attiva = opzioni.getServer("default-doppio-schermo").valore;
+				$scope.imgsrc = $scope.attiva 
+					? "img/finestra-cliente-attiva.png"
+					: "img/finestra-cliente-inattiva.png";
+				
 				$scope.interval;
 				
 				$scope.aggiornaIcona = function () {
@@ -230,8 +232,15 @@ angular.module('GGVApp-ordine', [])
 						? "img/finestra-cliente-attiva.png"
 						: "img/finestra-cliente-inattiva.png";
 				};
+				
+				if($scope.attiva){
+					finestraCliente.apriFinestraCliente();
+					$scope.interval = $interval($scope.aggiornaIcona, 1000);
+				}
+				
 				$scope.aggiornaIcona();
-
+				
+				
 				$scope.switch = function () {
 					$scope.attiva = !$scope.attiva;
 					$scope.imgsrc = $scope.attiva 
@@ -245,8 +254,8 @@ angular.module('GGVApp-ordine', [])
 						finestraCliente.chiudiFinestraCliente();
 						$interval.cancel($scope.interval);
 					}
-				}
-
+				};
+			
 			}])
 
 

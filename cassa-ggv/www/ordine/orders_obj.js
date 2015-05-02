@@ -19,7 +19,7 @@ function Ordine(menu) {
         if(!menu.hasOwnProperty(gruppo)) continue;
         for(var i in menu[gruppo]){
         //    this.voci[menu[gruppo][i].nome] =  // old
-            this.voci.push(new voceOrdine(menu[gruppo][i].nome,gruppo,menu[gruppo][i].prezzo));
+            this.voci.push(new voceOrdine(menu[gruppo][i].nome,menu[gruppo][i].gruppo,menu[gruppo][i].prezzo));
         }
     }
     
