@@ -44,8 +44,6 @@ angular.module('GGVApp-ordine', [])
 					return;
 				window.ordine = this.ordineFiltrato;
                 window.totale_ordine = this.totaleOrdine;
-                //console.log(this.totaleOrdine);
-                //console.log(window);
 				this.finestraOrdineAttuale = window.open(
 					'cliente/cliente.html',
 					'Ordine',
@@ -57,12 +55,10 @@ angular.module('GGVApp-ordine', [])
 			this.chiudiFinestraCliente = function () {
 				if (this.finestraOrdineAttuale === null)
 					return;
-				console.log('chiudo');
 				this.finestraOrdineAttuale.close();
 			}
 
 			this.isAttiva = function () {
-				console.log(this.finestraOrdineAttuale !== null && !this.finestraOrdineAttuale.closed);
 				return this.finestraOrdineAttuale !== null && !this.finestraOrdineAttuale.closed;
 			};
 
@@ -232,6 +228,7 @@ angular.module('GGVApp-ordine', [])
 						? "img/finestra-cliente-attiva.png"
 						: "img/finestra-cliente-inattiva.png";
 				};
+				
 				
 				if($scope.attiva){
 					finestraCliente.apriFinestraCliente();
