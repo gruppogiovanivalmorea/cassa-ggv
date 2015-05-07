@@ -19,7 +19,12 @@ function Ordine(menu) {
         if(!menu.hasOwnProperty(gruppo)) continue;
         for(var i in menu[gruppo]){
         //    this.voci[menu[gruppo][i].nome] =  // old
-            this.voci.push(new voceOrdine(menu[gruppo][i].nome,menu[gruppo][i].gruppo,menu[gruppo][i].prezzo));
+            this.voci.push(new voceOrdine(
+                menu[gruppo][i].nome,
+                gruppo,
+                menu[gruppo][i].prezzo,
+                menu[gruppo][i].gruppo
+            ));
         }
     }
     
@@ -90,11 +95,12 @@ function Ordine(menu) {
     
 };
 
-function voceOrdine(prodotto, gruppo, prezzo){
+function voceOrdine(prodotto, gruppo, prezzo, gruppoStampato){
     //console.log(prodotto, gruppo);
     this.qta = 0;
     this.nome = prodotto; 
     this.gruppo = gruppo;
+    this.gruppoStampato = gruppoStampato;
     this.prezzo = prezzo;
     this.dividiStampa = false;
     this.note = "";

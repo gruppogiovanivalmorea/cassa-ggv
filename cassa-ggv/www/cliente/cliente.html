@@ -35,27 +35,29 @@
 
         <h1 class="sub-header" align="center">Totale: {{totale|currency}}</h1>
         <div>
-            <div ng-repeat="(gruppo, voci) in ordine" class="table-responsive">
-                <h3 align="center">{{gruppo}}</h3>
-                <table class="table table-striped">
-                    <thead> 
-                        <tr>
-                            <th>Quantitá</th>
-                            <th>Nome</th>
-                            <th>Prezzo unitario</th>
-                            <th>Prezzo</th>
-                        </tr>
-                    </thead>
+            <div style="display: inline;" ng-repeat="(gruppo, voci) in ordine" class="table-responsive">
+		 <div style="width: 30%; min-width:200px;min-height:300px;float:left; margin-right:30px;">
+                	<h3 align="center">{{gruppo}}</h3>
+	                <table class="table table-striped">
+        	            <thead> 
+                	        <tr>
+                        	    <th>Quantità</th>
+               		            <th>Nome</th>
+                            	    <th>Prezzo unitario</th>
+                             	    <th>Prezzo</th>
+                        	</tr>
+                    	    </thead>
 
                     <tbody>
                         <tr ng-repeat="voce in voci"> 
-                            <td style="width:10%">{{voce.qta}}</td>
+                            <td style="width:5%">{{voce.qta}}</td>
                             <td style="width:60%">{{voce.nome}}</td>
                             <td style="width:15%">{{voce.prezzounitario|currency}}</td>
                             <td style="width:15%">{{voce.prezzototale|currency}}</td>
                         </tr>
                     </tbody>
                 </table>
+		</div>
             </div>    
             <h1></h1>
         </div>
