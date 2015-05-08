@@ -129,6 +129,11 @@ var _menu = {
 			gruppo: "secondi",
 			prezzo: 2
 		},
+        {
+			nome: "Pollo",
+			gruppo: "secondi",
+			prezzo: 4
+		},
 		{
 			nome: "Tomino + verdure",
 			gruppo: "secondi",
