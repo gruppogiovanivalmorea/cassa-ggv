@@ -121,7 +121,7 @@ var _menu = {
 		},
         {
 			nome: "Roast beef",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 4
 		},
         {
@@ -136,22 +136,22 @@ var _menu = {
 		},
         {
 			nome: "Patate fritte",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 3
 		},
         {
 			nome: "Fagioli",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 2
 		},
 		{
 			nome: "Verdure grigliate",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 2.5
 		},
         {
 			nome: "Fantainsalata",
-			gruppo: "secondi",
+			gruppo: "secondi veloci",
 			prezzo: 3
 		},
 	]
