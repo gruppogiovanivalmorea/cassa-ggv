@@ -89,7 +89,7 @@ angular.module('GGVApp-ordine')
 					promise.then(function (resp) {
 						$rootScope.$apply(onSuccess);
 						if(errori){
-							location.reload();
+						//	location.reload();
 						}
 					//	console.log(resp);
 					}, function (err) {

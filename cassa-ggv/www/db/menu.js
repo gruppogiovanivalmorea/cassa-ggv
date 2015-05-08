@@ -26,7 +26,7 @@ var _menu = {
 			prezzo: 3.5
 		},
 		{
-			nome: "Caffè",
+			nome: "Caffe",
 			gruppo: "bar",
 			prezzo: 0.5
 		},
