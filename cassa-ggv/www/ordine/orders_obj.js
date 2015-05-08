@@ -38,6 +38,7 @@ function Ordine(menu) {
     
     this.ordinePerStampa = function(){
         var nuovo = new Object();
+        var nuova_voce = new Ordine();
         nuovo.timestamp = Date.now();
         nuovo.voci = [];
         for(v in this.voci){
@@ -50,7 +51,9 @@ function Ordine(menu) {
 						this.voci[v].note = 'Asporto\n' + '  ' + this.voci[v].note;
 					}
 				}
-                nuovo.voci.push(this.voci[v]);
+                nuova_voce = clone(this.voci[v]);
+                nuova_voce.gruppo = nuova_voce.gruppoStampato;
+                nuovo.voci.push(nuova_voce);
             }   
         }
         return nuovo;

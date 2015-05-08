@@ -6,7 +6,7 @@ var _menu = {
 			prezzo: 0.5
 		},
 		{
-			nome: "Vino bottiglia",
+			nome: "Vino bottiglia 0,75",
 			gruppo: "bar",
 			prezzo: 10
 		},
@@ -18,12 +18,12 @@ var _menu = {
 		{
 			nome: "Vino 1 litro sfuso",
 			gruppo: "bar",
-			prezzo: 6
+			prezzo: 7
 		},
 		{
 			nome: "Vino 1/2 litro sfuso",
 			gruppo: "bar",
-			prezzo: 3
+			prezzo: 3.5
 		},
 		{
 			nome: "Caffè",
@@ -53,21 +53,6 @@ var _menu = {
 	],
 	primi: [
 		{
-			nome: "Asino",
-			gruppo: "primi",
-			prezzo: "8"
-		},
-		{
-			nome: "Trippa",
-			gruppo: "primi",
-			prezzo: 4.5
-		},
-		{
-			nome: "Pecora",
-			gruppo: "primi",
-			prezzo: 6
-		},
-		{
 			nome: "Gnocchi ragu",
 			gruppo: "primi",
 			prezzo: 4
@@ -88,11 +73,31 @@ var _menu = {
 			prezzo: 4.5
 		},
 		{
-			nome: "Gnocchi 4 formaggi",
+			nome: "Gnocchi zola salsiccia",
 			gruppo: "primi",
 			prezzo: 4.5
 		},
 		{
+			nome: "Trippa",
+			gruppo: "primi",
+			prezzo: 4.5
+		},
+		{
+			nome: "Polenta e pecora",
+			gruppo: "primi",
+			prezzo: 6
+		},
+        {
+			nome: "Polenta e fegato",
+			gruppo: "primi",
+			prezzo: 6
+		},
+        {
+			nome: "Polenta e sughi",
+			gruppo: "primi",
+			prezzo: 4
+		},
+        {
 			nome: "Dolci",
 			gruppo: "primi",
 			prezzo: 2
@@ -105,12 +110,22 @@ var _menu = {
 			prezzo: 5
 		},
 		{
-			nome: "Cotto",
+			nome: "Grigliata",
 			gruppo: "secondi",
-			prezzo: 3.5
+			prezzo: 8
 		},
-		{
-			nome: "Verdure grigliate",
+        {
+			nome: "Panino salamella",
+			gruppo: "secondi veloci",
+			prezzo: 3
+		},
+        {
+			nome: "Roast beef",
+			gruppo: "secondi",
+			prezzo: 4
+		},
+        {
+			nome: "Tomino",
 			gruppo: "secondi",
 			prezzo: 2
 		},
@@ -119,41 +134,26 @@ var _menu = {
 			gruppo: "secondi",
 			prezzo: 4
 		},
-		{
-			nome: "Tomino",
+        {
+			nome: "Patate fritte",
 			gruppo: "secondi",
-			prezzo: 2
+			prezzo: 3
 		},
-		{
-			nome: "Roast beef",
-			gruppo: "secondi",
-			prezzo: 4
-		},
-		{
-			nome: "Pollo",
-			gruppo: "secondi",
-			prezzo: 4
-		},
-		{
+        {
 			nome: "Fagioli",
 			gruppo: "secondi",
 			prezzo: 2
 		},
 		{
-			nome: "Panino salamella",
-			gruppo: "secondi veloci",
-			prezzo: 3
-		},
-		{
-			nome: "Grigliata",
+			nome: "Verdure grigliate",
 			gruppo: "secondi",
-			prezzo: 8
+			prezzo: 2.5
 		},
-		{
-			nome: "Patate fritte",
+        {
+			nome: "Fantainsalata",
 			gruppo: "secondi",
 			prezzo: 3
-		}
+		},
 	]
 };
 
