@@ -36,11 +36,6 @@ var _menu = {
 			prezzo: 2.5
 		},
 		{
-			nome: "Birra Latitante",
-			gruppo: "bar",
-			prezzo: 3.5
-		},
-		{
 			nome: "Bibita",
 			gruppo: "bar",
 			prezzo: 2
