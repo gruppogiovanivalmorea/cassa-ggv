@@ -92,6 +92,7 @@ function Ordine(menu) {
             this.voci[v].qta = 0;
             this.voci[v].note = "";
 			this.voci[v].dividiStampa = false;
+            this.voci[v].asporto=false;
         }
     };
     
