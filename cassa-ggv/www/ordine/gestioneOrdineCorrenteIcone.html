@@ -43,8 +43,15 @@
 <div style="padding: 10px;">
     <div>
         <div style="float: left; margin-right: 40px;">
-            <h2>Totale ultimo ordine: {{ultimoTotale| currency}}</h2>
             <h2>Totale: {{totaleOrdine| currency}}</h2>
+            Contanti:
+            <input type="number" ng-model="contanti" min="0" max="500" style="">
+            Resto: {{ contanti - totaleOrdine }}
+            <hr />
+            <h3>Totale ultimo ordine: {{ultimoTotale| currency}}</h3>
+            Contanti:
+            <input type="number" ng-model="contantiUltimoOrdine" min="0" max="500" style="">
+            Resto: {{ contantiUltimoOrdine - ultimoTotale }}
             <h3>Asporto: <input ng-model="ordine.asporto" type="checkbox" /></h3>
         </div>
         <div>
@@ -85,6 +92,8 @@
             </tbody>
         </table>
     </div>
+
+
 
 </div>
 

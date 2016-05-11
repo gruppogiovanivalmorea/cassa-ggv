@@ -108,6 +108,12 @@ angular.module('GGVApp-ordine', [])
 				$scope.totaleOrdine = 0;
 				$scope.ultimoTotale = 0;
 				$scope.ordineFiltrato = new Object();
+
+
+                // Aggiunte per resti
+				$scope.contanti = 0;
+				$scope.contantiUltimoOrdine = 0;
+
 				//    $scope.ordineFiltratoNonVuoto;
 				//$scope.finestraCliente = finestraCliente;
 
@@ -201,9 +207,10 @@ angular.module('GGVApp-ordine', [])
 				$scope.$on('$locationChangeStart', function (event, next, current) {
 					finestraCliente.chiudiFinestraCliente();
 				});
-				
-				
-				
+
+
+
+
 			}])
 
 

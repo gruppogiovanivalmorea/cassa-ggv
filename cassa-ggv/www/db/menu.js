@@ -3,7 +3,7 @@ var _menu = {
 		{
 			nome: "Acqua",
 			gruppo: "bar",
-			prezzo: 0.5
+			prezzo: 1
 		},
 		{
 			nome: "Vino bottiglia 0,75",
@@ -28,7 +28,7 @@ var _menu = {
 		{
 			nome: "Caffe",
 			gruppo: "bar",
-			prezzo: 0.5
+			prezzo: 1
 		},
 		{
 			nome: "Birra Moretti",
@@ -45,6 +45,13 @@ var _menu = {
 			gruppo: "bar",
 			prezzo: 3.5
 		},
+		{
+			nome: "Bicchiere Valmo Festival",
+			gruppo: "bar",
+			prezzo: 1,
+			stampa: false
+		},
+
 	],
 	primi: [
 		{
@@ -58,11 +65,6 @@ var _menu = {
 			prezzo: 3.5
 		},
 		{
-			nome: "Gnocchi burro salvia",
-			gruppo: "primi",
-			prezzo: 3.5
-		},
-		{
 			nome: "Gnocchi boscaiola",
 			gruppo: "primi",
 			prezzo: 4.5
@@ -72,11 +74,25 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 4.5
 		},
+		/*
+		{
+			nome: "Gnocchi burro salvia",
+			gruppo: "primi",
+			prezzo: 3.5
+		},
+		*/
 		{
 			nome: "Trippa",
 			gruppo: "primi",
 			prezzo: 4.5
 		},
+		{
+			nome: "Capriolo in pagnottella",
+			gruppo: "primi",
+			prezzo: 9
+		},
+
+		/*
 		{
 			nome: "Polenta e pecora",
 			gruppo: "primi",
@@ -92,6 +108,7 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 4
 		},
+		*/
         {
 			nome: "Dolci",
 			gruppo: "primi",
@@ -102,12 +119,12 @@ var _menu = {
 		{
 			nome: "Costine",
 			gruppo: "secondi",
-			prezzo: 5
+			prezzo: 5.5
 		},
 		{
 			nome: "Grigliata",
 			gruppo: "secondi",
-			prezzo: 8
+			prezzo: 9
 		},
         {
 			nome: "Panino salamella",
@@ -130,7 +147,7 @@ var _menu = {
 			prezzo: 4
 		},
 		{
-			nome: "Tomino + verdure",
+			nome: "Tomino + asparagi",
 			gruppo: "secondi",
 			prezzo: 4
 		},
@@ -144,16 +161,23 @@ var _menu = {
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
+        {
+			nome: "Fagioli + cipolle",
+			gruppo: "secondi veloci",
+			prezzo: 2
+		},
 		{
 			nome: "Verdure grigliate",
 			gruppo: "secondi veloci",
 			prezzo: 2.5
 		},
+		/*
         {
 			nome: "Fantainsalata",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
+		*/
 	]
 };
 

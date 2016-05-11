@@ -23,7 +23,7 @@ def printPos(richiesta):
         raise PrintError(
             nomestampante, 
             'Tipo stampante non valido: '+tipostampante)
-    
+
     for pos in toPosCodes(richiesta['ordine']['voci']):
         printfunc(pos)
 

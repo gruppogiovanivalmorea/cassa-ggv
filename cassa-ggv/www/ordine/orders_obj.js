@@ -23,7 +23,8 @@ function Ordine(menu) {
                 menu[gruppo][i].nome,
                 gruppo,
                 menu[gruppo][i].prezzo,
-                menu[gruppo][i].gruppo
+                menu[gruppo][i].gruppo,
+                menu[gruppo][i].stampa
             ));
         }
     }
@@ -42,7 +43,8 @@ function Ordine(menu) {
         nuovo.timestamp = Date.now();
         nuovo.voci = [];
         for(v in this.voci){
-            if(this.voci[v].qta > 0){
+            //console.log(this.voci[v]);
+            if(this.voci[v].qta > 0 && this.voci[v].stampa){
 				if(this.voci[v].asporto || (this.asporto && this.voci[v].gruppo !== 'bar')){
 					if(this.voci[v].note === ''){
 						this.voci[v].note = 'Asporto';
@@ -99,7 +101,7 @@ function Ordine(menu) {
     
 };
 
-function voceOrdine(prodotto, gruppo, prezzo, gruppoStampato){
+function voceOrdine(prodotto, gruppo, prezzo, gruppoStampato, stampa){
     //console.log(prodotto, gruppo);
     this.qta = 0;
     this.nome = prodotto; 
@@ -107,6 +109,7 @@ function voceOrdine(prodotto, gruppo, prezzo, gruppoStampato){
     this.gruppoStampato = gruppoStampato;
     this.prezzo = prezzo;
     this.dividiStampa = false;
+    this.stampa = stampa !== undefined ? stampa : true;
     this.note = "";
     this.inc = function() { this.qta++; };
     this.dec = function() { if(this.qta > 0) this.qta--; };
