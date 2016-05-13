@@ -87,7 +87,7 @@ var _menu = {
 			prezzo: 4.5
 		},
 		{
-			nome: "Capriolo in pagnottella",
+			nome: "Cervo in pagnottella",
 			gruppo: "primi",
 			prezzo: 9
 		},
