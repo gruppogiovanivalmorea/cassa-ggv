@@ -166,18 +166,20 @@ var _menu = {
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
+		/*
 		{
 			nome: "Verdure grigliate",
 			gruppo: "secondi veloci",
 			prezzo: 2.5
 		},
-		/*
+		*/
+		
         {
-			nome: "Fantainsalata",
+			nome: "Fanta Insalata",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
-		*/
+		
 	]
 };
 
