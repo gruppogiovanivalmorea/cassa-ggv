@@ -3,15 +3,15 @@ var _menu = {
 		{
 			nome: "Acqua",
 			gruppo: "bar",
-			prezzo: 1
+			prezzo: 0.5
 		},
 		{
-			nome: "Vino bottiglia 0,75",
+			nome: "Bibita",
 			gruppo: "bar",
-			prezzo: 10
+			prezzo: 2
 		},
 		{
-			nome: "Vino bicchiere",
+			nome: "Caffè",
 			gruppo: "bar",
 			prezzo: 1
 		},
@@ -21,29 +21,45 @@ var _menu = {
 			prezzo: 7
 		},
 		{
-			nome: "Vino 1/2 litro sfuso",
-			gruppo: "bar",
-			prezzo: 3.5
-		},
-		{
-			nome: "Caffe",
+			nome: "Vino bicchiere",
 			gruppo: "bar",
 			prezzo: 1
 		},
 		{
-			nome: "Birra Moretti",
+			nome: "Vino Roverone Riserva",
+			gruppo: "bar",
+			prezzo: 12
+		},
+		{
+			nome: "Vino Falanghina",
+			gruppo: "bar",
+			prezzo: 10
+		},
+		{
+			nome: "Birra artigianale",
+			gruppo: "bar",
+			prezzo: 3.5
+		},
+		{
+			nome: "Birra Moretti / Ichnusa",
 			gruppo: "bar",
 			prezzo: 2.5
 		},
 		{
-			nome: "Bibita",
+			nome: "Boccale birra artigianale",
 			gruppo: "bar",
-			prezzo: 2
+			prezzo: 10,
 		},
 		{
-			nome: "Birra Artigianale",
+			nome: "Boccale birra Moretti / Ichnusa",
 			gruppo: "bar",
-			prezzo: 3.5
+			prezzo: 8,
+		},
+		{
+			nome: "Boccale Valmo Festival",
+			gruppo: "bar",
+			prezzo: 2,
+			stampa: false
 		},
 		{
 			nome: "Bicchiere Valmo Festival",
@@ -60,55 +76,55 @@ var _menu = {
 			prezzo: 4
 		},
 		{
-			nome: "Gnocchi pomodoro",
+			nome: "Gnocchi boscaiola",
+			gruppo: "primi",
+			prezzo: 4.5
+		},
+		{
+			nome: "Gnocchi burro e salvia",
 			gruppo: "primi",
 			prezzo: 3.5
 		},
 		{
-			nome: "Gnocchi boscaiola",
+			nome: "Gnocchi pomodoro",
 			gruppo: "primi",
-			prezzo: 4.5
+			prezzo: 3.5
 		},
 		{
 			nome: "Gnocchi zola salsiccia",
 			gruppo: "primi",
 			prezzo: 4.5
 		},
-		/*
-		{
-			nome: "Gnocchi burro salvia",
-			gruppo: "primi",
-			prezzo: 3.5
-		},
-		*/
 		{
 			nome: "Trippa",
 			gruppo: "primi",
 			prezzo: 4.5
 		},
 		{
-			nome: "Cervo in pagnottella",
+			nome: "Brasato d'asino con polenta",
 			gruppo: "primi",
-			prezzo: 9
+			prezzo: 8
 		},
-
-		/*
 		{
-			nome: "Polenta e pecora",
+			nome: "Gorgonzola",
 			gruppo: "primi",
-			prezzo: 6
+			prezzo: 2
 		},
-        {
-			nome: "Polenta e fegato",
+		{
+			nome: "Zuppa di cipolle con pane toscano",
 			gruppo: "primi",
-			prezzo: 6
+			prezzo: 4.5
 		},
-        {
-			nome: "Polenta e sughi",
+		{
+			nome: "Polenta con sughi",
 			gruppo: "primi",
 			prezzo: 4
 		},
-		*/
+		{
+			nome: "Polenta e zola",
+			gruppo: "primi",
+			prezzo: 2
+		},
         {
 			nome: "Dolci",
 			gruppo: "primi",
@@ -117,39 +133,35 @@ var _menu = {
 	],
 	secondi: [
 		{
+			nome: "Grigliata mista",
+			gruppo: "secondi",
+			prezzo: 8.5
+		},
+		{
 			nome: "Costine",
 			gruppo: "secondi",
 			prezzo: 5.5
 		},
 		{
-			nome: "Grigliata",
+			nome: "Tomino",
 			gruppo: "secondi",
-			prezzo: 9
+			prezzo: 2.5
+		},
+		{
+			nome: "Tomino con asparagi",
+			gruppo: "secondi",
+			prezzo: 5
 		},
         {
-			nome: "Panino salamella",
+			nome: "Panino con salamella",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
+       
         {
-			nome: "Roast beef",
-			gruppo: "secondi veloci",
-			prezzo: 4
-		},
-        {
-			nome: "Tomino",
+			nome: "Sovracosce di pollo",
 			gruppo: "secondi",
-			prezzo: 2
-		},
-        {
-			nome: "Pollo",
-			gruppo: "secondi",
-			prezzo: 4
-		},
-		{
-			nome: "Tomino + asparagi",
-			gruppo: "secondi",
-			prezzo: 4
+			prezzo: 4.5
 		},
         {
 			nome: "Patate fritte",
@@ -162,18 +174,10 @@ var _menu = {
 			prezzo: 2
 		},
         {
-			nome: "Fagioli + cipolle",
+			nome: "Fagioli con cipolle",
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
-		/*
-		{
-			nome: "Verdure grigliate",
-			gruppo: "secondi veloci",
-			prezzo: 2.5
-		},
-		*/
-		
         {
 			nome: "Fanta Insalata",
 			gruppo: "secondi veloci",
