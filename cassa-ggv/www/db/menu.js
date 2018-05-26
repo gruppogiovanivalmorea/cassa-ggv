@@ -127,7 +127,7 @@ var _menu = {
 		},
         {
 			nome: "Dolci",
-			gruppo: "primi",
+			gruppo: "dolci",
 			prezzo: 2
 		},
 	],
