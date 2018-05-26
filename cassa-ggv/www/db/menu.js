@@ -26,12 +26,12 @@ var _menu = {
 			prezzo: 1
 		},
 		{
-			nome: "Vino Roverone Riserva",
+			nome: "Vino rosso Barbera",
 			gruppo: "bar",
 			prezzo: 12
 		},
 		{
-			nome: "Vino Falanghina",
+			nome: "Vino bianco Chardonnay",
 			gruppo: "bar",
 			prezzo: 10
 		},
@@ -127,7 +127,7 @@ var _menu = {
 		},
         {
 			nome: "Dolci",
-			gruppo: "primi",
+			gruppo: "dolci",
 			prezzo: 2
 		},
 	],
