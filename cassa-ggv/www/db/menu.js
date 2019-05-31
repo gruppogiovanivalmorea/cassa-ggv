@@ -1,4 +1,5 @@
 var _menu = {
+
 	bar: [
 		{
 			nome: "Acqua",
@@ -26,12 +27,12 @@ var _menu = {
 			prezzo: 1
 		},
 		{
-			nome: "Vino rosso Barbera",
+			nome: "Bottiglia vino rosso Scariot",
 			gruppo: "bar",
 			prezzo: 12
 		},
 		{
-			nome: "Vino bianco Chardonnay",
+			nome: "Bottiglia vino bianco Bel Buche",
 			gruppo: "bar",
 			prezzo: 10
 		},
@@ -41,9 +42,14 @@ var _menu = {
 			prezzo: 3.5
 		},
 		{
-			nome: "Birra Moretti / Ichnusa",
+			nome: "Birra Moretti",
 			gruppo: "bar",
 			prezzo: 2.5
+		},
+		{
+			nome: "Birra Ichnusa",
+			gruppo: "bar",
+			prezzo: 3
 		},
 		{
 			nome: "Boccale birra artigianale",
@@ -51,10 +57,15 @@ var _menu = {
 			prezzo: 10,
 		},
 		{
-			nome: "Boccale birra Moretti / Ichnusa",
+			nome: "Boccale birra Moretti",
 			gruppo: "bar",
 			prezzo: 8,
 		},
+		{
+			nome: "Boccale birra Ichnusa",
+			gruppo: "bar",
+			prezzo: 9,
+		}/*,
 		{
 			nome: "Boccale Valmo Festival",
 			gruppo: "bar",
@@ -66,56 +77,56 @@ var _menu = {
 			gruppo: "bar",
 			prezzo: 1,
 			stampa: false
-		},
-
+		},*/
 	],
+
 	primi: [
 		{
 			nome: "Gnocchi ragu",
 			gruppo: "primi",
-			prezzo: 4
+			prezzo: 4.5
 		},
 		{
 			nome: "Gnocchi boscaiola",
 			gruppo: "primi",
-			prezzo: 4.5
+			prezzo: 5
 		},
 		{
 			nome: "Gnocchi burro e salvia",
 			gruppo: "primi",
-			prezzo: 3.5
+			prezzo: 4
 		},
 		{
 			nome: "Gnocchi pomodoro",
 			gruppo: "primi",
-			prezzo: 3.5
+			prezzo: 4
 		},
 		{
 			nome: "Gnocchi zola salsiccia",
 			gruppo: "primi",
-			prezzo: 4.5
+			prezzo: 5
 		},
-		{
+		/*{ //Sabato e domenica
 			nome: "Trippa",
 			gruppo: "primi",
 			prezzo: 4.5
-		},
-		{
-			nome: "Brasato d'asino con polenta",
+		},*/
+		/*{ //Domenica
+			nome: "Coda alla vaccinara con polenta bianca",
 			gruppo: "primi",
-			prezzo: 8
-		},
+			prezzo: 11
+		},*/
 		{
 			nome: "Gorgonzola",
 			gruppo: "primi",
 			prezzo: 2
 		},
-		{
-			nome: "Zuppa di cipolle con pane toscano",
+		{ //Venerdì
+			nome: "Zuppa di cipolle con crostino",
 			gruppo: "primi",
 			prezzo: 4.5
 		},
-		{
+		{ //Domenica
 			nome: "Polenta con sughi",
 			gruppo: "primi",
 			prezzo: 4
@@ -123,70 +134,102 @@ var _menu = {
 		{
 			nome: "Polenta e zola",
 			gruppo: "primi",
-			prezzo: 2
+			prezzo: 4
 		},
-        {
+    {
 			nome: "Dolci",
 			gruppo: "dolci",
 			prezzo: 2
 		},
 	],
+
 	secondi: [
 		{
 			nome: "Grigliata mista",
 			gruppo: "secondi",
-			prezzo: 8.5
+			prezzo: 9
 		},
 		{
 			nome: "Costine",
 			gruppo: "secondi",
-			prezzo: 5.5
+			prezzo: 6
 		},
 		{
 			nome: "Tomino",
-			gruppo: "secondi",
-			prezzo: 2.5
-		},
-		{
-			nome: "Tomino con asparagi",
-			gruppo: "secondi",
-			prezzo: 5
-		},
-        {
-			nome: "Panino con salamella",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
-       
-        {
-			nome: "Sovracosce di pollo",
+		{
+			nome: "Tomino con verdure grigliate",
+			gruppo: "secondi veloci",
+			prezzo: 4.5
+		},
+    {
+			nome: "Panino con salamella",
+			gruppo: "secondi",
+			prezzo: 3
+		},
+		{
+			nome: "Panino salamella + 1 verdura grigliata",
+			gruppo: "secondi",
+			prezzo: 4
+		},
+		{
+			nome: "Panino salamella tomino + 1 verdura grigliata",
+			gruppo: "secondi",
+			prezzo: 6.5
+		},
+		{
+			nome: "Panino tomino + 1 verdura grigliata",
 			gruppo: "secondi",
 			prezzo: 4.5
 		},
-        {
+		{
+			nome: "Peperoni grigliati",
+			gruppo: "secondi",
+			prezzo: 0
+		},
+		{
+			nome: "Cipolle grigliate",
+			gruppo: "secondi",
+			prezzo: 0
+		},
+		{
+			nome: "Zucchine grigliate",
+			gruppo: "secondi",
+			prezzo: 0
+		},
+		{
+			nome: "Sovracosce di pollo",
+			gruppo: "secondi",
+			prezzo: 5
+		},
+		{
+			nome: "Roast beef",
+			gruppo: "secondi",
+			prezzo: 4.5
+		},
+    {
 			nome: "Patate fritte",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
-        {
+    {
 			nome: "Fagioli",
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
-        {
+    {
 			nome: "Fagioli con cipolle",
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
-        {
+    {
 			nome: "Fanta Insalata",
 			gruppo: "secondi veloci",
-			prezzo: 3
-		},
-		
+			prezzo: 4
+		}
 	]
 };
 
-
 localStorage.setItem('menu', JSON.stringify(_menu));
-
