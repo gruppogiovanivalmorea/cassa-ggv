@@ -2,6 +2,21 @@ var _menu = {
 
 	bar: [
 		{
+			nome:"Gadget",
+			gruppo:"bar",
+			prezzo:2		
+		},
+		{
+			nome:"Maglietta GGV",
+			gruppo:"bar",
+			prezzo: 7
+		},
+		{
+			nome:"3 Maglie GGV",
+			gruppo:"bar",
+			prezzo: 15
+		},
+		{
 			nome: "Acqua",
 			gruppo: "bar",
 			prezzo: 0.5
@@ -126,7 +141,7 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 4.5
 		},
-		{ //Domenica
+		/*{ //Domenica
 			nome: "Polenta con sughi",
 			gruppo: "primi",
 			prezzo: 4
@@ -135,8 +150,8 @@ var _menu = {
 			nome: "Polenta e zola",
 			gruppo: "primi",
 			prezzo: 4
-		},
-    {
+		},*/
+    		{
 			nome: "Dolci",
 			gruppo: "dolci",
 			prezzo: 2
@@ -164,40 +179,43 @@ var _menu = {
 			gruppo: "secondi veloci",
 			prezzo: 4.5
 		},
-    {
+    		{
 			nome: "Panino con salamella",
 			gruppo: "secondi",
 			prezzo: 3
 		},
 		{
-			nome: "Panino salamella + 1 verdura grigliata",
+			nome: "Panino salamella + una verdura grigliata a scelta",
 			gruppo: "secondi",
 			prezzo: 4
 		},
 		{
-			nome: "Panino salamella tomino + 1 verdura grigliata",
+			nome: "Panino salamella tomino + una verdura grigliata a scelta",
 			gruppo: "secondi",
 			prezzo: 6.5
 		},
 		{
-			nome: "Panino tomino + 1 verdura grigliata",
+			nome: "Panino tomino + una verdura grigliata a scelta",
 			gruppo: "secondi",
 			prezzo: 4.5
 		},
 		{
 			nome: "Peperoni grigliati",
 			gruppo: "secondi",
-			prezzo: 0
+			prezzo: 0,
+			stampa: false
 		},
 		{
 			nome: "Cipolle grigliate",
 			gruppo: "secondi",
-			prezzo: 0
+			prezzo: 0,
+			stampa: false
 		},
 		{
 			nome: "Zucchine grigliate",
 			gruppo: "secondi",
-			prezzo: 0
+			prezzo: 0,
+			stampa: false
 		},
 		{
 			nome: "Sovracosce di pollo",
