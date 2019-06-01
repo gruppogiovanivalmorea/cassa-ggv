@@ -214,7 +214,7 @@ var _menu = {
 		{
 			nome: "Zucchine grigliate",
 			gruppo: "secondi",
-			prezzo: 0
+			prezzo: 0,
 			stampa: false
 		},
 		{
