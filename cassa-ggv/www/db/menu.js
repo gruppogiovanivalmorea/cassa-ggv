@@ -127,9 +127,9 @@ var _menu = {
 			prezzo: 4.5
 		},
 		{ //Domenica
-			nome: "Coda alla vaccinara con polenta bianca",
+			nome: "Coda alla vaccinara",
 			gruppo: "primi",
-			prezzo: 11
+			prezzo: 8
 		},
 		{
 			nome: "Gorgonzola",
