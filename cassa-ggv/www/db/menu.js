@@ -141,7 +141,7 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 4.5
 		},
-		{ //Domenica
+		/*{ //Domenica
 			nome: "Polenta con sughi",
 			gruppo: "primi",
 			prezzo: 4
@@ -150,7 +150,7 @@ var _menu = {
 			nome: "Polenta e zola",
 			gruppo: "primi",
 			prezzo: 4
-		},
+		},*/
     		{
 			nome: "Dolci",
 			gruppo: "dolci",
