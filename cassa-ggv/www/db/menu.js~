@@ -121,11 +121,11 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 5
 		},
-		/*{ //Sabato e domenica
+		{ //Sabato e domenica
 			nome: "Trippa",
 			gruppo: "primi",
 			prezzo: 4.5
-		},*/
+		},
 		/*{ //Domenica
 			nome: "Coda alla vaccinara con polenta bianca",
 			gruppo: "primi",
@@ -136,11 +136,11 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 2
 		},
-		{ //Venerdì
+		/*{ //Venerdì
 			nome: "Zuppa di cipolle con crostino",
 			gruppo: "primi",
 			prezzo: 4.5
-		},
+		},*/
 		/*{ //Domenica
 			nome: "Polenta con sughi",
 			gruppo: "primi",
@@ -195,6 +195,11 @@ var _menu = {
 			prezzo: 6.5
 		},
 		{
+			nome: "Panino salamella tomino",
+			gruppo: "secondi",
+			prezzo: 6
+		},
+		{
 			nome: "Panino tomino + una verdura grigliata a scelta",
 			gruppo: "secondi",
 			prezzo: 4.5
@@ -227,22 +232,22 @@ var _menu = {
 			gruppo: "secondi",
 			prezzo: 4.5
 		},
-    {
+    		{
 			nome: "Patate fritte",
 			gruppo: "secondi veloci",
 			prezzo: 3
 		},
-    {
+    		{
 			nome: "Fagioli",
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
-    {
+    		{
 			nome: "Fagioli con cipolle",
 			gruppo: "secondi veloci",
 			prezzo: 2
 		},
-    {
+    		{
 			nome: "Fanta Insalata",
 			gruppo: "secondi veloci",
 			prezzo: 4

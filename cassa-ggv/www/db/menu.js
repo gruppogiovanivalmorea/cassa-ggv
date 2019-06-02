@@ -126,22 +126,22 @@ var _menu = {
 			gruppo: "primi",
 			prezzo: 4.5
 		},
-		/*{ //Domenica
+		{ //Domenica
 			nome: "Coda alla vaccinara con polenta bianca",
 			gruppo: "primi",
 			prezzo: 11
-		},*/
+		},
 		{
 			nome: "Gorgonzola",
 			gruppo: "primi",
 			prezzo: 2
 		},
-		/*{ //Venerdì
+		{ //Venerdì
 			nome: "Zuppa di cipolle con crostino",
 			gruppo: "primi",
 			prezzo: 4.5
-		},*/
-		/*{ //Domenica
+		},
+		{ //Domenica
 			nome: "Polenta con sughi",
 			gruppo: "primi",
 			prezzo: 4
@@ -150,7 +150,7 @@ var _menu = {
 			nome: "Polenta e zola",
 			gruppo: "primi",
 			prezzo: 4
-		},*/
+		},
     		{
 			nome: "Dolci",
 			gruppo: "dolci",
@@ -216,12 +216,12 @@ var _menu = {
 			prezzo: 0,
 			stampa: false
 		},
-		{
+		/*{
 			nome: "Zucchine grigliate",
 			gruppo: "secondi",
 			prezzo: 0,
 			stampa: false
-		},
+		},*/
 		{
 			nome: "Sovracosce di pollo",
 			gruppo: "secondi",
